@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.blue,
         // brightness: Brightness.dark,
         primaryColor: Colors.lightBlue[800],
-        accentColor: Colors.cyan[600],
+        accentColor: Colors.lightBlue[600],
 
         // Define the default font family.
         // fontFamily: 'Georgia',
@@ -60,11 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
+// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

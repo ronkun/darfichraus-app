@@ -50,6 +50,14 @@ class _HomeState extends State<Home> {
          )
        ],
      ),
+
+    floatingActionButton: FloatingActionButton(
+      onPressed: (){
+        print("Verordnung hinzufügen");
+      },
+      tooltip: 'Verordnung hinzufügen',
+      child: Icon(Icons.add),
+    ), 
    );
  }
 
