@@ -48,10 +48,10 @@ class FeedDetailView extends StatelessWidget {
       ),
     );
 
-    final topContentText = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    final topContentText = Wrap(
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 70.0),
+        SizedBox(height: 20.0),
         Icon(
           Icons.directions_car,
           color: Colors.white,
@@ -66,19 +66,24 @@ class FeedDetailView extends StatelessWidget {
           data.restrictionShortDescription,
           style: TextStyle(color: Colors.white, fontSize: 20.0),
         ),
-        SizedBox(height: 40.0),
+        SizedBox(height: 25.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Expanded(flex: 1, child: levelIndicator),
+            Expanded(
+                flex: 1, 
+                child: levelIndicator
+              ),
             Expanded(
                 flex: 6,
                 child: Padding(
-                    padding: EdgeInsets.only(left: 10.0),
+                    padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
                     child: Text(
                       Utility.formatDateTime(data.restrictionStart),
                       style: TextStyle(color: Colors.white),
-                    ))),
+                    )
+                )
+            ),
           ],
         ),
       ],
@@ -86,16 +91,16 @@ class FeedDetailView extends StatelessWidget {
 
     final topContent = Stack(
       children: <Widget>[
-        Container(
-            padding: EdgeInsets.only(left: 0),
-            height: 370,
+        // Container(
+        //     padding: EdgeInsets.only(left: 0),
+        //     height: 370,
             // height: MediaQuery.of(context).size.height,
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: new AssetImage("drive-steering-wheel.jpg"),
-                fit: BoxFit.cover,
-              ),
-            )),
+            // decoration: new BoxDecoration(
+            //   image: new DecorationImage(
+            //     image: new AssetImage("drive-steering-wheel.jpg"),
+            //     fit: BoxFit.cover,
+            //   ),
+            // )),
         SingleChildScrollView(
           child: Container(
             height: 350,
@@ -147,9 +152,13 @@ class FeedDetailView extends StatelessWidget {
     );
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         child: Column(
-        children: <Widget>[topContent, bottomContent],
+        children: <Widget>[
+          topContent, 
+          bottomContent
+        ],
       ),
     ));
   }
