@@ -51,11 +51,23 @@ Widget build(BuildContext context) {
                                 // leading: CircleAvatar(
                                 // backgroundImage: NetworkImage(imageUrl),),
                               title: Text(snapshot.data[index].restrictionShortDescription),
-                              subtitle: Text('ID: ${snapshot.data[index].restrictionId} '),
+                              subtitle: Row(
+                                children: <Widget>[
+                                    Icon(Utility.getIconForCategory(snapshot.data[index].restrictionType), color: Colors.grey),
+                                    Text(snapshot.data[index].restrictionType, style: TextStyle(color: Colors.grey)
+                                  )
+                                ]),
+                              // Text('ID: ${snapshot.data[index].restrictionId} '),
                               enabled: snapshot.data[index].restrictionDescription.isNotEmpty,
                               trailing: Icon(Icons.keyboard_arrow_right),
                               dense: true,
-                              onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedDetailView(snapshot.data[index])),
+                              onTap:() => Navigator.push(context, 
+                                MaterialPageRoute(
+                                  builder: (context) => FeedDetailView(),
+                                   settings: RouteSettings(
+                                    arguments: snapshot.data[index],
+                                  ),
+                                ),
                              ));
                           });
                         } else {

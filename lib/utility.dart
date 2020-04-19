@@ -7,6 +7,23 @@ class Utility {
     return "";
   }
 
+  static getIconForCategory(String cat){
+    switch (cat) {
+      case "EVENTS_AND_ASSEMBLIES": 
+        return Icons.directions_bus;
+      case "CURFEW":
+        return Icons.close;
+      case "PUBLIC_PLACES":  
+        return Icons.place;
+      case "GASTRONOMY":
+        return Icons.fastfood;
+      case "RETAIL":  
+        return Icons.shopping_basket;   
+        break;
+      default:
+    }
+  }
+
   static void showAlert(BuildContext context, String text) {
     var alert = new AlertDialog(
       content: Container(

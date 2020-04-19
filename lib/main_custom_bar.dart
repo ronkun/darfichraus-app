@@ -31,6 +31,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {},
+            )
+          ]
         ),
         body: _children.elementAt(_selectedIndex), // new
         bottomNavigationBar: BottomNavigationBar(
