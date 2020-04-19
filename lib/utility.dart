@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as Math;
 
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class Utility {
 
-static const List<String> assetNames = <String>[
-  // 'assets/notfound.svg', // uncomment to test an asset that doesn't exist.
-  'assets/state_img/hessen.svg',
-];
+  static const List<String> assetNames = <String>[
+    // 'assets/notfound.svg', // uncomment to test an asset that doesn't exist.
+    'assets/state_img/hessen.svg',
+  ];
+
+  static formatDateTime(String dateTime) {
+    final dateFormatter = DateFormat('dd.MM.yyyy');
+    return dateFormatter.format(DateTime.now());
+  }
 
   static String getAreaIdentifier(String areaIdentifierLong){
     return "";
@@ -28,53 +33,6 @@ static const List<String> assetNames = <String>[
         return Icons.shopping_basket;   
       default:
         return Icons.alarm;
-    }
-  }
-
-    static getIconForState(String state){
-    switch (state) {
-      case "Rheinland-Pfalz":
-        print("rheinlandpfalz");
-        return Image(image: AssetImage('assets/state_img/rheinlandpfalz.png'), fit: BoxFit.fitWidth);
-      // case "Baden-Württemberg":
-      //    return new SvgPicture.asset(
-      //     assetNames[0], 
-      //     height: 10.0,
-      //     width: 10.0,
-      //     allowDrawingOutsideViewBox: true,
-      //   );
-      // case "Hessen":
-      //         print("hessen");
-      //        return new SvgPicture.asset(
-      //     assetNames[0], 
-      //     height: 10.0,
-      //     width: 10.0,
-      //     allowDrawingOutsideViewBox: true,
-      //   );
-      // case "Hamburg":
-      //            return new SvgPicture.asset(
-      //     assetNames[0], 
-      //     height: 10.0,
-      //     width: 10.0,
-      //     allowDrawingOutsideViewBox: true,
-      //   );
-      // case "Sachsen-Anhalt": 
-      //            return new SvgPicture.asset(
-      //     assetNames[0], 
-      //     height: 10.0,
-      //     width: 10.0,
-      //     allowDrawingOutsideViewBox: true,
-      //   );
-      // case "Nordrhein-Westfalen":
-      //   return Image(image: AssetImage('assets/nordrheinwestfalen.svg'));
-      // case "Berlin":  
-      //   return Image(image: AssetImage('assets/berlin.svg'));
-      // case "Hamburg":
-      //   return Image(image: AssetImage('assets/hamburg.svg'));
-      // case "Rheinland-Pflaz":  
-      //   return Image(image: AssetImage('assets/rheinlandpfalz.svg')); 
-      default:
-        return Image(image: AssetImage('assets/state_img/rheinlandpfalz.png'), fit: BoxFit.fitWidth);
     }
   }
 

@@ -47,17 +47,15 @@ Widget build(BuildContext context) {
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              leading: Utility.getIconForState(snapshot.data[index].restrictionArealIdentifier),
-                              // CircleAvatar(
-                              //    backgroundImage: Utility.getIconForState(snapshot.data[index].restrictionArealIdentifier)
-                              //    ),
-                                // leading: CircleAvatar(
-                                // backgroundImage: NetworkImage(imageUrl),),
+                              leading: new CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: snapshot.data[index].translateRestrictionAreaSymbol(snapshot.data[index].restrictionArealIdentifier)
+                                  ),        
                               title: Text(snapshot.data[index].restrictionShortDescription),
                               subtitle: Row(
                                 children: <Widget>[
                                     Icon(Utility.getIconForCategory(snapshot.data[index].restrictionType), color: Colors.grey),
-                                    Text(snapshot.data[index].restrictionArealIdentifier, style: TextStyle(color: Colors.grey)
+                                    Text(Utility.formatDateTime(snapshot.data[index].restrictionStart), style: TextStyle(color: Colors.grey)
                                   )
                                 ]),
                               // Text('ID: ${snapshot.data[index].restrictionId} '),
@@ -85,20 +83,5 @@ Widget build(BuildContext context) {
         );
     }
 
-}
-
-class Debouncer {
-  final int milliseconds;
-  VoidCallback action;
-  Timer _timer;
- 
-  Debouncer({this.milliseconds});
- 
-  run(VoidCallback action) {
-    if (null != _timer) {
-      _timer.cancel();
-    }
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
-  }
 }
  

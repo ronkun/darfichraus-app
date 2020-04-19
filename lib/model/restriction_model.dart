@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Restriction {
   String restrictionId; 
   String restrictionDescription; 
@@ -12,6 +14,7 @@ class Restriction {
   String restrictionArealIdentifier;
   String restrictionCreated;
   bool restrictionVerified;
+  Image restrictionAreaSymbol;
   
   Restriction ({
     this.restrictionId,
@@ -26,7 +29,8 @@ class Restriction {
     this.restrictionType, 
     this.restrictionArealIdentifier, 
     this.restrictionCreated, 
-    this.restrictionVerified,
+    this.restrictionVerified, 
+    this.restrictionAreaSymbol,
   });
    
   static String translatedType(String type) {
@@ -48,6 +52,48 @@ class Restriction {
       }
     }
 
+  Image translateRestrictionAreaSymbol(String area) {
+    switch (area) {
+      case "Rheinland-Pfalz":
+        return Image(image: AssetImage('assets/state_img/rheinlandpfalz.png'), fit: BoxFit.fitWidth);
+      // return Image.asset('assets/state_img/rheinlandpfalz.png');
+      case "Baden-Württemberg":
+        return Image(image: AssetImage('assets/state_img/badenwuertemberg.png'), fit: BoxFit.fitWidth);
+      case "Hessen":
+        return Image(image: AssetImage('assets/state_img/hessen.png'), fit: BoxFit.fitWidth);
+      case "Hamburg":
+        return Image(image: AssetImage('assets/state_img/hamburg.png'), fit: BoxFit.fitWidth);
+      case "Sachsen-Anhalt": 
+        return Image(image: AssetImage('assets/state_img/sachsenanhalt.png'), fit: BoxFit.fitWidth);
+      case "Nordrhein-Westfalen":
+        return Image(image: AssetImage('assets/state_img/nordrheinwestfalen.png'), fit: BoxFit.fitWidth);
+      case "Berlin":  
+        return Image(image: AssetImage('assets/state_img/berlin.png'), fit: BoxFit.fitWidth);
+      case "Hamburg":
+          return Image(image: AssetImage('assets/state_img/hamburg.png'), fit: BoxFit.fitWidth);
+      case "Bayern":  
+        return Image(image: AssetImage('assets/state_img/bayern.png'), fit: BoxFit.fitWidth);
+      case "Bremen":  
+        return Image(image: AssetImage('assets/state_img/bremen.png'), fit: BoxFit.fitWidth); 
+      case "Saarland":  
+        return Image(image: AssetImage('assets/state_img/saarland.png'), fit: BoxFit.fitWidth);
+      case "Sachsen":  
+        return Image(image: AssetImage('assets/state_img/sachsen.png'), fit: BoxFit.fitWidth);      
+      case "Schleswig-Holstein":  
+        return Image(image: AssetImage('assets/state_img/schleswigholstein.png'), fit: BoxFit.fitWidth);
+      case "Thüringen":  
+        return Image(image: AssetImage('assets/state_img/thueringen.png'), fit: BoxFit.fitWidth);
+      case "Brandenburg":  
+        return Image(image: AssetImage('assets/state_img/brandenburg.png'), fit: BoxFit.fitWidth);
+      case "Berlin":  
+        return Image(image: AssetImage('assets/state_img/berlin.png'), fit: BoxFit.fitWidth);
+      case "Mecklenburg-Vorpommern":  
+        return Image(image: AssetImage('assets/state_img/mecklenburgvorpommern.png'), fit: BoxFit.fitWidth);
+      default:
+        return null;
+    }
+  }
+
     factory Restriction.fromJson(Map<String, dynamic> json){
       return Restriction(
         restrictionId: json['id'],
@@ -63,6 +109,7 @@ class Restriction {
         restrictionArealIdentifier: json['arealIdentifier'],
         restrictionCreated: json['restrictionCreated'],
         restrictionVerified: json['verified'],
+        // restrictionAreaSymbol: restrictionAreaSymbol(),
       );
     }
 
