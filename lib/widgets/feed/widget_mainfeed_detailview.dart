@@ -10,22 +10,21 @@ class FeedDetailView extends StatelessWidget {
     Restriction data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-                elevation: 0.1,
-              backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-              title: Text(""),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.list),
-                  onPressed: () {},
-                )
-              ],
+          elevation: 0.1,
+          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+          title: Text(""),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {},
+            )
+          ],
         // title: Text(data.restrictionShortDescription),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Text(data.restrictionType),
+        child: Text(data.restrictionDescription),
       ),
     );
   }
-  
 }

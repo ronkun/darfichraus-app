@@ -47,14 +47,17 @@ Widget build(BuildContext context) {
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              leading: Icon(Icons.warning),
+                              leading: Utility.getIconForState(snapshot.data[index].restrictionArealIdentifier),
+                              // CircleAvatar(
+                              //    backgroundImage: Utility.getIconForState(snapshot.data[index].restrictionArealIdentifier)
+                              //    ),
                                 // leading: CircleAvatar(
                                 // backgroundImage: NetworkImage(imageUrl),),
                               title: Text(snapshot.data[index].restrictionShortDescription),
                               subtitle: Row(
                                 children: <Widget>[
                                     Icon(Utility.getIconForCategory(snapshot.data[index].restrictionType), color: Colors.grey),
-                                    Text(snapshot.data[index].restrictionType, style: TextStyle(color: Colors.grey)
+                                    Text(snapshot.data[index].restrictionArealIdentifier, style: TextStyle(color: Colors.grey)
                                   )
                                 ]),
                               // Text('ID: ${snapshot.data[index].restrictionId} '),

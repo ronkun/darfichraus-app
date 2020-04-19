@@ -13,22 +13,41 @@ class Restriction {
   String restrictionCreated;
   bool restrictionVerified;
   
-    Restriction ({
-      this.restrictionId,
-      this.restrictionDescription,
-      this.restrictionShortDescription, 
-      this.restrictionPublisher, 
-      this.restrictionFurtherInformation, 
-      this.restrictionRecipient, 
-      this.restrictionStart, 
-      this.restrictionEnd, 
-      this.restrictionState, 
-      this.restrictionType, 
-      this.restrictionArealIdentifier, 
-      this.restrictionCreated, 
-      this.restrictionVerified,
-    });
+  Restriction ({
+    this.restrictionId,
+    this.restrictionDescription,
+    this.restrictionShortDescription, 
+    this.restrictionPublisher, 
+    this.restrictionFurtherInformation, 
+    this.restrictionRecipient, 
+    this.restrictionStart, 
+    this.restrictionEnd, 
+    this.restrictionState, 
+    this.restrictionType, 
+    this.restrictionArealIdentifier, 
+    this.restrictionCreated, 
+    this.restrictionVerified,
+  });
    
+  static String translatedType(String type) {
+      switch (type) {
+        case "PUBLIC_TRANSPORTATION":
+          return "Nahverkehr";
+        case "RETAIL":
+          return "Einzelhandel";
+        case "EVENTS_AND_ASSEMBLIES":
+          return "Veranstaltungen & Gruppen";
+        case "PUBLIC_PLACES":
+          return "Öffentliche Plätze";
+        case "GASTRONOMY":
+          return "Gastronomie";
+        case "CURFEW":
+          return "Ausgangsbeschränkung";
+        default:
+          return type;
+      }
+    }
+
     factory Restriction.fromJson(Map<String, dynamic> json){
       return Restriction(
         restrictionId: json['id'],
@@ -41,7 +60,7 @@ class Restriction {
         restrictionEnd: json['restrictionEnd'],
         restrictionState: json['restrictionState'],
         restrictionType: json['restrictionType'],
-        restrictionArealIdentifier: json['restrictionIdentifier'],
+        restrictionArealIdentifier: json['arealIdentifier'],
         restrictionCreated: json['restrictionCreated'],
         restrictionVerified: json['verified'],
       );

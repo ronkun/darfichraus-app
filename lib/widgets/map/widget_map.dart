@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WidgetMap extends StatelessWidget {
-  var color;
+  final color;
   final String buttonLbl = "Karte";
 
   @override
