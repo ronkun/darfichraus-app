@@ -23,7 +23,6 @@ class _HomeState extends State<Home> {
   void _onTabTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      print(_selectedIndex);
     });
   }
 
