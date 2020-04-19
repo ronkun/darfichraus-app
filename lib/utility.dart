@@ -30,14 +30,7 @@ class Utility {
           return alert;
         });
   }
-
- /// converter (to/from String)
-  static String dateTimeToString(DateTime t) => t.toUtc().toIso8601String();
-  static DateTime stringToDateTime(String s) => DateTime.parse(s).toUtc();
-
-  static String durationToString(Duration d) => d?.inMicroseconds?.toString();
-  static Duration stringToDuration(String s) => Duration(microseconds: int.parse(s));
-
+ 
   static bool compare(double v1, double v2, [int fractionDigits]) {
     if (v1 == v2) return true;
     if (fractionDigits != null && v1 != null && v2 != null) {
@@ -53,9 +46,26 @@ class Utility {
     }
     return false;
   }
-  
+
   final Math.Random _random = new Math.Random();
   Color generateRandomColor() => Color(0xFF000000 + _random.nextInt(0x00FFFFFF));
+
+  static Widget getCircularProgressIndicator(double width, double height) {
+    return Center(child: SizedBox(
+      child: CircularProgressIndicator(),
+      height: height,
+      width: width,
+    ));
+  }
+}
+
+class ConverterUtil {
+  /// converter (to/from String)
+  static String dateTimeToString(DateTime t) => t.toUtc().toIso8601String();
+  static DateTime stringToDateTime(String s) => DateTime.parse(s).toUtc();
+
+  static String durationToString(Duration d) => d?.inMicroseconds?.toString();
+  static Duration stringToDuration(String s) => Duration(microseconds: int.parse(s));
 }
 
 class StringUtil {
