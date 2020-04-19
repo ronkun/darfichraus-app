@@ -58,7 +58,7 @@ class FeedDetailView extends StatelessWidget {
           size: 30.0,
         ),
         Container(
-          width: 300.0,
+          width: 340.0,
           child: new Divider(color: Colors.grey),
         ),
         SizedBox(height: 10.0),
@@ -121,7 +121,7 @@ class FeedDetailView extends StatelessWidget {
 
     final bottomContentText = Text(
       data.restrictionDescription,
-      style: TextStyle(fontSize: 18.0),
+      style: TextStyle(fontSize: 15.0),
     );
 
     final readButton = Container(
