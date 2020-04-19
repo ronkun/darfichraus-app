@@ -1,4 +1,5 @@
-import 'package:crimsy/widget_mainfeed.dart';
+import 'package:crimsy/widgets/feed/widget_mainfeed.dart';
+import 'package:crimsy/widgets/map/widget_map.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -6,64 +7,65 @@ class Home extends StatefulWidget {
   final String title; 
 
   @override
-  State<StatefulWidget> createState() {
-      return _HomeState();
-    }
+  State<StatefulWidget> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 0;
- final List<Widget> _children = [
-   WidgetMainfeed(Colors.white),
-   WidgetMainfeed(Colors.deepOrange),
-   WidgetMainfeed(Colors.green),
-   WidgetMainfeed(Colors.green)
- ];
+  int _selectedIndex = 0;
 
-@override
- Widget build(BuildContext context) {
-   return Scaffold(
-     appBar: AppBar(
-       title: Text(widget.title),
-     ),
-     body: _children[_currentIndex], // new
-     bottomNavigationBar: BottomNavigationBar(
-       onTap: onTabTapped, // new
-       currentIndex: _currentIndex, // new
-       type: BottomNavigationBarType.fixed,
-       items: [
-         new BottomNavigationBarItem(
-           icon: Icon(Icons.home),
-           title: Text('News'),
-         ),
-         new BottomNavigationBarItem(
-           icon: Icon(Icons.map),
-           title: Text('Karte'),
-         ),
-         new BottomNavigationBarItem(
-           icon: Icon(Icons.person),
-           title: Text('Profil')
-         ),
-         new BottomNavigationBarItem(
-           icon: Icon(Icons.settings),
-           title: Text('Einstellungen')
-         )
-       ],
-     ),
+  final List<Widget> _children = [
+    WidgetMainfeed(Colors.white),
+    WidgetMap(Colors.deepOrange),
+    WidgetMap(Colors.green),
+    WidgetMap(Colors.green)
+  ];
 
-    floatingActionButton: FloatingActionButton(
-      onPressed: (){
-        print("Verordnung hinzufügen");
-      },
-      tooltip: 'Verordnung hinzufügen',
-      child: Icon(Icons.add),
-    ), 
-   );
- }
+  void _onTabTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      print(_selectedIndex);
+    });
+  }
 
- void onTabTapped(int index) {
-   setState(() {
-     _currentIndex = index;
-   });
- }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: _children.elementAt(_selectedIndex), // new
+        bottomNavigationBar: BottomNavigationBar(
+        onTap: _onTabTapped, // new
+        currentIndex: _selectedIndex, 
+        type: BottomNavigationBarType.fixed,
+        items: [
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('News'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            title: Text('Karte'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profil')
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Einstellungen')
+          )
+        ],
+      ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          print("Verordnung hinzufügen");
+        },
+        tooltip: 'Verordnung hinzufügen',
+        child: Icon(Icons.add),
+        mini: true,
+      ), 
+    );
+  }
 }
