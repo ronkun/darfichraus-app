@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:crimsy/utility.dart';
+import 'package:crimsy/widgets/feed/widget_mainfeed_detailview.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 
@@ -47,15 +48,15 @@ Widget build(BuildContext context) {
                           itemBuilder: (context, index) {
                             return ListTile(
                               leading: Icon(Icons.warning),
+                                // leading: CircleAvatar(
+                                // backgroundImage: NetworkImage(imageUrl),),
                               title: Text(snapshot.data[index].restrictionShortDescription),
                               subtitle: Text('ID: ${snapshot.data[index].restrictionId} '),
                               enabled: snapshot.data[index].restrictionDescription.isNotEmpty,
-                              trailing: Icon(Icons.more_vert),
+                              trailing: Icon(Icons.keyboard_arrow_right),
                               dense: true,
-                              onTap: () {
-                                print("Tapped");
-                              },
-                            );
+                              onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedDetailView(snapshot.data[index])),
+                             ));
                           });
                         } else {
                           return Utility.getCircularProgressIndicator(50.0, 50.0);
