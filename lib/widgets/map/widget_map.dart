@@ -26,18 +26,19 @@ class WidgetMap extends StatelessWidget {
                    'id': 'mapbox/light-v9',
                   },
                 ),
-                // new MarkerLayerOptions(
-                //   markers: [
-                //     new Marker(
-                //       width: 80.0,
-                //       height: 80.0,
-                //       point: new LatLng(51.5, -0.09),
-                //       builder: (ctx) => new Container(
-                //             child: new FlutterLogo(),
-                //           ),
-                //     ),
-                //   ],
-                // ),
+                new MarkerLayerOptions(
+                  markers: [
+                    new Marker(
+                      width: 80.0,
+                      height: 80.0,
+                      point: new LatLng(52.27264, 11.26469),
+                      builder: (ctx) => new Container(
+                            // child: new FlutterLogo(),
+                            child: Icon(Icons.place, color: Colors.lightBlue,),
+                          ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
