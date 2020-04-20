@@ -9,44 +9,15 @@ class FeedDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Restriction data = ModalRoute.of(context).settings.arguments;
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //         elevation: 0.1,
-  //         backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-  //         title: Text(data.restrictionShortDescription),
-  //         actions: <Widget>[
-  //           IconButton(
-  //             icon: Icon(Icons.list),
-  //             onPressed: () {},
-  //           )
-  //         ],
-  //       // title: Text(data.restrictionShortDescription),
-  //     ),
-  //     body: Padding(
-  //       padding: EdgeInsets.all(16.0),
-  //       child: Column(
-  //           children: <Widget>[topContent, bottomContent],
-  //         ),
-        
-        
-  //       Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //           children: [
-  //            Text(data.restrictionDescription),
-  //           ]
-  //       ),
-  //     ),
-  //   );
-  // }
 
-    final levelIndicator = Container(
-      child: Container(
-        child: LinearProgressIndicator(
-            backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-            value: 2,
-            valueColor: AlwaysStoppedAnimation(Colors.green)),
-      ),
-    );
+    // final levelIndicator = Container(
+    //   child: Container(
+    //     child: LinearProgressIndicator(
+    //         backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
+    //         value: 2,
+    //         valueColor: AlwaysStoppedAnimation(Colors.green)),
+    //   ),
+    // );
 
     final topContentText = Wrap(
       // crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,8 +28,15 @@ class FeedDetailView extends StatelessWidget {
           color: Colors.white,
           size: 30.0,
         ),
+        Padding(
+          padding: const EdgeInsets.only(top: 11.0, left: 10),
+          child: Text(
+              data.translatedType(data.translatedType(data.restrictionType)),
+              style: TextStyle(color: Colors.white, fontSize: 12.0),
+          )
+        ),
         Container(
-          width: 340.0,
+          width: 320,
           child: new Divider(color: Colors.grey),
         ),
         SizedBox(height: 10.0),
@@ -70,64 +48,88 @@ class FeedDetailView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            // Expanded(
+            //     flex: 1, 
+            //     child: levelIndicator
+            // ),
             Expanded(
-                flex: 1, 
-                child: levelIndicator
-              ),
-            Expanded(
-                flex: 6,
+                flex: 2,
                 child: Padding(
-                    padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                    padding: EdgeInsets.only(left: 0.0, top: 10.0, bottom: 10.0),
                     child: Text(
-                      Utility.formatDateTime(data.restrictionStart),
-                      style: TextStyle(color: Colors.white),
+                      _getRestrictionPeriod(data.restrictionStart, data.restrictionEnd),
+                      style: TextStyle(color: Colors.white, fontSize: 12.0),
+                    )
+                )
+            ),
+            Expanded(
+                flex: 2,
+                child: Padding(
+                    padding: EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
+                    child: Text(
+                      data.translatedType(data.restrictionArealIdentifier),
+                      style: TextStyle(color: Colors.white, fontSize: 12.0),
+                      textAlign: TextAlign.right,
                     )
                 )
             ),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                      data.restrictionRecipient,
+                      style: TextStyle(color: Colors.amberAccent, fontSize: 12.0, fontWeight: FontWeight.bold),
+                    )
+            )
+          ],
+        )
       ],
     );
 
     final topContent = Stack(
       children: <Widget>[
-        // Container(
-        //     padding: EdgeInsets.only(left: 0),
-        //     height: 370,
-            // height: MediaQuery.of(context).size.height,
-            // decoration: new BoxDecoration(
-            //   image: new DecorationImage(
-            //     image: new AssetImage("drive-steering-wheel.jpg"),
-            //     fit: BoxFit.cover,
-            //   ),
-            // )),
         SingleChildScrollView(
           child: Container(
-            height: 350,
-            padding: EdgeInsets.all(34.0),
+            // height: MediaQuery.of(context).size.height *0.25,
+            padding: EdgeInsets.only(top: 50.0, left: 50.0, right: 50.0, bottom: 30),
             width: MediaQuery.of(context).size.width,
+            // decoration: BoxDecoration(color: Colors.lightBlue[800]),
             decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
-            child: Center(
-              child: topContentText,
-            ),
-          )),
+            child: 
+              topContentText,
+            ),),
           Positioned(
             left: 8.0,
-            top: 60.0,
+            top: 55.0,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
               },
               child: Icon(Icons.arrow_back, color: Colors.white),
             ),
-          )
+          ),
         ],
       );
 
-    final bottomContentText = Text(
-      data.restrictionDescription,
-      style: TextStyle(fontSize: 15.0),
-    );
+    final bottomContentText = 
+      Wrap(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(bottom: 10.0),
+              child: Text(
+                data.restrictionPublisher,
+                style: TextStyle(color: Colors.grey, fontSize: 12.0, fontWeight: FontWeight.bold),
+              )
+            ),
+            Text(
+              data.restrictionDescription,
+              style: TextStyle(fontSize: 15.0),
+            )
+          ]
+      );
 
     final readButton = Container(
         padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -155,11 +157,18 @@ class FeedDetailView extends StatelessWidget {
       resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         child: Column(
-        children: <Widget>[
-          topContent, 
-          bottomContent
-        ],
+          children: <Widget>[
+            topContent, 
+            bottomContent
+          ],
       ),
     ));
+  }
+
+  String _getRestrictionPeriod(String start, String end) {
+  if (end.isNotEmpty) {
+    return Utility.formatDateTime(start) + " bis " + Utility.formatDateTime(end);
+  }
+    return Utility.formatDateTime(start);
   }
 }

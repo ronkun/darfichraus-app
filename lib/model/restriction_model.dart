@@ -33,7 +33,7 @@ class Restriction {
     this.restrictionAreaSymbol,
   });
    
-  static String translatedType(String type) {
+  String translatedType(String type) {
       switch (type) {
         case "PUBLIC_TRANSPORTATION":
           return "Nahverkehr";
