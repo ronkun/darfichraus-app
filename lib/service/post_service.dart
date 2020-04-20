@@ -24,7 +24,6 @@ Future<List<Restriction>> getAllRestrictions() async {
       },
     );
     var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
-    print(encodedResponse);
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(encodedResponse);
       return jsonResponse.map((restriction) => new Restriction.fromJson(restriction)).toList();
