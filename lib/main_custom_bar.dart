@@ -1,3 +1,4 @@
+import 'package:crimsy/main_drawer.dart';
 import 'package:crimsy/widgets/feed/widget_mainfeed.dart';
 import 'package:crimsy/widgets/map/widget_map.dart';
 import 'package:flutter/material.dart';
@@ -34,11 +35,16 @@ class _HomeState extends State<Home> {
           title: widget.title,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.bookmark),
               onPressed: () {},
-            )
+            ),
+            IconButton(
+              icon: Icon(Icons.filter_list),
+              onPressed: () {},
+            ),
           ]
         ),
+        drawer: MainDrawer(),
         body: _children.elementAt(_selectedIndex), // new
         bottomNavigationBar: BottomNavigationBar(
         onTap: _onTabTapped, // new
