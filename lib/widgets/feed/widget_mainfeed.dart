@@ -54,7 +54,14 @@ Widget build(BuildContext context) {
                               title: Text(snapshot.data[index].restrictionShortDescription),
                               subtitle: Row(
                                 children: <Widget>[
-                                    Icon(Utility.getIconForCategory(snapshot.data[index].restrictionType), color: Colors.grey),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 8),
+                                    child: Icon(
+                                      Utility.getIconForCategory(snapshot.data[index].restrictionType), 
+                                      color: Colors.grey,
+                                      size: 15.0,
+                                    )
+                                  ),
                                     Text(Utility.formatDateTime(snapshot.data[index].restrictionStart), style: TextStyle(color: Colors.grey)
                                   )
                                 ]),
