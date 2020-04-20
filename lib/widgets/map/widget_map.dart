@@ -11,6 +11,7 @@ class WidgetMap extends StatelessWidget {
     
     // return Text("Das wird eine Map");
     return new MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: new Scaffold(
             body: new FlutterMap(
               options: new MapOptions(
