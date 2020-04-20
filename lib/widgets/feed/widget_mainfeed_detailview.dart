@@ -103,7 +103,7 @@ class FeedDetailView extends StatelessWidget {
             ),),
           Positioned(
             left: 8.0,
-            top: 55.0,
+            top: 50.0,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);

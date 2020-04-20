@@ -15,9 +15,9 @@ class _HomeState extends State<Home> {
   
   final List<Widget> _children = [
     WidgetMainfeed(Colors.white),
-    WidgetMap(Colors.deepOrange),
-    WidgetMap(Colors.green),
-    WidgetMap(Colors.green)
+    WidgetMap(),
+    WidgetMap(),
+    WidgetMap()
   ];
 
   void _onTabTapped(int index) {
