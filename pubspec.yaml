@@ -41,6 +41,17 @@ flutter:
   assets:
     - assets/state_img/
     - assets/logo/
+  fonts:
+    - family: Playfair
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/PlayfairDisplay-Bold.ttf
+          weight: 700
+    - family: SourceSansPro
+      fonts:
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
+        - asset: assets/fonts/SourceSansPro-Light.ttf
+          weight: 300
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
