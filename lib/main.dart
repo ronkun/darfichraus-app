@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
           // body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      home: Home(title: 'darfichraus.de'),
+      home: Home(title: Image.asset('assets/logo/Logo_darf-ich-raus.png', fit: BoxFit.cover))
+      //home: Home(title: 'darfichraus.de'),
     );
   }
 }

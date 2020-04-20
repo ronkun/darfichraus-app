@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
-  final String title; 
+  final Widget title; 
 
   @override
   State<StatefulWidget> createState() => _HomeState();
@@ -30,7 +30,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          // title: Text(widget.title),
+          title: widget.title,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.list),
