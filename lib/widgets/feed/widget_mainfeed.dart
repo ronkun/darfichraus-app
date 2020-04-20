@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 
 class WidgetMainfeed extends StatelessWidget {
- final Color color;
 
-WidgetMainfeed(this.color);
+WidgetMainfeed();
 
 @override
 Widget build(BuildContext context) {

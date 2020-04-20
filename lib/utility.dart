@@ -30,7 +30,7 @@ class Utility {
       case "GASTRONOMY":
         return Icons.restaurant;
       case "RETAIL":  
-        return Icons.shopping_basket;   
+        return Icons.shopping_cart;   
       case "PUBLIC_TRANSPORTATION":  
         return Icons.directions_bus;   
       default:

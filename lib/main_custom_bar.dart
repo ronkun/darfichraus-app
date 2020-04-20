@@ -13,9 +13,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  
+  String _value = 'one';
+
   final List<Widget> _children = [
-    WidgetMainfeed(Colors.white),
+    WidgetMainfeed(),
     WidgetMap(),
     WidgetMap(),
     WidgetMap()
@@ -38,6 +39,19 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.bookmark),
               onPressed: () {},
             ),
+            // new DropdownButton<String>(
+            //   value: _value,
+            //   icon: Icon(Icons.filter_list),
+            //   items: <DropdownMenuItem<String>>[
+            //     new DropdownMenuItem(
+            //       child: new Text('My Page'),
+            //       value: 'one',
+            //     ),
+            //   ], 
+            //   onChanged: (String value) {
+            //     setState(() => _value = value);
+            //   },
+            // ),
             IconButton(
               icon: Icon(Icons.filter_list),
               onPressed: () {},
