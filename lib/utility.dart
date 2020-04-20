@@ -22,17 +22,19 @@ class Utility {
   static getIconForCategory(String cat){
     switch (cat) {
       case "EVENTS_AND_ASSEMBLIES": 
-        return Icons.directions_bus;
+        return Icons.people;
       case "CURFEW":
-        return Icons.close;
+        return Icons.not_interested;
       case "PUBLIC_PLACES":  
-        return Icons.place;
+        return Icons.location_city;
       case "GASTRONOMY":
-        return Icons.fastfood;
+        return Icons.restaurant;
       case "RETAIL":  
         return Icons.shopping_basket;   
+      case "PUBLIC_TRANSPORTATION":  
+        return Icons.directions_bus;   
       default:
-        return Icons.alarm;
+        return Icons.question_answer;
     }
   }
 
