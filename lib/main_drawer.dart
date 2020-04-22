@@ -4,65 +4,88 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'darfichraus?',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+          // padding: EdgeInsets.zero,
+          elevation: 1.5,
+            child: Column( 
+              children: <Widget>[
+                DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue[800],
+                    image: DecorationImage(
+                        fit: BoxFit.scaleDown, 
+                        image: AssetImage('assets/logo/Logo_darf-ich-raus-edit.png'))
+                  ), 
+                  child: null,
                 ),
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(15.0),
-                hintText: 'Ort hinzufügen',
-                prefixIcon: Icon(Icons.add),
-              ),
-            ),
-            // Divider(),
-            ListTile(
-              leading: Icon(Icons.location_city),
-              title: Text('Essen'),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              dense: true,
-              enabled: true,
-            ),
-            ListTile(
-              leading: Icon(Icons.location_city),
-              title: Text('München'),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              dense: true,
-              enabled: true,
-            ),
-            ListTile(
-              leading: Icon(Icons.location_city),
-              title: Text('Berlin'),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              dense: true,
-              enabled: true,
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('Über uns'),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              dense: true,
-              enabled: true,
-            ),
-            ListTile(
-              leading: Icon(Icons.tag_faces),
-              title: Text('Feedback '),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              dense: true,
-              enabled: true,
-            ),
+                TextField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(15.0),
+                    hintText: 'Ort hinzufügen',
+                    prefixIcon: Icon(Icons.add),
+                  ),
+                ),
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.location_city),
+                        title: Text('Essen'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        dense: true,
+                        enabled: true,
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.location_city),
+                        title: Text('München'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        dense: true,
+                        enabled: true,
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.location_city),
+                        title: Text('Berlin'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        dense: true,
+                        enabled: true,
+                      ),
+                    ]
+                  )
+                ),
+              // Divider(),
+              // ListTile(
+              //   leading: Icon(Icons.info),
+              //   title: Text('Über uns'),
+              //   trailing: Icon(Icons.keyboard_arrow_right),
+              //   dense: true,
+              //   enabled: true,
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.tag_faces),
+              //   title: Text('Feedback '),
+              //   trailing: Icon(Icons.keyboard_arrow_right),
+              //   dense: true,
+              //   enabled: true,
+              // ),
+                Container(
+                  // This align moves the children to the bottom
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Container(
+                          child: Column(
+                        children: <Widget>[
+                          Divider(),
+                          ListTile(
+                              leading: Icon(Icons.info),
+                              title: Text('Über uns')),
+                          ListTile(
+                              leading: Icon(Icons.help),
+                              title: Text('Hilfe und Feedback'))
+                        ],
+                      )
+                  )
+                )
+              )
           ],
         ),
       );

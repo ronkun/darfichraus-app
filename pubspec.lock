@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
+  extra_pedantic:
+    dependency: "direct main"
+    description:
+      name: extra_pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   file:
     dependency: transitive
     description:
@@ -137,6 +144,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  geodesy:
+    dependency: "direct main"
+    description:
+      name: geodesy
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
+  geojson:
+    dependency: "direct main"
+    description:
+      name: geojson
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.1"
+  geopoint:
+    dependency: "direct main"
+    description:
+      name: geopoint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.1"
   http:
     dependency: "direct main"
     description:
@@ -165,6 +193,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.8"
+  iso:
+    dependency: transitive
+    description:
+      name: iso
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   latlong:
     dependency: transitive
     description:
@@ -194,7 +229,7 @@ packages:
     source: hosted
     version: "0.12.6"
   meta:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: meta
       url: "https://pub.dartlang.org"
@@ -250,7 +285,7 @@ packages:
     source: hosted
     version: "1.0.1"
   pedantic:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: pedantic
       url: "https://pub.dartlang.org"
@@ -310,6 +345,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slugify2:
+    dependency: transitive
+    description:
+      name: slugify2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   source_span:
     dependency: transitive
     description:

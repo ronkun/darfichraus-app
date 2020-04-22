@@ -32,7 +32,7 @@ class FeedDetailView extends StatelessWidget {
           padding: const EdgeInsets.only(top: 6.0, left: 10),
           child: Text(
               data.translatedType(data.translatedType(data.restrictionType)),
-              style: TextStyle(color: Colors.white, fontSize: 12.0, fontFamily: 'Playfair'),
+              style: TextStyle(color: Colors.white, fontSize: 12.0),
           )
         ),
         Container(
@@ -42,7 +42,7 @@ class FeedDetailView extends StatelessWidget {
         SizedBox(height: 10.0),
         Text(
           data.restrictionShortDescription,
-          style: TextStyle(color: Colors.white, fontSize: 20.0, fontFamily: 'Playfair'),
+          style: TextStyle(color: Colors.white, fontSize: 20.0),
         ),
         SizedBox(height: 25.0),
         Row(

@@ -4,9 +4,27 @@ import 'package:crimsy/widgets/feed/widget_mainfeed_detailview.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 
-class WidgetMainfeed extends StatelessWidget {
+class WidgetMainfeed extends StatefulWidget {
+  @override
+  _WidgetMainfeedState createState() => _WidgetMainfeedState();
+}
 
-WidgetMainfeed();
+class _WidgetMainfeedState extends State<WidgetMainfeed> {
+
+  AsyncSnapshot<List<Restriction>> restrictions;
+  AsyncSnapshot<List<Restriction>> filteredRestrictions;
+  bool isSearching = false;
+// WidgetMainfeed();
+
+  // @override
+  // void initState() {
+  //   getRestrictions().then((data) {
+  //     setState(() {
+  //       restrictions = filteredRestrictions = data;
+  //     });
+  //   });
+  //   super.initState();
+  // }
 
 @override
 Widget build(BuildContext context) {
@@ -20,52 +38,54 @@ Widget build(BuildContext context) {
               hintText: 'Verordnungen durchsuchen',
               prefixIcon: Icon(Icons.search),
             ),
+            // onSubmitted: ,
           ),
           Expanded(
             child: 
               FutureBuilder<List<Restriction>>(
                 future: getAllRestrictions(),
                 builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
+                  restrictions = snapshot;
+                  switch (restrictions.connectionState) {
                     case ConnectionState.none:       
                     case ConnectionState.active:
                     case ConnectionState.waiting:
                           return Utility.getCircularProgressIndicator(50.0, 50.0);
                     case ConnectionState.done:
                       if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else if(snapshot.hasData) {
+                        return Text('Error: ${restrictions.error}');
+                      } else if(restrictions.hasData) {
                         return ListView.builder(
-                          itemCount: snapshot.data.length,
+                          itemCount: restrictions.data.length,
                           itemBuilder: (context, index) {
                             return ListTile(
                               leading: new CircleAvatar(
                                     backgroundColor: Colors.white,
-                                    child: snapshot.data[index].translateRestrictionAreaSymbol(snapshot.data[index].restrictionArealIdentifier)
+                                    child: restrictions.data[index].translateRestrictionAreaSymbol(restrictions.data[index].restrictionArealIdentifier)
                                   ),        
-                              title: Text(snapshot.data[index].restrictionShortDescription),
+                              title: Text(restrictions.data[index].restrictionShortDescription),
                               subtitle: Row(
                                 children: <Widget>[
                                   Padding(
                                     padding: EdgeInsets.only(right: 8),
                                     child: Icon(
-                                      Utility.getIconForCategory(snapshot.data[index].restrictionType), 
+                                      Utility.getIconForCategory(restrictions.data[index].restrictionType), 
                                       color: Colors.grey,
                                       size: 15.0,
                                     )
                                   ),
-                                    Text(Utility.formatDateTime(snapshot.data[index].restrictionStart), style: TextStyle(color: Colors.grey)
+                                    Text(Utility.formatDateTime(restrictions.data[index].restrictionStart), style: TextStyle(color: Colors.grey)
                                   )
                                 ]),
                               // Text('ID: ${snapshot.data[index].restrictionId} '),
-                              enabled: snapshot.data[index].restrictionDescription.isNotEmpty,
+                              enabled: restrictions.data[index].restrictionDescription.isNotEmpty,
                               trailing: Icon(Icons.keyboard_arrow_right),
                               dense: true,
                               onTap:() => Navigator.push(context, 
                                 MaterialPageRoute(
                                   builder: (context) => FeedDetailView(),
                                    settings: RouteSettings(
-                                    arguments: snapshot.data[index],
+                                    arguments: restrictions.data[index],
                                   ),
                                 ),
                              ));
