@@ -1,9 +1,23 @@
+import 'package:crimsy/init_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:crimsy/main_custom_bar.dart';
+import 'package:crimsy/main_custom.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+// void main() => runApp(MyApp());
+int initScreen;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = await prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  print('initScreen ${initScreen}');
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +42,12 @@ class MyApp extends StatelessWidget {
           // body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      home: Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50))
+      initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
+      routes: {
+        '/': (context) => Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50)),
+        "first": (context) => OnboardingScreen(),
+      },
+      // home: Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50))
       //home: Home(title: 'darfichraus.de'),
     );
   }

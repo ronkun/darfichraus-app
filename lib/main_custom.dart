@@ -36,7 +36,9 @@ class _HomeState extends State<Home> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.bookmark),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, 'first');
+              },
             ),
             // new DropdownButton<String>(
             //   value: _value,

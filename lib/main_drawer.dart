@@ -11,9 +11,10 @@ class MainDrawer extends StatelessWidget {
                 DrawerHeader(
                   decoration: BoxDecoration(
                     color: Colors.lightBlue[800],
-                    image: DecorationImage(
-                        fit: BoxFit.scaleDown, 
-                        image: AssetImage('assets/logo/Logo_darf-ich-raus-edit.png'))
+                    // image: DecorationImage(
+                    //     fit: BoxFit.scaleDown, 
+                    //     image: AssetImage('assets/logo/Logo_darf-ich-raus-edit.png')
+                    // )
                   ), 
                   child: null,
                 ),
