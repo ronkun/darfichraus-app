@@ -14,6 +14,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   String _selectedState = '';
   List<String> _selectedCrisisList = [];
   List<String> _selectedStatesList = [];
+  List<String> statesValues = <String>['Pandemie - Corona Sars-CoV-2', 'Pandemie - Katastrophe B', 'Erdbeben - Katastrophe C', 'Katastrophe D'];
+  List<String> crisisValues = <String>['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen', 'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'];
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -61,7 +63,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
    void _removeSelectedStates(String value) {
     setState(() {
       if(_selectedStatesList.contains(value)){
-        print(value);
         _selectedStatesList.remove(value);
         }
     });
@@ -94,12 +95,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    // onPressed: () => print('Überspringen'),
-                      // color: Colors.white,
                       textColor: Colors.white,
-                      // disabledColor: Colors.grey,
-                      // disabledTextColor: Colors.lightBlue[800],
-                      // splashColor: Colors.lightBlue[100],
                       onPressed: () {
                         // _pageController.nextPage(
                         //   duration: Duration(milliseconds: 500),
@@ -119,14 +115,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                           ),
                           SizedBox(width: 10.0),
-                          // Padding(
-                          //   padding: EdgeInsets.only(top: 3),
-                          //   child: Icon(
-                          //     Icons.arrow_forward,
-                          //     color: Colors.lightBlue[800],
-                          //     size: 21.0,
-                          //   )
-                          // ),
                         ],
                       ),
                   ),
@@ -153,21 +141,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 "Über welche Krise möchtest Du informiert werden?",
                                 style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
                               )
-                              // Image(
-                              //   image: AssetImage(
-                              //     'assets/images/lorem_Ipsum.png',
-                              //   ),
-                              //   height: 300.0,
-                              //   width: 300.0,
-                              // ),
                             ),
                             SizedBox(height: 30.0),
-                            // Text(
-                            //   'Krise wählen',
-                            //   style: TextStyle(color: Colors.white, fontSize: 14.0),
-                            // ),
                             new DropdownButton<String>(
-                              // hint: Text("Bitte Krise auswählen"),
                               hint: _selectedCrisis == null
                               ? Text(
                                 'Bitte Krise auswählen',
@@ -184,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               iconEnabledColor: Colors.white,
                               iconDisabledColor: Colors.white,
                               isExpanded: true,
-                              items: <String>['Pandemie - Corona Sars-CoV-2', 'Pandemie - Katastrophe B', 'Erdbeben - Katastrophe C', 'Katastrophe D'].map((String value) {
+                              items: statesValues.map((String value) {
                                 return new DropdownMenuItem<String>(
                                   value: value,
                                   child: new Text(
@@ -249,17 +225,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 "Bitte wähle die Bundesländer aus, die Dich interessieren.",
                                 style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
                               )
-                              // Image(
-                              //   image: AssetImage(
-                              //     'assets/images/lorem_Ipsum.png',
-                              //   ),
-                              //   height: 300.0,
-                              //   width: 300.0,
-                              // ),
                             ),
                             SizedBox(height: 30.0),
                             new DropdownButton<String>(
-                              // hint: Text("Bitte Krise auswählen"),
                               hint: _selectedCrisis == null
                               ? Text(
                                 'Bitte Bundesland auswählen',
@@ -276,7 +244,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               iconEnabledColor: Colors.white,
                               iconDisabledColor: Colors.white,
                               isExpanded: true,
-                              items: <String>['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen', 'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'].map((String value) {
+                              items: crisisValues.map((String value) {
                                 return new DropdownMenuItem<String>(
                                   value: value,
                                   child: new Text(
@@ -300,7 +268,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 },
                               ),
                             ),
-                            // SizedBox(height: 15.0),
                             new Expanded(
                               child: ListView.builder(
                                 itemCount: _selectedStatesList.length,
@@ -340,13 +307,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 "Lorem Ipsum",
                                 style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
                               )
-                              // child: Image(
-                              //   image: AssetImage(
-                              //     'assets/images/lorem_Ipsum.png',
-                              //   ),
-                              //   height: 300.0,
-                              //   width: 300.0,
-                              // ),
                             ),
                             SizedBox(height: 30.0),
                             Text(
