@@ -66,7 +66,7 @@ Widget build(BuildContext context) {
                     case ConnectionState.none:       
                     case ConnectionState.active:
                     case ConnectionState.waiting:
-                          return Utility.getCircularProgressIndicator(50.0, 50.0);
+                      return Utility.getCircularProgressIndicator(50.0, 50.0);
                     case ConnectionState.done:
                       if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');

@@ -11,8 +11,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   String _selectedCrisis = '';
+  String _selectedState = '';
   List<String> _selectedCrisisList = [];
-
+  List<String> _selectedStatesList = [];
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -37,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
    void _insertSelectedCrisis(String value) {
     setState(() {
-      if(!_selectedCrisisList.contains(value))
+      if(!_selectedCrisisList.contains(value) && value.isNotEmpty)
         _selectedCrisisList.add(value);
     });
   }
@@ -46,6 +47,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     setState(() {
       if(_selectedCrisisList.contains(value))
         _selectedCrisisList.remove(value);
+    });
+  }
+
+
+  void _insertSelectedState(String value) {
+    setState(() {
+      if(!_selectedStatesList.contains(value) && value.isNotEmpty)
+        _selectedStatesList.add(value);
+    });
+  }
+
+   void _removeSelectedStates(String value) {
+    setState(() {
+      if(_selectedStatesList.contains(value)){
+        print(value);
+        _selectedStatesList.remove(value);
+        }
     });
   }
 
@@ -210,7 +228,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                           color: Colors.white,
                                         ),
                                       onPressed: () { 
-                                        _removeSelectedCrisis(_selectedCrisis);
+                                        _removeSelectedCrisis(_selectedCrisisList[index]);
                                       },
                                     ),
                                   );
@@ -225,25 +243,90 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/lorem_Ipsum.png',
-                                ),
-                                height: 300.0,
-                                width: 300.0,
-                              ),
+                                    Center(
+                              child: 
+                              Text(
+                                "Bitte wähle die Bundesländer aus, die Dich interessieren.",
+                                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                              )
+                              // Image(
+                              //   image: AssetImage(
+                              //     'assets/images/lorem_Ipsum.png',
+                              //   ),
+                              //   height: 300.0,
+                              //   width: 300.0,
+                              // ),
                             ),
                             SizedBox(height: 30.0),
-                            Text(
-                              'lorem Ipsum',
-                              style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                            new DropdownButton<String>(
+                              // hint: Text("Bitte Krise auswählen"),
+                              hint: _selectedCrisis == null
+                              ? Text(
+                                'Bitte Bundesland auswählen',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                ),
+                              )
+                              : Text(
+                                _selectedState,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                ),
+                              ),
+                              iconEnabledColor: Colors.white,
+                              iconDisabledColor: Colors.white,
+                              isExpanded: true,
+                              items: <String>['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen', 'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'].map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: new Text(
+                                    value,
+                                    style: TextStyle(
+                                      color: Colors.lightBlue[800],
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                 _selectedState = value;
+                                });
+                              },
+                              icon: IconButton(
+                                icon: Icon(Icons.add),
+                                onPressed: () {
+                                  if(_selectedState!=null)
+                                    _insertSelectedState(_selectedState);
+                                },
+                              ),
                             ),
-                            SizedBox(height: 15.0),
-                            Text(
-                              'lorem Ipsum',
-                              style: TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
-                            ),
+                            // SizedBox(height: 15.0),
+                            new Expanded(
+                              child: ListView.builder(
+                                itemCount: _selectedStatesList.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Text(
+                                      _selectedStatesList[index],
+                                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                                    ),
+                                    leading: Text(
+                                      (index+1).toString(), 
+                                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                                      ),
+                                    trailing:  IconButton(
+                                      icon: new Icon(
+                                          Icons.delete,
+                                          color: Colors.white,
+                                        ),
+                                      onPressed: () { 
+                                        _removeSelectedStates(_selectedStatesList[index]);
+                                      },
+                                    ),
+                                  );
+                                },
+                              )
+                            )
                           ],
                         ),
                       ),
