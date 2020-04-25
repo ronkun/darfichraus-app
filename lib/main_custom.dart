@@ -32,7 +32,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           // title: Text(widget.title),
-          title: widget.title,
+          title: Padding(
+            padding: EdgeInsets.only(left: 55),
+            child: widget.title,
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.bookmark),
