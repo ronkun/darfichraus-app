@@ -7,6 +7,13 @@ import 'package:geojson/geojson.dart';
 import 'package:pedantic/pedantic.dart';
 import 'dart:math' as math;
 
+class WidgetMap extends StatefulWidget {
+  static const String routeId = 'map';
+
+  @override
+  _WidgetsMapState createState() => _WidgetsMapState();
+}
+
 class _WidgetsMapState extends State<WidgetMap> {
   final lines = <Polyline>[];
   final polygons = <Polygon>[];
@@ -109,9 +116,4 @@ class _WidgetsMapState extends State<WidgetMap> {
         ],
       ));
     }
-  }
-
-  class WidgetMap extends StatefulWidget {
-  @override
-    _WidgetsMapState createState() => _WidgetsMapState();
   }

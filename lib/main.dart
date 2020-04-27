@@ -1,4 +1,7 @@
 import 'package:crimsy/init_screen.dart';
+import 'package:crimsy/widgets/feed/widget_mainfeed.dart';
+import 'package:crimsy/widgets/map/widget_map_mb.dart';
+import 'package:crimsy/widgets/settings/widget_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/main_custom.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,9 +46,13 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
       routes: {
-        '/': (context) => Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50)),
-        "first": (context) => OnboardingScreen(),
+        // '/': (context) => Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50)),
+        OnboardingScreen.routeId: (context) => OnboardingScreen(),
+        "settings": (context) => WidgetSettings(),
+        "map": (context) => WidgetMap(),
+        "feed": (context) => WidgetMainfeed()
       },
+      home: Home(),
       // home: Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50))
       //home: Home(title: 'darfichraus.de'),
     );

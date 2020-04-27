@@ -1,6 +1,7 @@
 import 'package:crimsy/main_drawer.dart';
 import 'package:crimsy/widgets/feed/widget_mainfeed.dart';
 import 'package:crimsy/widgets/map/widget_map.dart';
+import 'package:crimsy/widgets/settings/widget_settings.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -13,17 +14,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  // final _navigatorKey = GlobalKey<NavigatorState>();
 
   final List<Widget> _children = [
     WidgetMainfeed(),
     WidgetMap(),
     WidgetMap(),
-    WidgetMap()
+    WidgetSettings()
   ];
+  
+  // final List<String> _children = [
+  //   WidgetMainfeed.routeId,
+  //   WidgetMap.routeId,
+  //   WidgetMap.routeId,
+  //   WidgetSettings.routeId
+  // ];
 
   void _onTabTapped(int index) {
     setState(() {
+      // _navigatorKey.currentState.pushNamed('/'yourRouteName'');
       _selectedIndex = index;
+      // Navigator.of(context).pushNamed(_children.elementAt(index));
     });
   }
 
@@ -40,7 +51,7 @@ class _HomeState extends State<Home> {
             IconButton(
               icon: Icon(Icons.bookmark),
               onPressed: () {
-                Navigator.pushNamed(context, 'first');
+                Navigator.of(context).pushNamed('first');
               },
             ),
             // new DropdownButton<String>(

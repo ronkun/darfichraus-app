@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  static const String routeId = 'first';
+
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
@@ -130,173 +132,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       });
                     },
                     children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: 
-                              Text(
-                                "Über welche Krise möchtest Du informiert werden?",
-                                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
-                              )
-                            ),
-                            SizedBox(height: 30.0),
-                            new DropdownButton<String>(
-                              hint: _selectedCrisis == null
-                              ? Text(
-                                'Bitte Krise auswählen',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                ),
-                              )
-                              : Text(
-                                _selectedCrisis,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                ),
-                              ),
-                              iconEnabledColor: Colors.white,
-                              iconDisabledColor: Colors.white,
-                              isExpanded: true,
-                              items: statesValues.map((String value) {
-                                return new DropdownMenuItem<String>(
-                                  value: value,
-                                  child: new Text(
-                                    value,
-                                    style: TextStyle(
-                                      color: Colors.lightBlue[800],
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                 _selectedCrisis = value;
-                                });
-                              },
-                              icon: IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {
-                                  if(_selectedCrisis!=null)
-                                    _insertSelectedCrisis(_selectedCrisis);
-                                },
-                              ),
-                            ),
-                            // SizedBox(height: 15.0),
-                            new Expanded(
-                              child: ListView.builder(
-                                itemCount: _selectedCrisisList.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: Text(
-                                      _selectedCrisisList[index],
-                                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                    leading: Text(
-                                      (index+1).toString(), 
-                                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
-                                      ),
-                                    trailing:  IconButton(
-                                      icon: new Icon(
-                                          Icons.delete,
-                                          color: Colors.white,
-                                        ),
-                                      onPressed: () { 
-                                        _removeSelectedCrisis(_selectedCrisisList[index]);
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                                    Center(
-                              child: 
-                              Text(
-                                "Bitte wähle die Bundesländer aus, die Dich interessieren.",
-                                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
-                              )
-                            ),
-                            SizedBox(height: 30.0),
-                            new DropdownButton<String>(
-                              hint: _selectedCrisis == null
-                              ? Text(
-                                'Bitte Bundesland auswählen',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                ),
-                              )
-                              : Text(
-                                _selectedState,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                ),
-                              ),
-                              iconEnabledColor: Colors.white,
-                              iconDisabledColor: Colors.white,
-                              isExpanded: true,
-                              items: crisisValues.map((String value) {
-                                return new DropdownMenuItem<String>(
-                                  value: value,
-                                  child: new Text(
-                                    value,
-                                    style: TextStyle(
-                                      color: Colors.lightBlue[800],
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                 _selectedState = value;
-                                });
-                              },
-                              icon: IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {
-                                  if(_selectedState!=null)
-                                    _insertSelectedState(_selectedState);
-                                },
-                              ),
-                            ),
-                            new Expanded(
-                              child: ListView.builder(
-                                itemCount: _selectedStatesList.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: Text(
-                                      _selectedStatesList[index],
-                                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                    leading: Text(
-                                      (index+1).toString(), 
-                                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
-                                      ),
-                                    trailing:  IconButton(
-                                      icon: new Icon(
-                                          Icons.delete,
-                                          color: Colors.white,
-                                        ),
-                                      onPressed: () { 
-                                        _removeSelectedStates(_selectedStatesList[index]);
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            )
-                          ],
-                        ),
-                      ),
+                      getPageCrisisSelection(),
+                      getPageStateSelection(),
+    
                       Padding(
                         padding: EdgeInsets.all(40.0),
                         child: Column(
@@ -401,5 +239,180 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             )
           : Text(''),
     );
+  }
+
+  getPageCrisisSelection() {
+    return          
+      Padding(
+        padding: EdgeInsets.all(40.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: 
+              Text(
+                "Über welche Krise möchtest Du informiert werden?",
+                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+              )
+            ),
+            SizedBox(height: 30.0),
+            new DropdownButton<String>(
+              hint: _selectedCrisis == null
+              ? Text(
+                'Bitte Krise auswählen',
+                style: TextStyle(
+                    color: Colors.white,
+                ),
+              )
+              : Text(
+                _selectedCrisis,
+                style: TextStyle(
+                    color: Colors.white,
+                ),
+              ),
+              iconEnabledColor: Colors.white,
+              iconDisabledColor: Colors.white,
+              isExpanded: true,
+              items: statesValues.map((String value) {
+                return new DropdownMenuItem<String>(
+                  value: value,
+                  child: new Text(
+                    value,
+                    style: TextStyle(
+                      color: Colors.lightBlue[800],
+                    ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedCrisis = value;
+                });
+              },
+              icon: IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  if(_selectedCrisis!=null)
+                    _insertSelectedCrisis(_selectedCrisis);
+                },
+              ),
+            ),
+            // SizedBox(height: 15.0),
+            new Expanded(
+              child: ListView.builder(
+                itemCount: _selectedCrisisList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      _selectedCrisisList[index],
+                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                    ),
+                    leading: Text(
+                      (index+1).toString(), 
+                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                      ),
+                    trailing:  IconButton(
+                      icon: new Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      onPressed: () { 
+                        _removeSelectedCrisis(_selectedCrisisList[index]);
+                      },
+                    ),
+                  );
+                },
+              )
+            )
+          ],
+        ),
+      );
+  }
+
+  getPageStateSelection() {
+    return 
+      Padding(
+        padding: EdgeInsets.all(40.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+                    Center(
+              child: 
+              Text(
+                "Bitte wähle die Bundesländer aus, die Dich interessieren.",
+                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+              )
+            ),
+            SizedBox(height: 30.0),
+            new DropdownButton<String>(
+              hint: _selectedCrisis == null
+              ? Text(
+                'Bitte Bundesland auswählen',
+                style: TextStyle(
+                    color: Colors.white,
+                ),
+              )
+              : Text(
+                _selectedState,
+                style: TextStyle(
+                    color: Colors.white,
+                ),
+              ),
+              iconEnabledColor: Colors.white,
+              iconDisabledColor: Colors.white,
+              isExpanded: true,
+              items: crisisValues.map((String value) {
+                return new DropdownMenuItem<String>(
+                  value: value,
+                  child: new Text(
+                    value,
+                    style: TextStyle(
+                      color: Colors.lightBlue[800],
+                    ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedState = value;
+                });
+              },
+              icon: IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  if(_selectedState!=null)
+                    _insertSelectedState(_selectedState);
+                },
+              ),
+            ),
+            new Expanded(
+              child: ListView.builder(
+                itemCount: _selectedStatesList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      _selectedStatesList[index],
+                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                    ),
+                    leading: Text(
+                      (index+1).toString(), 
+                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                      ),
+                    trailing:  IconButton(
+                      icon: new Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      onPressed: () { 
+                        _removeSelectedStates(_selectedStatesList[index]);
+                      },
+                    ),
+                  );
+                },
+              )
+            )
+          ],
+        ),
+      );
   }
 }

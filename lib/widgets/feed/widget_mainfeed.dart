@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 
 class WidgetMainfeed extends StatefulWidget {
+  static const String routeId = 'feed';
+
   @override
   _WidgetMainfeedState createState() => _WidgetMainfeedState();
 }
