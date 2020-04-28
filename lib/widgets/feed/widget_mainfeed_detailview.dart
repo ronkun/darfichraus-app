@@ -22,11 +22,14 @@ class FeedDetailView extends StatelessWidget {
     final topContentText = Wrap(
       // crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Icon(
-          Utility.getIconForCategory(data.restrictionType),
-          // Icons.directions_car,
-          color: Colors.white,
-          size: 23.0,
+        Padding(
+          padding: const EdgeInsets.only(top: 4.0, left: 0),
+          child: Icon(
+            Utility.getIconForCategory(data.restrictionType),
+            // Icons.directions_car,
+            color: Colors.white,
+            size: 15.0,
+          )
         ),
         Padding(
           padding: const EdgeInsets.only(top: 6.0, left: 10),

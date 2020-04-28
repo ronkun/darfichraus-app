@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
             //   },
             // ),
             IconButton(
-              icon: Icon(Icons.filter_list),
+              icon: Icon(Icons.settings),
               onPressed: () {},
             ),
           ]
