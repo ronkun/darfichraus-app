@@ -37,13 +37,17 @@ class PreventCard extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset(image, width: 128,),
             Positioned(
-              left: 130,
+              left: 25,
+              child: Image.asset(image, width: 80,)
+            ),
+            
+            Positioned(
+              left: 110,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 height: 120,
-                width: MediaQuery.of(context).size.width - 170,
+                width: MediaQuery.of(context).size.width - 175,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,14 +68,19 @@ class PreventCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: SvgPicture.asset("assets/images/forward.svg"),
-                    ),
+
                   ],
                 ),
               ),
-            ),
+            ),    
+            Padding(
+              padding: EdgeInsets.only(right: 22),
+              child:  Align(
+                alignment: Alignment.centerRight,
+                child: SvgPicture.asset("assets/images/forward.svg"),
+              ),
+            )                
+           
           ],
         ),
       ),

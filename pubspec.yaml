@@ -50,6 +50,8 @@ flutter:
     - assets/state_img/
     - assets/logo/
     - assets/geojson/
+    - assets/corona_icons/
+    - assets/images/
 
   fonts:
     - family: Playfair

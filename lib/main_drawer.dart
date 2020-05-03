@@ -21,7 +21,7 @@ class MainDrawer extends StatelessWidget {
                 TextField(
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(15.0),
-                    hintText: 'Ort hinzufügen',
+                    hintText: 'Bundesland hinzufügen',
                     prefixIcon: Icon(Icons.add),
                   ),
                 ),
@@ -31,21 +31,21 @@ class MainDrawer extends StatelessWidget {
                     children: <Widget>[
                       ListTile(
                         leading: Icon(Icons.location_city),
-                        title: Text('Essen'),
+                        title: Text('Nordrhein-Westfalen'),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         dense: true,
                         enabled: true,
                       ),
                       ListTile(
                         leading: Icon(Icons.location_city),
-                        title: Text('München'),
+                        title: Text('Bayern'),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         dense: true,
                         enabled: true,
                       ),
                       ListTile(
                         leading: Icon(Icons.location_city),
-                        title: Text('Berlin'),
+                        title: Text('Hessen'),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         dense: true,
                         enabled: true,

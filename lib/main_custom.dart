@@ -1,7 +1,8 @@
 import 'package:crimsy/main_drawer.dart';
+import 'package:crimsy/widgets/advisor/advisor_articles.dart';
+import 'package:crimsy/widgets/advisor/advisor_board.dart';
 import 'package:crimsy/widgets/feed/mainfeed.dart';
 import 'package:crimsy/widgets/map/map.dart';
-import 'package:crimsy/widgets/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -14,15 +15,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  Widget _bodyWidget = WidgetMainfeed();
+  Widget _bodyWidget = WidgetAdvisorBoard();
 
   // final _navigatorKey = GlobalKey<NavigatorState>();
 
   final List<Widget> _children = [
-    WidgetSettings(),
+    WidgetAdvisorBoard(),
     WidgetMainfeed(),
     WidgetMap(),
-    WidgetSettings()
+    WidgetAdvisorArticles()
   ];
 
   void _onTabTapped(int index) {
@@ -74,7 +75,7 @@ class _HomeState extends State<Home> {
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Übersicht')
+            title: Text('Übersicht'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.import_contacts),
