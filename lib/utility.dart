@@ -5,11 +5,6 @@ import 'package:intl/intl.dart';
 
 class Utility {
 
-  static const List<String> assetNames = <String>[
-    // 'assets/notfound.svg', // uncomment to test an asset that doesn't exist.
-    'assets/state_img/hessen.svg',
-  ];
-
   static formatDateTime(String dateTime) {
     final dateFormatter = DateFormat('dd.MM.yyyy');
     return dateFormatter.format(DateTime.now());
@@ -91,10 +86,8 @@ class Utility {
 }
 
 class ConverterUtil {
-  /// converter (to/from String)
   static String dateTimeToString(DateTime t) => t.toUtc().toIso8601String();
   static DateTime stringToDateTime(String s) => DateTime.parse(s).toUtc();
-
   static String durationToString(Duration d) => d?.inMicroseconds?.toString();
   static Duration stringToDuration(String s) => Duration(microseconds: int.parse(s));
 }

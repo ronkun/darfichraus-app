@@ -1,6 +1,6 @@
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:crimsy/utility.dart';
-import 'package:crimsy/widgets/feed/widget_mainfeed_detailview.dart';
+import 'package:crimsy/widgets/feed/mainfeed_details.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 
@@ -13,10 +13,10 @@ class WidgetMainfeed extends StatefulWidget {
 
 class _WidgetMainfeedState extends State<WidgetMainfeed> {
 
-Future<List<Restriction>> _restrictions;
+  Future<List<Restriction>> _restrictions;
 
-Future<List<Restriction>> filteredRestrictions;
-bool _IsSearching;
+  Future<List<Restriction>> filteredRestrictions;
+  bool _IsSearching;
   // WidgetMainfeed();
   // @override
   // void initState() {

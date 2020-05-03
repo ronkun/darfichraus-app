@@ -10,7 +10,6 @@ const dirPrimaryColor = Color(0xFF3382CC);
 final dirShadowColor = Color(0xFFB7B7B7).withOpacity(.16);
 final dirActiveShadowColor = Color(0xFF4056C6).withOpacity(.15);
 
-// Text Style
 const dirHeadingTextStyle = TextStyle(
   fontSize: 22,
   fontWeight: FontWeight.w600,

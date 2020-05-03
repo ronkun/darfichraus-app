@@ -12,6 +12,7 @@ class PreventCard extends StatelessWidget {
     this.title,
     this.text,
   }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Padding(

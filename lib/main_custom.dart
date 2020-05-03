@@ -1,7 +1,7 @@
 import 'package:crimsy/main_drawer.dart';
-import 'package:crimsy/widgets/feed/widget_mainfeed.dart';
-import 'package:crimsy/widgets/map/widget_map.dart';
-import 'package:crimsy/widgets/settings/widget_settings.dart';
+import 'package:crimsy/widgets/feed/mainfeed.dart';
+import 'package:crimsy/widgets/map/map.dart';
+import 'package:crimsy/widgets/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {

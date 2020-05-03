@@ -11,7 +11,6 @@ class WidgetSettings extends StatefulWidget {
 
 class _WidgetSettingsState extends State<WidgetSettings> {
   bool _dark;
-  TextEditingController _textFieldController = TextEditingController();
 
   @override
   void initState() { 

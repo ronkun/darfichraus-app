@@ -53,21 +53,6 @@ class MainDrawer extends StatelessWidget {
                     ]
                   )
                 ),
-              // Divider(),
-              // ListTile(
-              //   leading: Icon(Icons.info),
-              //   title: Text('Über uns'),
-              //   trailing: Icon(Icons.keyboard_arrow_right),
-              //   dense: true,
-              //   enabled: true,
-              // ),
-              // ListTile(
-              //   leading: Icon(Icons.tag_faces),
-              //   title: Text('Feedback '),
-              //   trailing: Icon(Icons.keyboard_arrow_right),
-              //   dense: true,
-              //   enabled: true,
-              // ),
                 Container(
                   // This align moves the children to the bottom
                   child: Align(
