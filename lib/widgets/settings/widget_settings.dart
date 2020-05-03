@@ -1,10 +1,5 @@
-import 'package:crimsy/model/restriction_model.dart';
 import 'package:flutter/material.dart';
-import 'package:crimsy/service/post_service.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-// import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WidgetSettings extends StatefulWidget {
@@ -15,7 +10,8 @@ class WidgetSettings extends StatefulWidget {
 }
 
 class _WidgetSettingsState extends State<WidgetSettings> {
- bool _dark;
+  bool _dark;
+  TextEditingController _textFieldController = TextEditingController();
 
   @override
   void initState() { 
@@ -81,7 +77,7 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                         ),
                       ),
                       leading: CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(""),
+                        // backgroundImage: CachedNetworkImageProvider(""),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -104,8 +100,36 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                           ),
                           title: Text("E-Mail Adresse ändern"),
                           trailing: Icon(Icons.keyboard_arrow_right),
-                          onTap: () {
-                            //open change password
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (ctxt) => new AlertDialog(
+                                shape:
+                                 RoundedRectangleBorder(borderRadius: new BorderRadius.circular(7)),
+                                title: new Text('E-Mail Adresse ändern'),
+                                content: Row(
+                                    children: [
+                                      // TextField(
+                                      //   // controller: _textFieldController,
+                                      //   // decoration: InputDecoration(hintText: "TextField in Dialog"),
+                                      // ),
+                                    ]),
+                                actions: <Widget>[
+                                   FlatButton(
+                                    child: Text("Schließen"),
+                                    onPressed: () {
+                                     Navigator.of(context).pop();
+                                    }
+                                  ),
+                                  FlatButton(
+                                    child: Text("Speichern"),
+                                    onPressed: () {
+                                    // yourFunction();
+                                    }
+                                  )
+                                ],
+                              )
+                            );
                           },
                         ),
                         _buildDivider(),
@@ -117,7 +141,7 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                           title: Text("Kategorie ändern"),
                           trailing: Icon(Icons.keyboard_arrow_right),
                           onTap: () {
-                            //open change language
+                            //open change category
                           },
                         ),
                         _buildDivider(),

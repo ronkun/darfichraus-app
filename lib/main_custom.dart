@@ -14,27 +14,29 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  Widget _bodyWidget = WidgetMainfeed();
+
   // final _navigatorKey = GlobalKey<NavigatorState>();
 
   final List<Widget> _children = [
+    WidgetSettings(),
     WidgetMainfeed(),
-    WidgetMap(),
     WidgetMap(),
     WidgetSettings()
   ];
-  
-  // final List<String> _children = [
-  //   WidgetMainfeed.routeId,
-  //   WidgetMap.routeId,
-  //   WidgetMap.routeId,
-  //   WidgetSettings.routeId
-  // ];
 
   void _onTabTapped(int index) {
     setState(() {
       // _navigatorKey.currentState.pushNamed('/'yourRouteName'');
-      _selectedIndex = index;
       // Navigator.of(context).pushNamed(_children.elementAt(index));
+      _selectedIndex = index;
+      _setWidgetForBody(index);
+    });
+  }
+
+  void _setWidgetForBody(int index) {
+    setState(() {
+          _bodyWidget = _children.elementAt(index);
     });
   }
 
@@ -42,7 +44,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          // title: Text(widget.title),
           title: Padding(
             padding: EdgeInsets.only(left: 55),
             child: widget.title,
@@ -54,27 +55,18 @@ class _HomeState extends State<Home> {
                 Navigator.of(context).pushNamed('first');
               },
             ),
-            // new DropdownButton<String>(
-            //   value: _value,
-            //   icon: Icon(Icons.filter_list),
-            //   items: <DropdownMenuItem<String>>[
-            //     new DropdownMenuItem(
-            //       child: new Text('My Page'),
-            //       value: 'one',
-            //     ),
-            //   ], 
-            //   onChanged: (String value) {
-            //     setState(() => _value = value);
-            //   },
-            // ),
             IconButton(
               icon: Icon(Icons.settings),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _setWidgetForBody(3);
+                });
+              },
             ),
           ]
         ),
         drawer: MainDrawer(),
-        body: _children.elementAt(_selectedIndex), // new
+        body: _bodyWidget,
         bottomNavigationBar: BottomNavigationBar(
         onTap: _onTabTapped, // new
         currentIndex: _selectedIndex, 
@@ -82,6 +74,10 @@ class _HomeState extends State<Home> {
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
+            title: Text('Übersicht')
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.import_contacts),
             title: Text('News'),
           ),
           new BottomNavigationBarItem(
@@ -89,12 +85,8 @@ class _HomeState extends State<Home> {
             title: Text('Karte'),
           ),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profil')
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Einstellungen')
+            icon: Icon(Icons.accessibility),
+            title: Text('Advisor')
           )
         ],
       ),

@@ -134,31 +134,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: <Widget>[
                       getPageCrisisSelection(),
                       getPageStateSelection(),
-    
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Text(
-                                "Lorem Ipsum",
-                                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
-                              )
-                            ),
-                            SizedBox(height: 30.0),
-                            Text(
-                              'lorem Ipsum',
-                              style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 15.0),
-                            Text(
-                              'lorem Ipsum',
-                              style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
+                      getPageSettingsSelection(),
                     ],
                   ),
                 ),
@@ -240,6 +216,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           : Text(''),
     );
   }
+
+
+  /*
+    ####### PAGES
+  */
 
   getPageCrisisSelection() {
     return          
@@ -415,4 +396,60 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       );
   }
+
+
+  getPageSettingsSelection() {
+    return Padding(
+      padding: EdgeInsets.all(40.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Center(
+            child: Text(
+              "Einstellungen",
+              style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+            )
+          ),
+          SizedBox(height: 30.0),
+          // Text(
+          //           "Benachrichtigungseinstellungen",
+          //           style: TextStyle(
+          //             fontSize: 20.0,
+          //             fontWeight: FontWeight.bold,
+          //             color: Colors.grey,
+          //           ),
+          //         ),
+          SwitchListTile(
+            activeColor: Colors.lightBlue[300],
+            contentPadding: const EdgeInsets.all(0),
+            value: true,
+            title: Text("Benachrichtigungen"),
+            onChanged: (val) {},
+          ),
+          SwitchListTile(
+            activeColor: Colors.lightBlue[300],
+            contentPadding: const EdgeInsets.all(0),
+            value: false,
+            title: Text("E-Mail Benachrichtigungen"),
+            onChanged: (val) {},
+          ),
+          SwitchListTile(
+            activeColor: Colors.lightBlue[800],
+            contentPadding: const EdgeInsets.all(0),
+            value: true,
+            title: Text("Newsletter"),
+            onChanged: (val) {},
+          ),
+          SwitchListTile(
+            activeColor: Colors.lightBlue[300],
+            contentPadding: const EdgeInsets.all(0),
+            value: true,
+            title: Text("App Updates"),
+            onChanged: null,
+          ),
+        ],
+      ),
+    );
+  }
+
 }
