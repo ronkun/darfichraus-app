@@ -29,9 +29,10 @@ class MyApp extends StatelessWidget {
         // fontFamily: 'Playfair',
         // primarySwatch: Colors.blue,
         // brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
-        accentColor: Colors.lightBlue[600],
-
+        primaryColor: Color(0xFF01364d),
+        // primaryColor: Colors.lightBlue[800],
+        // accentColor: Colors.lightBlue[600],
+        accentColor: Color(0xFF01364d),
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         "map": (context) => WidgetMap(),
         "feed": (context) => WidgetMainfeed()
       },
-      home: Home(),
+      home: Home(title: Image.asset('assets/logo/logo_dir_0520.png', fit: BoxFit.cover)),
     );
   }
 }

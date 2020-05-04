@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: Padding(
-            padding: EdgeInsets.only(left: 55),
+            padding: EdgeInsets.only(left: 15, right: 45),
             child: widget.title,
           ),
           actions: <Widget>[
