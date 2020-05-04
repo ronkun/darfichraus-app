@@ -1,5 +1,5 @@
 import 'package:crimsy/widgets/advisor/objects/colorChoice.dart';
-import 'package:crimsy/widgets/advisor/objects/todoObject.dart';
+import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
 import 'package:flutter/material.dart';
 
 List<TodoObject> todos = [
