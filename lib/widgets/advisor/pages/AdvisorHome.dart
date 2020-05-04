@@ -4,14 +4,14 @@ import 'package:crimsy/widgets/advisor/pages/advisorDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class AdvisorHome extends StatefulWidget {
+  AdvisorHome({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _AdvisorHomeState createState() => _AdvisorHomeState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin {
   ScrollController scrollController;
   Color backgroundColor;
   LinearGradient backgroundGradient;
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Padding(
               padding: EdgeInsets.only(left: 50.0),
               child: Text(
-                "Nordrhein-Westfalen",
+                "Corona Pandemie",
                 style: TextStyle(color: Colors.black, fontSize: 30.0),
               ),
             ),

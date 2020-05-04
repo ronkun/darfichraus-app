@@ -16,12 +16,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  Widget _bodyWidget = WidgetAdvisorBoard();
+  Widget _bodyWidget = AdvisorHome();
 
   // final _navigatorKey = GlobalKey<NavigatorState>();
 
   final List<Widget> _children = [
-    HomePage(),
+    AdvisorHome(),
     WidgetMainfeed(),
     WidgetMap(),
     WidgetAdvisorArticles()
@@ -44,40 +44,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //   appBar: PreferredSize(
-      //   preferredSize: Size(double.infinity, 100),
-      //   child: Container(
-      //     decoration: BoxDecoration(
-      //       boxShadow: [BoxShadow(
-      //         color: Colors.black12,
-      //         spreadRadius: 5,
-      //         blurRadius: 2
-      //       )]
-      //     ),
-      //     width: MediaQuery.of(context).size.width,
-      //     height: 100,
-      //     child: Container(
-      //       decoration: BoxDecoration(
-      //         color: Colors.blueAccent,
-      //         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))
-      //       ),
-      //       child: Container(
-      //         margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      //         child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //           crossAxisAlignment: CrossAxisAlignment.center,
-      //           children: [
-      //             Icon(Icons.navigate_before,size: 40,color: Colors.white,),
-      //             Text("Foodbar",style: TextStyle(fontSize: 30,color: Colors.white),),
-      //             Icon(Icons.navigate_before,color: Colors.transparent,),
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
-  
+    return Scaffold(  
         appBar: AppBar(
           // shape: CustomShapeBorder(),
           title: Padding(
@@ -103,7 +70,16 @@ class _HomeState extends State<Home> {
         ),
         drawer: MainDrawer(),
         body: _bodyWidget,
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: 
+        // new Theme(
+        // data: Theme.of(context).copyWith(
+        //   canvasColor: Colors.grey,
+        //   splashColor: Colors.yellowAccent,
+        //     unselectedWidgetColor: Colors.green,
+        //   primaryColor: Colors.white,
+        //   textTheme: Theme.of(context).textTheme.copyWith(caption: new TextStyle(color: Colors.grey))
+        // ), child: 
+        BottomNavigationBar(
         onTap: _onTabTapped, // new
         currentIndex: _selectedIndex, 
         type: BottomNavigationBarType.fixed,
@@ -126,15 +102,16 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+      // )
       
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          print("Verordnung hinzufügen");
-        },
-        tooltip: 'Verordnung hinzufügen',
-        child: Icon(Icons.add),
-        mini: true,
-      ), 
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     print("Verordnung hinzufügen");
+      //   },
+      //   tooltip: 'Verordnung hinzufügen',
+      //   child: Icon(Icons.add),
+      //   mini: true,
+      // ), 
     );
   }
 }

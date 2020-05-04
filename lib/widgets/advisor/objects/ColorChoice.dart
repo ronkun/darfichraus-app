@@ -16,6 +16,7 @@ class ColorChoices {
         Color.fromRGBO(245, 161, 81, 1.0),
       ],
     ),
+    
     ColorChoice(
       primary: Color(0xFF5A89E6),
       gradient: [
@@ -23,6 +24,7 @@ class ColorChoices {
         Color.fromRGBO(93, 167, 231, 1.0),
       ],
     ),
+
     ColorChoice(
       primary: Color(0xFF4EC5AC),
       gradient: [

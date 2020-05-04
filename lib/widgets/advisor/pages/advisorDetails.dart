@@ -22,7 +22,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   @override
   void initState() {
     scaleAnimation = AnimationController(vsync: this, duration: Duration(milliseconds: 1000), lowerBound: 0.0, upperBound: 1.0);
-
     percentComplete = widget.todoObject.percentComplete();
     barPercent = percentComplete;
     animationBar = AnimationController(vsync: this, duration: Duration(milliseconds: 100))
@@ -100,18 +99,18 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                     ),
                     itemBuilder: (context) => <PopupMenuEntry<TodoCardSettings>>[
                       PopupMenuItem(
-                        child: Text("Edit Color"),
+                        child: Text("Test"),
                         value: TodoCardSettings.edit_color,
                       ),
                       PopupMenuItem(
-                        child: Text("Delete"),
+                        child: Text("Entfernen"),
                         value: TodoCardSettings.delete,
                       ),
                     ],
                     onSelected: (setting) {
                       switch (setting) {
                         case TodoCardSettings.edit_color:
-                          print("edit color clicked");
+                          print("Test");
                           break;
                         case TodoCardSettings.delete:
                           print("delete clicked");

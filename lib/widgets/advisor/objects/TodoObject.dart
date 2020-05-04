@@ -9,7 +9,8 @@ class TodoObject {
   TodoObject(String title, IconData icon) {
     this.title = title;
     this.icon = icon;
-    ColorChoice choice = ColorChoices.choices[Random().nextInt(ColorChoices.choices.length)];
+    // ColorChoice choice = ColorChoices.choices[Random().nextInt(ColorChoices.choices.length)];
+    ColorChoice choice = ColorChoices.choices[2];
     this.color = choice.primary;
     this.gradient = LinearGradient(colors: choice.gradient, begin: Alignment.bottomCenter, end: Alignment.topCenter);
     tasks = Map<DateTime, List<TaskObject>>();
