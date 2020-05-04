@@ -80,7 +80,6 @@ class PreventCard extends StatelessWidget {
                 child: SvgPicture.asset("assets/images/forward.svg"),
               ),
             )                
-           
           ],
         ),
       ),

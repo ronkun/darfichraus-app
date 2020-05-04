@@ -1,3 +1,4 @@
+import 'package:crimsy/colors.dart';
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
@@ -36,7 +37,7 @@ class _WidgetAdvisorBoardState extends State<WidgetAdvisorBoard> {
 
         Column(
             children: <Widget>[
-              Text("jjlk")
+              Text("test")
             ],
           )
         );

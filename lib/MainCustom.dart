@@ -1,6 +1,7 @@
-import 'package:crimsy/main_drawer.dart';
-import 'package:crimsy/widgets/advisor/advisor_articles.dart';
-import 'package:crimsy/widgets/advisor/advisor_board.dart';
+import 'package:crimsy/MainDrawer.dart';
+import 'package:crimsy/widgets/advisor/AdvisorArticles.dart';
+import 'package:crimsy/widgets/advisor/AdvisorBoard.dart';
+import 'package:crimsy/widgets/advisor/pages/AdvisorHome.dart';
 import 'package:crimsy/widgets/feed/mainfeed.dart';
 import 'package:crimsy/widgets/map/map.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
   // final _navigatorKey = GlobalKey<NavigatorState>();
 
   final List<Widget> _children = [
-    WidgetAdvisorBoard(),
+    HomePage(),
     WidgetMainfeed(),
     WidgetMap(),
     WidgetAdvisorArticles()
@@ -44,7 +45,41 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //   appBar: PreferredSize(
+      //   preferredSize: Size(double.infinity, 100),
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       boxShadow: [BoxShadow(
+      //         color: Colors.black12,
+      //         spreadRadius: 5,
+      //         blurRadius: 2
+      //       )]
+      //     ),
+      //     width: MediaQuery.of(context).size.width,
+      //     height: 100,
+      //     child: Container(
+      //       decoration: BoxDecoration(
+      //         color: Colors.blueAccent,
+      //         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))
+      //       ),
+      //       child: Container(
+      //         margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      //         child: Row(
+      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //           crossAxisAlignment: CrossAxisAlignment.center,
+      //           children: [
+      //             Icon(Icons.navigate_before,size: 40,color: Colors.white,),
+      //             Text("Foodbar",style: TextStyle(fontSize: 30,color: Colors.white),),
+      //             Icon(Icons.navigate_before,color: Colors.transparent,),
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
+  
         appBar: AppBar(
+          // shape: CustomShapeBorder(),
           title: Padding(
             padding: EdgeInsets.only(left: 15, right: 45),
             child: widget.title,
@@ -103,3 +138,25 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+// class CustomShapeBorder extends ContinuousRectangleBorder {
+//   @override
+//   Path getOuterPath(Rect rect, {TextDirection textDirection}) {
+
+//     final double innerCircleRadius = 150.0;
+
+//     Path path = Path();
+//     path.lineTo(0, rect.height);
+//     path.quadraticBezierTo(rect.width / 2 - (innerCircleRadius / 2) - 130, rect.height + 15, rect.width / 2 - 75, rect.height + 50);
+//     path.cubicTo(
+//         rect.width / 2 - 40, rect.height + innerCircleRadius - 40,
+//         rect.width / 2 + 40, rect.height + innerCircleRadius - 40,
+//         rect.width / 2 + 75, rect.height + 50
+//     );
+//     path.quadraticBezierTo(rect.width / 2 + (innerCircleRadius / 2) + 30, rect.height + 15, rect.width, rect.height);
+//     path.lineTo(rect.width, 0.0);
+//     path.close();
+
+//     return path;
+//   }
+// }

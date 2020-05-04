@@ -1,9 +1,9 @@
-import 'package:crimsy/init_screen.dart';
-import 'package:crimsy/widgets/feed/mainfeed.dart';
+import 'package:crimsy/InitScreen.dart';
+import 'package:crimsy/widgets/feed/Mainfeed.dart';
 import 'package:crimsy/widgets/map/map_mb.dart';
-import 'package:crimsy/widgets/settings/settings.dart';
+import 'package:crimsy/widgets/settings/Settings.dart';
 import 'package:flutter/material.dart';
-import 'package:crimsy/main_custom.dart';
+import 'package:crimsy/MainCustom.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // void main() => runApp(MyApp());

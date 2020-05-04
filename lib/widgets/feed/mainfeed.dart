@@ -1,6 +1,6 @@
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:crimsy/utility.dart';
-import 'package:crimsy/widgets/feed/mainfeed_details.dart';
+import 'package:crimsy/widgets/feed/MainfeedDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 

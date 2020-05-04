@@ -1,3 +1,4 @@
+import 'package:crimsy/Colors.dart';
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:crimsy/utility.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,8 @@ class FeedDetailView extends StatelessWidget {
             padding: EdgeInsets.only(top: 50.0, left: 50.0, right: 50.0, bottom: 30),
             width: MediaQuery.of(context).size.width,
             // decoration: BoxDecoration(color: Colors.lightBlue[800]),
-            decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
+            // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
+            decoration: BoxDecoration(color: MainColors.dirMainBlue),
             child: 
               topContentText,
             ),),
