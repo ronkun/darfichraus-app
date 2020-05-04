@@ -1,9 +1,9 @@
 import 'package:crimsy/MainDrawer.dart';
 import 'package:crimsy/widgets/advisor/AdvisorArticles.dart';
 import 'package:crimsy/widgets/advisor/AdvisorBoard.dart';
-import 'package:crimsy/widgets/advisor/pages/AdvisorHome.dart';
-import 'package:crimsy/widgets/feed/mainfeed.dart';
-import 'package:crimsy/widgets/map/map.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorHome.dart';
+import 'package:crimsy/widgets/feed/MainFeed.dart';
+import 'package:crimsy/widgets/map/Map.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {

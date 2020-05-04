@@ -1,5 +1,5 @@
-import 'package:crimsy/widgets/advisor/CustomCheckboxTile.dart';
-import 'package:crimsy/widgets/advisor/objects/TodoObject.dart';
+import 'package:crimsy/widgets/advisor/customCheckboxTile.dart';
+import 'package:crimsy/widgets/advisor/objects/todoObject.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

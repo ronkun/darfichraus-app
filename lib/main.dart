@@ -1,5 +1,5 @@
-import 'package:crimsy/InitScreen.dart';
-import 'package:crimsy/widgets/feed/Mainfeed.dart';
+import 'package:crimsy/initScreen.dart';
+import 'package:crimsy/widgets/feed/mainfeed.dart';
 import 'package:crimsy/widgets/map/map_mb.dart';
 import 'package:crimsy/widgets/settings/Settings.dart';
 import 'package:flutter/material.dart';

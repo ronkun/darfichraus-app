@@ -1,6 +1,6 @@
-import 'package:crimsy/widgets/advisor/DummyData.dart';
-import 'package:crimsy/widgets/advisor/objects/TodoObject.dart';
-import 'package:crimsy/widgets/advisor/pages/Details.dart';
+import 'package:crimsy/widgets/advisor/dummyData.dart';
+import 'package:crimsy/widgets/advisor/objects/todoObject.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
