@@ -1,3 +1,4 @@
+import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/widgets/advisor/customCheckboxTile.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             ],
           ),
           body: Padding(
-            padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 35.0),
+            padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
@@ -159,7 +160,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       child: Material(
                         color: Colors.transparent,
                         child: Text(
-                          widget.advisorCardObject.taskAmount().toString() + " Tasks",
+                          "Schleswig-Holstein",
                           style: TextStyle(),
                           softWrap: false,
                         ),
@@ -184,92 +185,182 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Hero(
-                      tag: widget.advisorCardObject.uuid + "_progress_bar",
-                      child: Material(
-                        color: Colors.transparent,
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: LinearProgressIndicator(
-                                value: barPercent,
-                                backgroundColor: Colors.grey.withAlpha(50),
-                                valueColor: AlwaysStoppedAnimation<Color>(widget.advisorCardObject.color),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 5.0),
-                              child: Text((barPercent * 100).round().toString() + "%"),
-                            )
-                          ],
-                        ),
+                Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        leading: Icon(Icons.sms_failed, size: 50, color: MainColors.dirMainBlue),
+                        title: Text('Symptome'),
+                        subtitle: Text('Die Symptome von Corona.'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Hero(
-                    tag: widget.advisorCardObject.uuid + "_just_a_test",
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: FadeTransition(
-                        opacity: scaleAnimation,
-                        child: ScaleTransition(
-                          scale: scaleAnimation,
-                          child: ListView.builder(
-                            padding: EdgeInsets.all(0.0),
-                            itemBuilder: (BuildContext context, int index) {
-                              DateTime currentDate = widget.advisorCardObject.tasks.keys.toList()[index];
-                              DateTime _now = DateTime.now();
-                              DateTime today = DateTime(_now.year, _now.month, _now.day);
-                              String dateString;
-                              if (currentDate.isBefore(today.subtract(Duration(days: 7)))) {
-                                dateString = DateFormat.yMMMMEEEEd().format(currentDate);
-                              } else if (currentDate.isBefore(today)) {
-                                dateString = "Previous - " + DateFormat.E().format(currentDate);
-                              } else if (currentDate.isAtSameMomentAs(today)) {
-                                dateString = "Today";
-                              } else if (currentDate.isAtSameMomentAs(today.add(Duration(days: 1)))) {
-                                dateString = "Tomorrow";
-                              } else {
-                                dateString = DateFormat.E().format(currentDate);
-                              }
-                              List<Widget> tasks = [Text(dateString)];
-                              widget.advisorCardObject.tasks[currentDate].forEach((task) {
-                                tasks.add(CustomCheckboxListTile(
-                                  activeColor: widget.advisorCardObject.color,
-                                  value: task.isCompleted(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      task.setComplete(value);
-                                      updateBarPercent();
-                                    });
-                                  },
-                                  title: Text(task.task),
-                                  secondary: Icon(Icons.alarm),
-                                ));
-                              });
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: tasks,
-                              );
-                            },
-                            itemCount: widget.advisorCardObject.tasks.length,
-                          ),
-                        ),
+                Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        leading: Icon(Icons.format_list_bulleted, size: 50, color: MainColors.dirMainBlue),
+                        title: Text('Feed Artikel'),
+                        subtitle: Text('228 Artikel gefunden'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
+                Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        dense: true,
+                        // contentPadding: EdgeInsets.only(top: 0.0, bottom: 0.0),
+                        leading: Icon(Icons.person),
+                        title: Text('Infizierte'),
+                        subtitle: Text('168.203 Personen in Deutschland'),
+                        trailing: Icon(Icons.arrow_drop_up, color: Colors.green,),
+                      ),
+                      const ListTile(
+                        dense: true,
+                        leading: Icon(Icons.sentiment_very_dissatisfied),
+                        title: Text('Verstorbene'),
+                        subtitle: Text('7.201 Personen in Deutschland'),
+                        trailing: Icon(Icons.arrow_drop_down, color: Colors.red,),
+                      ),
+                      const ListTile(
+                        dense: true,
+                        leading: Icon(Icons.healing),
+                        title: Text('Genesene'),
+                        subtitle: Text('136.203 Personen in Deutschland'),
+                        trailing: Icon(Icons.arrow_drop_up, color: Colors.green,),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: <Widget>[
+                          Padding(padding: EdgeInsets.only(left: 15)),
+                          Text("Stand: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 10),),
+                          Text( '' + DateFormat('dd.MM.yyyy').format(DateTime.now()).toString() + ' (JHU) ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 10))
+                        ]
+                      ),
+                      SizedBox(height: 10),
+                      // ButtonBar(
+                      //   children: <Widget>[
+                      //     FlatButton(
+                      //       child: const Text('AKTUALISIEREN'),
+                      //       onPressed: () {/* ... */},
+                      //     ),
+                      //     // FlatButton(
+                      //     //   child: const Text('LISTEN'),
+                      //     //   onPressed: () {/* ... */},
+                      //     // ),
+                      //   ],
+                      // ),
+                     ],
+                    )
+                  ),
+              ]
+            )
+          )
         )
-      ],
-    );
+      ]);
+    }
+            
+
+
+
+
+
+
+
+
+    //             Padding(
+    //               padding: EdgeInsets.only(bottom: 30.0),
+    //               child: Align(
+    //                 alignment: Alignment.bottomLeft,
+    //                 child: Hero(
+    //                   tag: widget.advisorCardObject.uuid + "_progress_bar",
+    //                   child: Material(
+    //                     color: Colors.transparent,
+    //                     child: Row(
+    //                       children: <Widget>[
+    //                         Expanded(
+    //                           child: LinearProgressIndicator(
+    //                             value: barPercent,
+    //                             backgroundColor: Colors.grey.withAlpha(50),
+    //                             valueColor: AlwaysStoppedAnimation<Color>(widget.advisorCardObject.color),
+    //                           ),
+    //                         ),
+    //                         Padding(
+    //                           padding: EdgeInsets.only(left: 5.0),
+    //                           child: Text((barPercent * 100).round().toString() + "%"),
+    //                         )
+    //                       ],
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ),
+    //             ),
+    //             Expanded(
+    //               child: Hero(
+    //                 tag: widget.advisorCardObject.uuid + "_just_a_test",
+    //                 child: Material(
+    //                   type: MaterialType.transparency,
+    //                   child: FadeTransition(
+    //                     opacity: scaleAnimation,
+    //                     child: ScaleTransition(
+    //                       scale: scaleAnimation,
+    //                       child: ListView.builder(
+    //                         padding: EdgeInsets.all(0.0),
+    //                         itemBuilder: (BuildContext context, int index) {
+    //                           DateTime currentDate = widget.advisorCardObject.tasks.keys.toList()[index];
+    //                           DateTime _now = DateTime.now();
+    //                           DateTime today = DateTime(_now.year, _now.month, _now.day);
+    //                           String dateString;
+    //                           if (currentDate.isBefore(today.subtract(Duration(days: 7)))) {
+    //                             dateString = DateFormat.yMMMMEEEEd().format(currentDate);
+    //                           } else if (currentDate.isBefore(today)) {
+    //                             dateString = "Previous - " + DateFormat.E().format(currentDate);
+    //                           } else if (currentDate.isAtSameMomentAs(today)) {
+    //                             dateString = "Today";
+    //                           } else if (currentDate.isAtSameMomentAs(today.add(Duration(days: 1)))) {
+    //                             dateString = "Tomorrow";
+    //                           } else {
+    //                             dateString = DateFormat.E().format(currentDate);
+    //                           }
+    //                           List<Widget> tasks = [Text(dateString)];
+    //                           widget.advisorCardObject.tasks[currentDate].forEach((task) {
+    //                             tasks.add(CustomCheckboxListTile(
+    //                               activeColor: widget.advisorCardObject.color,
+    //                               value: task.isCompleted(),
+    //                               onChanged: (value) {
+    //                                 setState(() {
+    //                                   task.setComplete(value);
+    //                                   updateBarPercent();
+    //                                 });
+    //                               },
+    //                               title: Text(task.task),
+    //                               secondary: Icon(Icons.alarm),
+    //                             ));
+    //                           });
+    //                           return Column(
+    //                             crossAxisAlignment: CrossAxisAlignment.start,
+    //                             children: tasks,
+    //                           );
+    //                         },
+    //                         itemCount: widget.advisorCardObject.tasks.length,
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //     )
+    //   ],
+    // );
   }
-}

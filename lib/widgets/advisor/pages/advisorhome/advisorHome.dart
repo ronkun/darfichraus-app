@@ -151,12 +151,11 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
             ),
             Spacer(),
             Expanded(
-              flex: 20,
+              flex: 25,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   AdvisorCardObject advisorCardObject = todos[index];
                   // double percentComplete = todoObject.percentComplete();
-
                   return Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
                     child: InkWell(
@@ -261,15 +260,16 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                 AdvisorCardCrisisTile(
                                   crisisTitle: "Corona",
                                   crisisRestrictionsIcons: [RestrictionIcons.Mask],
+                                  advisorCardObject: new AdvisorCardObject("Corona (SarS CoV-2)", Icons.verified_user),
                                 ),
 
                                 AdvisorCardCrisisTile(
                                   crisisTitle: "Influenza",
                                   crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
+                                  advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
                                 ),
 
-                                  // ),
-                                  // ),
+                            
                                   // Spacer(),
                                   // //Verordnungen/Bundesland
                                   // Hero(
@@ -316,18 +316,15 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                       )
                                   ),
                                   // Spacer(),
-                                  
-
-                                  AdvisorProgressBar(
-                                    totalSteps: 5,
-                                    currentStep: 2,
-                                    padding: 6.0,
-                                    size: 12,
-                                    uuid: advisorCardObject.uuid,
-                                  )
-
-
-                                   ]
+                              
+                                    AdvisorProgressBar(
+                                      totalSteps: 5,
+                                      currentStep: 2,
+                                      padding: 6.0,
+                                      size: 6,
+                                      uuid: advisorCardObject.uuid,
+                                    )
+                                    ]
                                   )
                                 ],
                               ),

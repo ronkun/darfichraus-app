@@ -1,13 +1,17 @@
+import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardDetails.dart';
 import 'package:flutter/material.dart';
 
 class AdvisorCardCrisisTile extends StatelessWidget {
   final String crisisTitle;
   final List<Image> crisisRestrictionsIcons;
+  final AdvisorCardObject advisorCardObject;
 
   const AdvisorCardCrisisTile({
     Key key,
     this.crisisTitle,
     this.crisisRestrictionsIcons,
+    this.advisorCardObject,
   }) : super(key: key);
   
   @override
@@ -40,28 +44,15 @@ class AdvisorCardCrisisTile extends StatelessWidget {
                           ),
                         );
                       }),
-                    )
-                    //ICONS TO SHOW IN BL
-  
-
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.white,
-                    //     shape: BoxShape.circle,
-                    //     border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
-                    //   ),
-                    //   child: Padding(
-                    //     padding: EdgeInsets.all(8.0),
-                    //     child: Image(image: AssetImage('assets/corona_icons/iconfinder_viral-coronavirus-intect-host-human_5728207.png'), height: 24),
-                    //     // Icon(Icons.accessibility),
-                    //   ),
-                    // ),
-
-
-
-
-
-                
+                    ),  
+                                            //  InkWell(
+                      onTap: () =>
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject),
+                            transitionDuration: Duration(milliseconds: 1000),
+                          ),
+                        ),            
               ) 
             ),
           );

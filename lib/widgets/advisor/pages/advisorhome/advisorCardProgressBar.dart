@@ -27,6 +27,7 @@ class AdvisorProgressBar extends StatelessWidget {
         color: Colors.transparent,
         child: Row(
           children: <Widget>[
+            Text("Schweregrad: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
             Expanded(
               child: StepProgressIndicator(
                 totalSteps: totalSteps,
