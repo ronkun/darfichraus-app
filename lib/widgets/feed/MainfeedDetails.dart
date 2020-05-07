@@ -1,6 +1,6 @@
-import 'package:crimsy/colors.dart';
 import 'package:crimsy/model/restriction_model.dart';
-import 'package:crimsy/utility.dart';
+import 'package:crimsy/utils/colors.dart';
+import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 
 class FeedDetailView extends StatelessWidget {

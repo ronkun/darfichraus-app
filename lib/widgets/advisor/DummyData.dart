@@ -2,8 +2,8 @@ import 'package:crimsy/widgets/advisor/objects/colorChoice.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
 import 'package:flutter/material.dart';
 
-List<TodoObject> todos = [
-  TodoObject.import("SOME_RANDOM_UUID", "Niedersachsen", 1, ColorChoices.choices[0], Icons.alarm, {
+List<AdvisorCardObject> todos = [
+  AdvisorCardObject.import("SOME_RANDOM_UUID", "Niedersachsen", 1, ColorChoices.choices[0], Icons.alarm, {
     DateTime(2018, 5, 3): [
       TaskObject("Meet Clients", DateTime(2018, 5, 3)),
       TaskObject("Design Sprint", DateTime(2018, 5, 3)),
@@ -17,9 +17,9 @@ List<TodoObject> todos = [
       TaskObject("HTML/CSS Study", DateTime(2019, 5, 4)),
     ]
   }),
-  TodoObject("Nordrhein-Westfalen", Icons.person),
-  TodoObject("Bayern", Icons.work),
-  TodoObject("Hessen", Icons.home),
-  TodoObject("Schleswig-Holstein", Icons.shopping_basket),
-  TodoObject("Sachsen", Icons.school),
+  AdvisorCardObject("Nordrhein-Westfalen", Icons.person),
+  AdvisorCardObject("Bayern", Icons.work),
+  AdvisorCardObject("Hessen", Icons.home),
+  AdvisorCardObject("Schleswig-Holstein", Icons.shopping_basket),
+  AdvisorCardObject("Sachsen", Icons.school),
 ];

@@ -1,4 +1,4 @@
-import 'package:crimsy/colors.dart';
+import 'package:crimsy/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

@@ -1,6 +1,5 @@
 import 'package:crimsy/MainDrawer.dart';
-import 'package:crimsy/widgets/advisor/AdvisorArticles.dart';
-import 'package:crimsy/widgets/advisor/AdvisorBoard.dart';
+import 'package:crimsy/widgets/advisor/pages/AdvisorArticles.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorHome.dart';
 import 'package:crimsy/widgets/feed/MainFeed.dart';
 import 'package:crimsy/widgets/map/Map.dart';
@@ -90,7 +89,7 @@ class _HomeState extends State<Home> {
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.import_contacts),
-            title: Text('News'),
+            title: Text('Nachrichten'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.map),

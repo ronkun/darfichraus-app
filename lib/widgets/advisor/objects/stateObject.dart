@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:math';
 
-enum TodoCardSettings { edit_color, delete }
+enum AdvisorCardSettings { edit_color, delete }
 
-class TodoObject {
-  TodoObject(String title, IconData icon) {
+class AdvisorCardObject {
+  AdvisorCardObject(String title, IconData icon) {
     this.title = title;
     this.icon = icon;
     // ColorChoice choice = ColorChoices.choices[Random().nextInt(ColorChoices.choices.length)];
@@ -17,7 +17,7 @@ class TodoObject {
     this.uuid = Uuid().v1();
   }
 
-  TodoObject.import(String uuidS, String title, int sortID, ColorChoice color, IconData icon, Map<DateTime, List<TaskObject>> tasks) {
+  AdvisorCardObject.import(String uuidS, String title, int sortID, ColorChoice color, IconData icon, Map<DateTime, List<TaskObject>> tasks) {
     this.sortID = sortID;
     this.title = title;
     this.color = color.primary;

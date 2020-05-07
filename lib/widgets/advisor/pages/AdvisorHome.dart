@@ -1,5 +1,9 @@
+import 'package:crimsy/utils/customIcons.dart';
+import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/advisor/dummyData.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorCardCrisisTile.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorCardProgressBar.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -68,7 +72,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
             Padding(
               padding: EdgeInsets.only(left: 50.0),
               child: Text(
-                "Corona Pandemie",
+                "Deutschland",
                 style: TextStyle(color: Colors.black, fontSize: 30.0),
               ),
             ),
@@ -76,7 +80,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
             Padding(
               padding: EdgeInsets.only(left: 50.0),
               child: Text(
-                "Deutschlandweite Verordnungen",
+                "Landesweit aktive Verordnungen",
                 style: TextStyle(color: Colors.black87),
               ),
             ),
@@ -87,11 +91,27 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                 children: <Widget> [
                   GestureDetector(
                       onTap: () {print('click on edit');},
-                      child: Image(
-                          image: AssetImage('assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png'),
-                          fit: BoxFit.cover,
-                          height: 35,
-                      )
+                      child: 
+                           // Hero(
+                          // tag: todoObject.uuid + "_icon",
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Image(image: AssetImage('assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png'), height: 24),
+                              // Icon(Icons.accessibility),
+                            ),
+                          ),
+                        // ),
+                      // Image(
+                      //     image: AssetImage('assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png'),
+                      //     fit: BoxFit.cover,
+                      //     height: 35,
+                      // )
                   ), 
                   SizedBox(width: 20),
                   // Image.asset("assets/corona_icons/iconfinder_crowd-people-no-avoid-contact_5728185.png", width: 35),
@@ -134,8 +154,8 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
               flex: 20,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  TodoObject todoObject = todos[index];
-                  double percentComplete = todoObject.percentComplete();
+                  AdvisorCardObject advisorCardObject = todos[index];
+                  // double percentComplete = todoObject.percentComplete();
 
                   return Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
@@ -143,7 +163,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                       onTap: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(todoObject: todoObject),
+                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject),
                             transitionDuration: Duration(milliseconds: 1000),
                           ),
                         );
@@ -154,7 +174,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                         child: Stack(
                           children: <Widget>[
                             Hero(
-                              tag: todoObject.uuid + "_background",
+                              tag: advisorCardObject.uuid + "_background",
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -170,28 +190,14 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Expanded(
-                                    flex: 10,
+                                    flex: 1,
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Stack(
                                           children: <Widget>[
                                             Hero(
-                                              tag: todoObject.uuid + "_backIcon",
-                                              child: Material(
-                                                type: MaterialType.transparency,
-                                                child: Container(
-                                                  height: 0,
-                                                  width: 0,
-                                                  child: IconButton(
-                                                    icon: Icon(Icons.arrow_back),
-                                                    onPressed: null,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Hero(
-                                              tag: todoObject.uuid + "_icon",
+                                              tag: advisorCardObject.uuid + "_icon",
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
@@ -200,7 +206,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(8.0),
-                                                  child: Icon(todoObject.icon, color: todoObject.color),
+                                                  child: Icon(advisorCardObject.icon, color: advisorCardObject.color),
                                                 ),
                                               ),
                                             ),
@@ -208,7 +214,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                         ),
                                         Spacer(),
                                         Hero(
-                                          tag: todoObject.uuid + "_more_vert",
+                                          tag: advisorCardObject.uuid + "_more_vert",
                                           child: Material(
                                             color: Colors.transparent,
                                             type: MaterialType.transparency,
@@ -217,25 +223,29 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                                 Icons.more_vert,
                                                 color: Colors.grey,
                                               ),
-                                              itemBuilder: (context) => <PopupMenuEntry<TodoCardSettings>>[
+                                              itemBuilder: (context) => <PopupMenuEntry<AdvisorCardSettings>>[
                                                 PopupMenuItem(
-                                                  child: Text("Edit Color"),
-                                                  value: TodoCardSettings.edit_color,
+                                                  child: Text("Test"),
+                                                  value: AdvisorCardSettings.edit_color,
                                                 ),
                                                 PopupMenuItem(
-                                                  child: Text("Delete"),
-                                                  value: TodoCardSettings.delete,
+                                                  child: Text("Entfernen"),
+                                                  value: AdvisorCardSettings.delete,
+                                                ),
+                                                 PopupMenuItem(
+                                                  child: Text("Default"),
+                                                  value: AdvisorCardSettings.delete,
                                                 ),
                                               ],
                                               onSelected: (setting) {
                                                 switch (setting) {
-                                                  case TodoCardSettings.edit_color:
+                                                  case AdvisorCardSettings.edit_color:
                                                     print("edit color clicked");
                                                     break;
-                                                  case TodoCardSettings.delete:
+                                                  case AdvisorCardSettings.delete:
                                                     print("delete clicked");
                                                     setState(() {
-                                                      todos.remove(todoObject);
+                                                      todos.remove(advisorCardObject);
                                                     });
                                                     break;
                                                 }
@@ -246,50 +256,79 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                       ],
                                     ),
                                   ),
-                                  Hero(
-                                    tag: todoObject.uuid + "_number_of_tasks",
-                                    child: Material(
-                                        color: Colors.transparent,
-                                        child: Text(
-                                          todoObject.taskAmount().toString() + " Verordnungen",
-                                          style: TextStyle(),
-                                          softWrap: false,
-                                        )),
+
+                                //AdvisorCardTile
+                                AdvisorCardCrisisTile(
+                                  crisisTitle: "Corona",
+                                  crisisRestrictionsIcons: [RestrictionIcons.Mask],
+                                ),
+
+                                AdvisorCardCrisisTile(
+                                  crisisTitle: "Influenza",
+                                  crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
+                                ),
+
+                                  // ),
+                                  // ),
+                                  // Spacer(),
+                                  // //Verordnungen/Bundesland
+                                  // Hero(
+                                  //   tag: todoObject.uuid + "_number_of_tasks",
+                                  //   child: Material(
+                                  //       color: Colors.transparent,
+                                  //       child: Text(
+                                  //         todoObject.taskAmount().toString() + " Verordnungen",
+                                  //         style: TextStyle(),
+                                  //         softWrap: false,
+                                  //       )),
+                                  // ),
+                                Spacer(),
+
+                                //Card Bundesland
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                  
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    child:
+                                      Hero(
+                                        tag: advisorCardObject.uuid + "_title",
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: Row(
+                    
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: <Widget> [ 
+                                              Container(
+                                                margin: const EdgeInsets.only(right: 15.0),
+                                                width: 17,
+                                                child: Utility.translateRestrictionAreaSymbol(advisorCardObject.title),
+                                              ),
+                                              
+                                              Text(
+                                                advisorCardObject.title,
+                                                style: TextStyle(fontSize: 25.0),
+                                                softWrap: false,
+                                              )
+                                            ]),
+                                        ),
+                                      )
                                   ),
-                                  Spacer(),
-                                  Hero(
-                                    tag: todoObject.uuid + "_title",
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: Text(
-                                        todoObject.title,
-                                        style: TextStyle(fontSize: 30.0),
-                                        softWrap: false,
-                                      ),
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Hero(
-                                    tag: todoObject.uuid + "_progress_bar",
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Expanded(
-                                            child: LinearProgressIndicator(
-                                              value: percentComplete,
-                                              backgroundColor: Colors.grey.withAlpha(50),
-                                              valueColor: AlwaysStoppedAnimation<Color>(todoObject.color),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 5.0),
-                                            child: Text((percentComplete * 100).round().toString() + "%"),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  // Spacer(),
+                                  
+
+                                  AdvisorProgressBar(
+                                    totalSteps: 5,
+                                    currentStep: 2,
+                                    padding: 6.0,
+                                    size: 12,
+                                    uuid: advisorCardObject.uuid,
+                                  )
+
+
+                                   ]
+                                  )
                                 ],
                               ),
                             ),

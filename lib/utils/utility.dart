@@ -5,6 +5,48 @@ import 'package:intl/intl.dart';
 
 class Utility {
 
+   static Image translateRestrictionAreaSymbol(String area) {
+    switch (area) {
+      case "Rheinland-Pfalz":
+        return Image(image: AssetImage('assets/state_img/rheinlandpfalz.png'), fit: BoxFit.fitWidth);
+      // return Image.asset('assets/state_img/rheinlandpfalz.png');
+      case "Baden-Württemberg":
+        return Image(image: AssetImage('assets/state_img/badenwuertemberg.png'), fit: BoxFit.fitWidth);
+      case "Hessen":
+        return Image(image: AssetImage('assets/state_img/hessen.png'), fit: BoxFit.fitWidth);
+      case "Hamburg":
+        return Image(image: AssetImage('assets/state_img/hamburg.png'), fit: BoxFit.fitWidth);
+      case "Sachsen-Anhalt": 
+        return Image(image: AssetImage('assets/state_img/sachsenanhalt.png'), fit: BoxFit.fitWidth);
+      case "Nordrhein-Westfalen":
+        return Image(image: AssetImage('assets/state_img/nordrheinwestfalen.png'), fit: BoxFit.fitWidth);
+      case "Berlin":  
+        return Image(image: AssetImage('assets/state_img/berlin.png'), fit: BoxFit.fitWidth);
+      case "Hamburg":
+          return Image(image: AssetImage('assets/state_img/hamburg.png'), fit: BoxFit.fitWidth);
+      case "Bayern":  
+        return Image(image: AssetImage('assets/state_img/bayern.png'), fit: BoxFit.fitWidth);
+      case "Bremen":  
+        return Image(image: AssetImage('assets/state_img/bremen.png'), fit: BoxFit.fitWidth); 
+      case "Saarland":  
+        return Image(image: AssetImage('assets/state_img/saarland.png'), fit: BoxFit.fitWidth);
+      case "Sachsen":  
+        return Image(image: AssetImage('assets/state_img/sachsen.png'), fit: BoxFit.fitWidth);      
+      case "Schleswig-Holstein":  
+        return Image(image: AssetImage('assets/state_img/schleswigholstein.png'), fit: BoxFit.fitWidth);
+      case "Thüringen":  
+        return Image(image: AssetImage('assets/state_img/thueringen.png'), fit: BoxFit.fitWidth);
+      case "Brandenburg":  
+        return Image(image: AssetImage('assets/state_img/brandenburg.png'), fit: BoxFit.fitWidth);
+      case "Berlin":  
+        return Image(image: AssetImage('assets/state_img/berlin.png'), fit: BoxFit.fitWidth);
+      case "Mecklenburg-Vorpommern":  
+        return Image(image: AssetImage('assets/state_img/mecklenburgvorpommern.png'), fit: BoxFit.fitWidth);
+      default:
+        return null;
+    }
+  }
+
   static formatDateTime(String dateTime) {
     final dateFormatter = DateFormat('dd.MM.yyyy');
     return dateFormatter.format(DateTime.now());
@@ -93,7 +135,7 @@ class ConverterUtil {
 }
 
 class StringUtil {
-   static bool equalIgnoreCase(String s1, String s2) => (s1?.toLowerCase() == s2?.toLowerCase());
-   static bool isNullOrEmpty(String s) => s == null || s.isEmpty;
-   static bool notNullOrEmpty(String s) => !isNullOrEmpty(s);
+  static bool equalIgnoreCase(String s1, String s2) => (s1?.toLowerCase() == s2?.toLowerCase());
+  static bool isNullOrEmpty(String s) => s == null || s.isEmpty;
+  static bool notNullOrEmpty(String s) => !isNullOrEmpty(s);
 }

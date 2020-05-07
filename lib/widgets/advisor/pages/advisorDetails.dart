@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({@required this.todoObject, Key key}) : super(key: key);
+  DetailPage({@required this.advisorCardObject, Key key}) : super(key: key);
 
-  final TodoObject todoObject;
+  final AdvisorCardObject advisorCardObject;
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -22,7 +22,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   @override
   void initState() {
     scaleAnimation = AnimationController(vsync: this, duration: Duration(milliseconds: 1000), lowerBound: 0.0, upperBound: 1.0);
-    percentComplete = widget.todoObject.percentComplete();
+    percentComplete = widget.advisorCardObject.percentComplete();
     barPercent = percentComplete;
     animationBar = AnimationController(vsync: this, duration: Duration(milliseconds: 100))
       ..addListener(() {
@@ -43,7 +43,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   }
 
   void updateBarPercent() async {
-    double newPercentComplete = widget.todoObject.percentComplete();
+    double newPercentComplete = widget.advisorCardObject.percentComplete();
     if (animationBar.status == AnimationStatus.forward || animationBar.status == AnimationStatus.completed) {
       animT.begin = newPercentComplete;
       await animationBar.reverse();
@@ -59,7 +59,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
     return Stack(
       children: <Widget>[
         Hero(
-          tag: widget.todoObject.uuid + "_background",
+          tag: widget.advisorCardObject.uuid + "_background",
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -73,7 +73,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: Hero(
-              tag: widget.todoObject.uuid + "_backIcon",
+              tag: widget.advisorCardObject.uuid + "_backIcon",
               child: Material(
                 color: Colors.transparent,
                 type: MaterialType.transparency,
@@ -88,7 +88,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             ),
             actions: <Widget>[
               Hero(
-                tag: widget.todoObject.uuid + "_more_vert",
+                tag: widget.advisorCardObject.uuid + "_more_vert",
                 child: Material(
                   color: Colors.transparent,
                   type: MaterialType.transparency,
@@ -97,22 +97,22 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       Icons.more_vert,
                       color: Colors.grey,
                     ),
-                    itemBuilder: (context) => <PopupMenuEntry<TodoCardSettings>>[
+                    itemBuilder: (context) => <PopupMenuEntry<AdvisorCardSettings>>[
                       PopupMenuItem(
                         child: Text("Test"),
-                        value: TodoCardSettings.edit_color,
+                        value: AdvisorCardSettings.edit_color,
                       ),
                       PopupMenuItem(
                         child: Text("Entfernen"),
-                        value: TodoCardSettings.delete,
+                        value: AdvisorCardSettings.delete,
                       ),
                     ],
                     onSelected: (setting) {
                       switch (setting) {
-                        case TodoCardSettings.edit_color:
+                        case AdvisorCardSettings.edit_color:
                           print("Test");
                           break;
-                        case TodoCardSettings.delete:
+                        case AdvisorCardSettings.delete:
                           print("delete clicked");
                           break;
                       }
@@ -133,7 +133,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Hero(
-                      tag: widget.todoObject.uuid + "_icon",
+                      tag: widget.advisorCardObject.uuid + "_icon",
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -142,8 +142,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Icon(
-                            widget.todoObject.icon,
-                            color: widget.todoObject.color,
+                            widget.advisorCardObject.icon,
+                            color: widget.advisorCardObject.color,
                           ),
                         ),
                       ),
@@ -155,11 +155,11 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Hero(
-                      tag: widget.todoObject.uuid + "_number_of_tasks",
+                      tag: widget.advisorCardObject.uuid + "_number_of_tasks",
                       child: Material(
                         color: Colors.transparent,
                         child: Text(
-                          widget.todoObject.taskAmount().toString() + " Tasks",
+                          widget.advisorCardObject.taskAmount().toString() + " Tasks",
                           style: TextStyle(),
                           softWrap: false,
                         ),
@@ -172,11 +172,11 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Hero(
-                      tag: widget.todoObject.uuid + "_title",
+                      tag: widget.advisorCardObject.uuid + "_title",
                       child: Material(
                         color: Colors.transparent,
                         child: Text(
-                          widget.todoObject.title,
+                          widget.advisorCardObject.title,
                           style: TextStyle(fontSize: 30.0),
                           softWrap: false,
                         ),
@@ -189,7 +189,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Hero(
-                      tag: widget.todoObject.uuid + "_progress_bar",
+                      tag: widget.advisorCardObject.uuid + "_progress_bar",
                       child: Material(
                         color: Colors.transparent,
                         child: Row(
@@ -198,7 +198,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                               child: LinearProgressIndicator(
                                 value: barPercent,
                                 backgroundColor: Colors.grey.withAlpha(50),
-                                valueColor: AlwaysStoppedAnimation<Color>(widget.todoObject.color),
+                                valueColor: AlwaysStoppedAnimation<Color>(widget.advisorCardObject.color),
                               ),
                             ),
                             Padding(
@@ -213,7 +213,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                 ),
                 Expanded(
                   child: Hero(
-                    tag: widget.todoObject.uuid + "_just_a_test",
+                    tag: widget.advisorCardObject.uuid + "_just_a_test",
                     child: Material(
                       type: MaterialType.transparency,
                       child: FadeTransition(
@@ -223,7 +223,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           child: ListView.builder(
                             padding: EdgeInsets.all(0.0),
                             itemBuilder: (BuildContext context, int index) {
-                              DateTime currentDate = widget.todoObject.tasks.keys.toList()[index];
+                              DateTime currentDate = widget.advisorCardObject.tasks.keys.toList()[index];
                               DateTime _now = DateTime.now();
                               DateTime today = DateTime(_now.year, _now.month, _now.day);
                               String dateString;
@@ -239,9 +239,9 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                 dateString = DateFormat.E().format(currentDate);
                               }
                               List<Widget> tasks = [Text(dateString)];
-                              widget.todoObject.tasks[currentDate].forEach((task) {
+                              widget.advisorCardObject.tasks[currentDate].forEach((task) {
                                 tasks.add(CustomCheckboxListTile(
-                                  activeColor: widget.todoObject.color,
+                                  activeColor: widget.advisorCardObject.color,
                                   value: task.isCompleted(),
                                   onChanged: (value) {
                                     setState(() {
@@ -258,7 +258,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                 children: tasks,
                               );
                             },
-                            itemCount: widget.todoObject.tasks.length,
+                            itemCount: widget.advisorCardObject.tasks.length,
                           ),
                         ),
                       ),
