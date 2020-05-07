@@ -2,9 +2,9 @@ import 'package:crimsy/utils/customIcons.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/advisor/dummyData.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorCardCrisisTile.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorCardProgressBar.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorDetails.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTile.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardDetails.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardProgressBar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

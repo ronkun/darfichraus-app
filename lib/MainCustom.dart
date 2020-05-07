@@ -1,6 +1,6 @@
 import 'package:crimsy/MainDrawer.dart';
-import 'package:crimsy/widgets/advisor/pages/AdvisorArticles.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorHome.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorarticles/advisorArticles.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorHome.dart';
 import 'package:crimsy/widgets/feed/MainFeed.dart';
 import 'package:crimsy/widgets/map/Map.dart';
 import 'package:flutter/material.dart';
