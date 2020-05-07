@@ -1,8 +1,10 @@
 import 'package:crimsy/MainDrawer.dart';
+import 'package:crimsy/subscribeForm.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorarticles/advisorArticles.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorHome.dart';
 import 'package:crimsy/widgets/feed/MainFeed.dart';
 import 'package:crimsy/widgets/map/Map.dart';
+import 'package:crimsy/widgets/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -17,19 +19,16 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   Widget _bodyWidget = AdvisorHome();
 
-  // final _navigatorKey = GlobalKey<NavigatorState>();
-
   final List<Widget> _children = [
     AdvisorHome(),
     WidgetMainfeed(),
     WidgetMap(),
-    WidgetAdvisorArticles()
+    WidgetAdvisorArticles(),
+    WidgetSettings(),
   ];
 
   void _onTabTapped(int index) {
     setState(() {
-      // _navigatorKey.currentState.pushNamed('/'yourRouteName'');
-      // Navigator.of(context).pushNamed(_children.elementAt(index));
       _selectedIndex = index;
       _setWidgetForBody(index);
     });
@@ -54,6 +53,17 @@ class _HomeState extends State<Home> {
             IconButton(
               icon: Icon(Icons.bookmark),
               onPressed: () {
+                // Navigator.of(context).pushNamed('subscribe');
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  child: SubscribeForm()
+                );            
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.looks_one),
+              onPressed: () {
                 Navigator.of(context).pushNamed('first');
               },
             ),
@@ -61,7 +71,7 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.settings),
               onPressed: () {
                 setState(() {
-                  _setWidgetForBody(3);
+                  _setWidgetForBody(4);
                 });
               },
             ),
@@ -69,16 +79,7 @@ class _HomeState extends State<Home> {
         ),
         drawer: MainDrawer(),
         body: _bodyWidget,
-        bottomNavigationBar: 
-        // new Theme(
-        // data: Theme.of(context).copyWith(
-        //   canvasColor: Colors.grey,
-        //   splashColor: Colors.yellowAccent,
-        //     unselectedWidgetColor: Colors.green,
-        //   primaryColor: Colors.white,
-        //   textTheme: Theme.of(context).textTheme.copyWith(caption: new TextStyle(color: Colors.grey))
-        // ), child: 
-        BottomNavigationBar(
+        bottomNavigationBar: BottomNavigationBar(
         onTap: _onTabTapped, // new
         currentIndex: _selectedIndex, 
         type: BottomNavigationBarType.fixed,
@@ -101,8 +102,8 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      // )
       
+      /* FLOATING + BUTTON */
       // floatingActionButton: FloatingActionButton(
       //   onPressed: (){
       //     print("Verordnung hinzufügen");
@@ -115,6 +116,8 @@ class _HomeState extends State<Home> {
   }
 }
 
+
+/* CUSTOM SHAPE BORDER FOR APPBAR */
 // class CustomShapeBorder extends ContinuousRectangleBorder {
 //   @override
 //   Path getOuterPath(Rect rect, {TextDirection textDirection}) {

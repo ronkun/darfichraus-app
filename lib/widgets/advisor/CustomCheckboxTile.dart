@@ -124,9 +124,9 @@ class CustomListTile extends StatelessWidget {
     assert(debugCheckHasMaterial(context));
     final ThemeData theme = Theme.of(context);
     final ListTileTheme tileTheme = ListTileTheme.of(context);
-
     final bool isTwoLine = !isThreeLine && subtitle != null;
     final bool isOneLine = !isThreeLine && !isTwoLine;
+    
     double tileHeight;
     if (isOneLine)
       tileHeight = 50.0;

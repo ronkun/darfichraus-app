@@ -1,5 +1,5 @@
+import 'package:crimsy/widgets/settings/changeEmailForm.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WidgetSettings extends StatefulWidget {
@@ -99,37 +99,54 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                           ),
                           title: Text("E-Mail Adresse ändern"),
                           trailing: Icon(Icons.keyboard_arrow_right),
-                          onTap: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (ctxt) => new AlertDialog(
-                                shape:
-                                 RoundedRectangleBorder(borderRadius: new BorderRadius.circular(7)),
-                                title: new Text('E-Mail Adresse ändern'),
-                                content: Row(
-                                    children: [
-                                      // TextField(
-                                      //   // controller: _textFieldController,
-                                      //   // decoration: InputDecoration(hintText: "TextField in Dialog"),
-                                      // ),
-                                    ]),
-                                actions: <Widget>[
-                                   FlatButton(
-                                    child: Text("Schließen"),
-                                    onPressed: () {
-                                     Navigator.of(context).pop();
-                                    }
-                                  ),
-                                  FlatButton(
-                                    child: Text("Speichern"),
-                                    onPressed: () {
-                                    // yourFunction();
-                                    }
-                                  )
-                                ],
-                              )
-                            );
-                          },
+                           onTap: () { 
+                             showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                child: ChangeEmailForm()
+                              );
+                            }
+                           
+                          //  async {
+                          //    await showDialog(
+                          //     context: context,
+                          //     builder: (ctxt) => new ChangeEmailForm());
+                          // }
+
+
+                          // onTap: () async {
+                          //   await showDialog(
+                          //     context: context,
+                          //     builder: (ctxt) => new AlertDialog(
+                          //       shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(7)),
+                          //       title: new Text('E-Mail Adresse ändern', style: TextStyle(color: Colors.black, fontSize: 18.0, fontStyle: FontStyle.normal)),
+                          //       content: Row(
+                          //           children: [
+                          //             new Expanded(
+                          //               child: new TextField(
+                          //                 autofocus: true,
+                          //                 decoration: new InputDecoration(
+                          //                     labelText: 'E-Mail:', hintText: 'hanswurst@keincorona.virus'),
+                          //               ),
+                          //             )
+                          //           ]),
+                          //       actions: <Widget>[
+                          //          FlatButton(
+                          //           child: Text("Schließen"),
+                          //           onPressed: () {
+                          //            Navigator.of(context).pop();
+                          //           }
+                          //         ),
+                          //         FlatButton(
+                          //           child: Text("Speichern"),
+                          //           onPressed: () {
+                          //           // yourFunction();
+                          //           }
+                          //         )
+                          //       ],
+                          //     )
+                          //   );
+                          // },
                         ),
                         _buildDivider(),
                         ListTile(

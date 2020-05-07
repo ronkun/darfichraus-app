@@ -12,9 +12,8 @@ int initScreen;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  initScreen = await prefs.getInt("initScreen");
+  initScreen = prefs.getInt("initScreen");
   await prefs.setInt("initScreen", 1);
-  // print('initScreen ${initScreen}');
   runApp(MyApp());
 }
 
@@ -40,7 +39,6 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
       routes: {
-        // '/': (context) => Home(title: Image.asset('assets/logo/Logo_darf-ich-raus-edit.png', fit: BoxFit.cover, width: 150, height: 50)),
         OnboardingScreen.routeId: (context) => OnboardingScreen(),
         "settings": (context) => WidgetSettings(),
         "map": (context) => WidgetMap(),

@@ -5,7 +5,54 @@ import 'package:intl/intl.dart';
 
 class Utility {
 
-   static Image translateRestrictionAreaSymbol(String area) {
+  static Utility utility;
+
+  static Utility getInstance(){
+    if(utility == null){
+      utility = Utility();
+    }
+    return utility;
+  }
+
+  showAlertDialog(BuildContext context, String alertTitle, String alertMessage){
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed:  () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Continue"),
+      onPressed:  () {
+        Navigator.pop(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text(alertTitle),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: <Widget>[
+            Text(alertMessage)
+          ],
+        ),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  static Image translateRestrictionAreaSymbol(String area) {
     switch (area) {
       case "Rheinland-Pfalz":
         return Image(image: AssetImage('assets/state_img/rheinlandpfalz.png'), fit: BoxFit.fitWidth);
