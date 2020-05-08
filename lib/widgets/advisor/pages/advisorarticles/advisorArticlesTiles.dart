@@ -1,6 +1,6 @@
 import 'package:crimsy/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 
 class PreventCard extends StatelessWidget {
   final String image;
@@ -78,7 +78,8 @@ class PreventCard extends StatelessWidget {
               padding: EdgeInsets.only(right: 22),
               child:  Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset("assets/images/forward.svg"),
+                child: Icon(Icons.arrow_forward_ios, size: 10),
+                // SvgPicture.asset("assets/images/forward.svg"),
               ),
             )                
           ],

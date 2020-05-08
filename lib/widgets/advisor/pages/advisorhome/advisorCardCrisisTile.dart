@@ -49,7 +49,7 @@ class AdvisorCardCrisisTile extends StatelessWidget {
                       onTap: () =>
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject),
+                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject, restrictionIcons: crisisRestrictionsIcons),
                             transitionDuration: Duration(milliseconds: 1000),
                           ),
                         ),            

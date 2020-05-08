@@ -1,3 +1,4 @@
+import 'package:crimsy/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -11,7 +12,7 @@ class MainDrawer extends StatelessWidget {
               children: <Widget>[
                 DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Colors.lightBlue[800],
+                    color: MainColors.dirMainBlue,
                     // image: DecorationImage(
                     //     fit: BoxFit.scaleDown, 
                     //     image: AssetImage('assets/logo/Logo_darf-ich-raus-edit.png')

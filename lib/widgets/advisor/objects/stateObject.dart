@@ -1,11 +1,19 @@
 import 'package:crimsy/widgets/advisor/objects/colorChoice.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-import 'dart:math';
 
 enum AdvisorCardSettings { edit_color, delete }
 
 class AdvisorCardObject {
+  String uuid;
+  int sortID;
+  String title;
+  Color color;
+  LinearGradient gradient;
+  IconData icon;
+  Map<DateTime, List<TaskObject>> tasks;
+  List<Image> crisisRestrictionsIcons;
+
   AdvisorCardObject(String title, IconData icon) {
     this.title = title;
     this.icon = icon;
@@ -15,6 +23,7 @@ class AdvisorCardObject {
     this.gradient = LinearGradient(colors: choice.gradient, begin: Alignment.bottomCenter, end: Alignment.topCenter);
     tasks = Map<DateTime, List<TaskObject>>();
     this.uuid = Uuid().v1();
+    this.crisisRestrictionsIcons = crisisRestrictionsIcons; 
   }
 
   AdvisorCardObject.import(String uuidS, String title, int sortID, ColorChoice color, IconData icon, Map<DateTime, List<TaskObject>> tasks) {
@@ -27,13 +36,7 @@ class AdvisorCardObject {
     this.uuid = uuidS;
   }
 
-  String uuid;
-  int sortID;
-  String title;
-  Color color;
-  LinearGradient gradient;
-  IconData icon;
-  Map<DateTime, List<TaskObject>> tasks;
+  
 
   int taskAmount() {
     int amount = 0;

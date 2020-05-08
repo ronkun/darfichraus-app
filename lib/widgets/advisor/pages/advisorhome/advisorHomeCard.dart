@@ -1,6 +1,5 @@
 import 'package:crimsy/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class GlobalSituationCard extends StatelessWidget {
   final String cardTitle;
@@ -26,7 +25,7 @@ class GlobalSituationCard extends StatelessWidget {
       
   @override
   Widget build(BuildContext context) {
-    final formatter = new NumberFormat("#,###");
+    // final formatter = new NumberFormat("#,###");
 
     return Stack(
       children: <Widget>[

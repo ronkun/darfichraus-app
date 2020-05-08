@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         // accentColor: Colors.lightBlue[600],
         accentColor: Color(0xFF01364d),
         textTheme: TextTheme(
-          headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          headline5: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
         ),
       ),
       initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",

@@ -14,7 +14,6 @@ class WidgetMainfeed extends StatefulWidget {
 class _WidgetMainfeedState extends State<WidgetMainfeed> {
   Future<List<Restriction>> _restrictions;
   Future<List<Restriction>> filteredRestrictions;
-  bool _IsSearching;
 
   int restrictionsCount = 0;
   // WidgetMainfeed();

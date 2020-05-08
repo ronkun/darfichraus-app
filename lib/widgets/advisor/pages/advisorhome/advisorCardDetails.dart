@@ -1,13 +1,14 @@
 import 'package:crimsy/utils/colors.dart';
-import 'package:crimsy/widgets/advisor/customCheckboxTile.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardProgressBar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({@required this.advisorCardObject, Key key}) : super(key: key);
+  DetailPage({@required this.advisorCardObject, Key key, this.restrictionIcons}) : super(key: key);
 
   final AdvisorCardObject advisorCardObject;
+  final List<Image> restrictionIcons;
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -129,28 +130,39 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Hero(
-                      tag: widget.advisorCardObject.uuid + "_icon",
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            widget.advisorCardObject.icon,
-                            color: widget.advisorCardObject.color,
+                Row(
+                  children: <Widget> [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 30.0),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Hero(
+                        tag: widget.advisorCardObject.uuid + "_icon",
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              widget.advisorCardObject.icon,
+                              color: widget.advisorCardObject.color,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
+                ]),
+                AdvisorProgressBar(
+                  totalSteps: 5,
+                  currentStep: 2,
+                  padding: 6.0,
+                  size: 5,
+                  uuid: widget.advisorCardObject.uuid,
                 ),
+                SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.only(bottom: 12.0),
                   child: Align(
@@ -161,7 +173,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                         color: Colors.transparent,
                         child: Text(
                           "Schleswig-Holstein",
-                          style: TextStyle(),
+                          style: TextStyle(fontWeight: FontWeight.bold, color: MainColors.dirMainBlue),
                           softWrap: false,
                         ),
                       ),
@@ -185,6 +197,25 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
+                Row(
+                  // children: <Widget>[
+                  children:
+                    List.generate(widget.restrictionIcons.length,(index){ 
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: widget.restrictionIcons[index],
+                          // Icon(Icons.accessibility),
+                        ),
+                      );
+                    }
+                  ),
+                ),  
                 Card(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

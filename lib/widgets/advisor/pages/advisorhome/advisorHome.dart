@@ -92,34 +92,20 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                   GestureDetector(
                       onTap: () {print('click on edit');},
                       child: 
-                           // Hero(
                           // tag: todoObject.uuid + "_icon",
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Image(image: AssetImage('assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png'), height: 24),
-                              // Icon(Icons.accessibility),
-                            ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey.withAlpha(70), style: BorderStyle.solid, width: 1.0),
                           ),
-                        // ),
-                      // Image(
-                      //     image: AssetImage('assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png'),
-                      //     fit: BoxFit.cover,
-                      //     height: 35,
-                      // )
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image(image: AssetImage('assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png'), height: 24),
+                          ),
+                        ),
                   ), 
                   SizedBox(width: 20),
-                  // Image.asset("assets/corona_icons/iconfinder_crowd-people-no-avoid-contact_5728185.png", width: 35),
-
-                  // Text( 
-                  //   "233",
-                  //   style: TextStyle(color: Colors.white70),
-                  // )
               ],
             )),
             Spacer(

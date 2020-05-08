@@ -1,3 +1,4 @@
+import 'package:crimsy/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,7 +10,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final int _numPages = 3;
+  final int _numPages = 2;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   String _selectedCrisis = '';
@@ -82,10 +83,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               end: Alignment.bottomCenter,
               stops: [0.1, 0.7, 0.8, 0.9],
               colors: [
+                MainColors.dirMainBlue,
                 Colors.lightBlue[800],
                 Colors.lightBlue[700],
                 Colors.lightBlue[600],
-                Colors.lightBlue[500],
               ],
             ),
           ),
@@ -132,7 +133,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       });
                     },
                     children: <Widget>[
-                      getPageCrisisSelection(),
+                      // getPageCrisisSelection(),
                       getPageStateSelection(),
                       getPageSettingsSelection(),
                     ],
