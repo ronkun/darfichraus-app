@@ -2,12 +2,12 @@ import 'package:crimsy/utils/constants.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
-class PreventCard extends StatelessWidget {
+class AdvisorReference extends StatelessWidget {
   final String image;
   final String title;
   final String text;
   
-  const PreventCard({
+  const AdvisorReference({
     Key key,
     this.image,
     this.title,

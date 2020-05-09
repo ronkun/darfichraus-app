@@ -114,7 +114,7 @@ class CustomListTile extends StatelessWidget {
   }
 
   TextStyle _subtitleTextStyle(ThemeData theme, ListTileTheme tileTheme) {
-    final TextStyle style = theme.textTheme.body1;
+    final TextStyle style = theme.textTheme.bodyText2;
     final Color color = _textColor(theme, tileTheme, theme.textTheme.caption.color);
     return style.copyWith(color: color, fontSize: 12.0);
   }
@@ -224,21 +224,13 @@ class CustomCheckboxListTile extends StatelessWidget {
         super(key: key);
 
   final bool value;
-
   final ValueChanged<bool> onChanged;
-
   final Color activeColor;
-
   final Widget title;
-
   final Widget subtitle;
-
   final Widget secondary;
-
   final bool isThreeLine;
-
   final bool dense;
-
   final bool selected;
 
   @override

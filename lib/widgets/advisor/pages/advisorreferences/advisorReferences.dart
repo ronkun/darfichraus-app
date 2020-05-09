@@ -1,5 +1,6 @@
+import 'package:crimsy/model/reference_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorarticles/advisorArticlesTiles.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorreferences/advisorReferencesTiles.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 
@@ -12,7 +13,7 @@ class WidgetAdvisorArticles extends StatefulWidget {
 
 class _WidgetAdvisorArticlesState extends State<WidgetAdvisorArticles> {
 
-  Future<List<Restriction>> _restrictions;
+  Future<List<SituationReference>> _references;
   Future<List<Restriction>> filteredRestrictions;
   // WidgetMainfeed();
   // @override
@@ -29,7 +30,7 @@ class _WidgetAdvisorArticlesState extends State<WidgetAdvisorArticles> {
 @override
 void initState() {
   super.initState();
-  _restrictions = getAllRestrictions();
+  _references = getAllSituationReferences();
 }
 
   //  void _filterRestrictions(value) {
@@ -100,18 +101,19 @@ Widget build(BuildContext context) {
                   )
                 ],
               ),
-              PreventCard(
+              AdvisorReference(
                 text: "Es ist dringend empfohlen, einen Mindestabstand von 1,50m sofern es sich nicht um in einem Haushalt lebende Personen handelt. Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
                 image: "assets/corona_icons/iconfinder_crowd-people-no-avoid-contact_5728185.png",
                 title: "Abstandsregelung",
               ),
-              PreventCard(
+
+              AdvisorReference(
                 text: "Das Tragen einer Gesichtsmake bei allen Einkaufsaktivitäten ist Pflicht.",
                 image: "assets/corona_icons/iconfinder_doctor-advise-warning-suggestion-avatar_5728189.png",
                 title: "Maskenpflicht",
               ),
               
-              PreventCard(
+              AdvisorReference(
                 text: "Das Tragen einer Gesichtsmake bei allen Einkaufsaktivitäten ist Pflicht.",
                 image: "assets/corona_icons/iconfinder_connection-route-spread-virus-global_5728179.png",
                 title: "Internationale Reisewarnung",

@@ -3,7 +3,7 @@ import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/advisor/dummyData.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTile.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardDetails.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTileDetails.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardProgressBar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -146,12 +146,12 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                     padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
                     child: InkWell(
                       onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject),
-                            transitionDuration: Duration(milliseconds: 1000),
-                          ),
-                        );
+                        // Navigator.of(context).push(
+                        //   PageRouteBuilder(
+                        //     pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject),
+                        //     transitionDuration: Duration(milliseconds: 1000),
+                        //   ),
+                        // );
                       },
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), boxShadow: [BoxShadow(color: Colors.black.withAlpha(70), offset: Offset(3.0, 10.0), blurRadius: 15.0)]),
@@ -252,6 +252,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                 AdvisorCardCrisisTile(
                                   crisisTitle: "Influenza",
                                   crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
+                                  //change to crisis details object
                                   advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
                                 ),
 
@@ -283,7 +284,6 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                         child: Material(
                                           color: Colors.transparent,
                                           child: Row(
-                    
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: <Widget> [ 
                                               Container(

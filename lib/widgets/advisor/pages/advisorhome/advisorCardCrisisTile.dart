@@ -1,5 +1,5 @@
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardDetails.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTileDetails.dart';
 import 'package:flutter/material.dart';
 
 class AdvisorCardCrisisTile extends StatelessWidget {
@@ -47,6 +47,7 @@ class AdvisorCardCrisisTile extends StatelessWidget {
                     ),  
                                             //  InkWell(
                       onTap: () =>
+                      //  print(crisisRestrictionsIcons),
                         Navigator.of(context).push(
                           PageRouteBuilder(
                             pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject, restrictionIcons: crisisRestrictionsIcons),

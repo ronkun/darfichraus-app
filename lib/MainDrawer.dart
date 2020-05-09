@@ -1,4 +1,5 @@
 import 'package:crimsy/utils/colors.dart';
+import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -65,7 +66,9 @@ class MainDrawer extends StatelessWidget {
                           Divider(),
                           ListTile(
                               leading: Icon(Icons.info),
-                              title: Text('Über uns')),
+                              title: Text('Über uns'),
+                              onTap: () => navigateToPage(context, 'anotherPage'),
+                            ),
                           ListTile(
                               leading: Icon(Icons.help),
                               title: Text('Hilfe und Feedback'))
@@ -78,4 +81,17 @@ class MainDrawer extends StatelessWidget {
         ),
       );
   }
+
+navigateToPage(BuildContext context, String page) {
+  Navigator.of(context).pushNamedAndRemoveUntil(page, (Route<dynamic> route) => false);
+}
+
+  getPageCrisisSelection() {
+    return          
+      Padding(
+        padding: EdgeInsets.all(40.0),
+        child: Text("j"),
+      );
+  }
+
 }

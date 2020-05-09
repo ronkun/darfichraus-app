@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:crimsy/model/reference_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -38,6 +39,33 @@ Future<Post> getRestriction(int id) async{
       headers: {//"Accept": "application/json",
       "API-KEY": '${URLS.API_KEY}'});
   return postFromJson(response.body);
+}
+
+Future<Post> getSituationReference(int id) async{
+  final response = await http.get(
+      Uri.encodeFull('${URLS.BASE_URL}/situation-advisor/situation-references/$id'), 
+      headers: {//"Accept": "application/json",
+      "API-KEY": '${URLS.API_KEY}'});
+  return postFromJson(response.body);
+}
+
+Future<List<SituationReference>> getAllSituationReferences() async {
+  final response = await http.get(
+      Uri.encodeFull('${URLS.BASE_URL}/situation-advisor/situation-references'), 
+      headers: {
+        //"Accept": "application/json",
+        "API-KEY": '${URLS.API_KEY}',
+        HttpHeaders.contentTypeHeader: 'application/json',
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    );
+    var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(encodedResponse);
+      return jsonResponse.map((reference) => new SituationReference.fromJson(reference)).toList();
+    } else {
+      throw Exception('Failed to load restrictions from API');
+    }
 }
 
 // Future<http.Response> createRestriction(Post post) async{

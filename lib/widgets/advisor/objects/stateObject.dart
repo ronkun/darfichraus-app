@@ -36,8 +36,6 @@ class AdvisorCardObject {
     this.uuid = uuidS;
   }
 
-  
-
   int taskAmount() {
     int amount = 0;
     tasks.values.forEach((list) {

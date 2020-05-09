@@ -1,7 +1,7 @@
 import 'package:crimsy/MainDrawer.dart';
 import 'package:crimsy/subscribeForm.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorarticles/advisorArticles.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorHome.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorreferences/advisorReferences.dart';
 import 'package:crimsy/widgets/feed/MainFeed.dart';
 import 'package:crimsy/widgets/map/Map.dart';
 import 'package:crimsy/widgets/settings/settings.dart';
