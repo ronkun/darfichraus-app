@@ -98,7 +98,7 @@ class Utility {
 
   static formatDateTime(String dateTime) {
     final dateFormatter = DateFormat('dd.MM.yyyy');
-    return dateFormatter.format(DateTime.now());
+    return dateFormatter.format(DateFormat("yyyy-MM-dd").parse(dateTime));
   }
 
   static String getAreaIdentifier(String areaIdentifierLong){
