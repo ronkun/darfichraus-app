@@ -89,6 +89,9 @@ class Restriction {
         return Image(image: AssetImage('assets/state_img/berlin.png'), fit: BoxFit.fitWidth);
       case "Mecklenburg-Vorpommern":  
         return Image(image: AssetImage('assets/state_img/mecklenburgvorpommern.png'), fit: BoxFit.fitWidth);
+      case "Deutschland": 
+        return Image(image: AssetImage('assets/state_img/germany.png'), fit: BoxFit.fitWidth);
+
       default:
         return null;
     }
