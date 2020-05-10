@@ -28,7 +28,7 @@ class Utility {
       },
     );
 
-    AlertDialog alert = AlertDialog(
+    return AlertDialog (
       title: Text(alertTitle),
       content: SingleChildScrollView(
         child: ListBody(
@@ -44,12 +44,12 @@ class Utility {
     );
 
     // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return alert;
+    //   },
+    // );
   }
 
   static Image translateRestrictionAreaSymbol(String area) {
@@ -89,6 +89,8 @@ class Utility {
         return Image(image: AssetImage('assets/state_img/berlin.png'), fit: BoxFit.fitWidth);
       case "Mecklenburg-Vorpommern":  
         return Image(image: AssetImage('assets/state_img/mecklenburgvorpommern.png'), fit: BoxFit.fitWidth);
+      case "Deutschland": 
+        return Image(image: AssetImage('assets/state_img/germany.png'), fit: BoxFit.fitWidth);
       default:
         return null;
     }

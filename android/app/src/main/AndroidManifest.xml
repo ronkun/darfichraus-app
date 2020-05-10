@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="darfichraus_con_apptest"
+        android:label="Darf ich raus?"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
