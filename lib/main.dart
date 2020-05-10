@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         "map": (context) => WidgetMap(),
         "feed": (context) => WidgetMainfeed()
       },
+      
       home: Home(title: Image.asset('assets/logo/logo_dir_0520.png', fit: BoxFit.cover)),
     );
   }
