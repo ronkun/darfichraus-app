@@ -4,6 +4,7 @@ import 'package:crimsy/widgets/map/map_mb.dart';
 import 'package:crimsy/widgets/settings/Settings.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/MainCustom.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // void main() => runApp(MyApp());
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
     return MaterialApp(
       title: 'darfichraus?',
       debugShowCheckedModeBanner: false,
