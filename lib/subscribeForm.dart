@@ -6,6 +6,19 @@ class SubscribeForm extends StatefulWidget {
 }
 
 class _SubscribeFormState extends State<SubscribeForm> {
+  var _regions = [
+    "Food",
+    "Transport",
+    "Personal",
+    "Shopping",
+    "Medical",
+    "Rent",
+    "Movie",
+    "Salary"
+  ];
+
+  String _selectedRegion;
+
   @override
   Widget build(BuildContext context) {
     return _showDialog();
@@ -22,7 +35,7 @@ class _SubscribeFormState extends State<SubscribeForm> {
                 new TextField(
                   autofocus: true,
                   decoration: new InputDecoration(
-                      labelText: 'E-Mail:', hintText: 'hanswurst@keincorona.virus'),
+                      labelText: 'Name:', hintText: 'Hans Wurst'),
                 ),
               // ),
               // new Expanded(
@@ -32,18 +45,44 @@ class _SubscribeFormState extends State<SubscribeForm> {
                     decoration: new InputDecoration(
                         labelText: 'E-Mail:', hintText: 'hanswurst@keincorona.virus'),
                 ),
+                new DropdownButtonFormField(
+                  onChanged: (newValue) {
+                    // do other stuff with _category
+                    setState(() => _selectedRegion = newValue);
+                  },
+                  items: _regions.map((String category) {
+                    return new DropdownMenuItem(
+                      value: category,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.star),
+                          Text(category),
+                        ],
+                      )
+                      );
+                    }).toList(), 
+                    value: _selectedRegion,
+                    decoration: InputDecoration(
+                      labelText: "Region:",
+                      contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        hintText: _selectedRegion, 
+                        // errorText:  "Keine Auswahl",
+                      ),
+                ),
             // )
           ]
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text("Schließen"),
+            child: Text("Abbrechen"),
             onPressed: () {
               Navigator.of(context).pop();
             }
           ),
           FlatButton(
-            child: Text("Speichern"),
+            child: Text("Abonnieren"),
             onPressed: () {
             // yourFunction();
             }
