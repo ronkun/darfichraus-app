@@ -203,7 +203,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 5.0),
                     child: Text(
-                      'Starten',
+                      'Fertig',
                       style: TextStyle(
                         color: Colors.lightBlue[800],
                         fontSize: 20.0,
