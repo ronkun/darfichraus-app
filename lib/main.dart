@@ -1,3 +1,4 @@
+import 'package:crimsy/aboutus.dart';
 import 'package:crimsy/initScreen.dart';
 import 'package:crimsy/widgets/feed/mainfeed.dart';
 import 'package:crimsy/widgets/map/map_mb.dart';
@@ -47,9 +48,10 @@ class MyApp extends StatelessWidget {
         OnboardingScreen.routeId: (context) => OnboardingScreen(),
         "settings": (context) => WidgetSettings(),
         "map": (context) => WidgetMap(),
-        "feed": (context) => WidgetMainfeed()
+        "feed": (context) => WidgetMainfeed(),
+        "aboutus": (context) => AboutUs()
       },
-      
+
       home: Home(title: Image.asset('assets/logo/logo_dir_0520.png', fit: BoxFit.cover)),
     );
   }
