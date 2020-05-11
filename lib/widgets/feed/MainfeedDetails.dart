@@ -52,10 +52,6 @@ class FeedDetailView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            // Expanded(
-            //     flex: 1, 
-            //     child: levelIndicator
-            // ),
             Expanded(
                 flex: 2,
                 child: Padding(
@@ -84,10 +80,14 @@ class FeedDetailView extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Text(
-                      data.restrictionRecipient,
-                      style: TextStyle(color: Colors.amberAccent, fontSize: 12.0, fontWeight: FontWeight.bold),
-                    )
-            )
+                data.restrictionRecipient,
+                style: TextStyle(color: Colors.amberAccent, fontSize: 12.0, fontWeight: FontWeight.bold),
+              )
+            ),
+            // Expanded(
+            //   // flex: 1, 
+            //   child: Text("share button",  style: TextStyle(color: Colors.white, fontSize: 12.0), textAlign: TextAlign.right,),
+            // ),
           ],
         )
       ],
@@ -100,8 +100,6 @@ class FeedDetailView extends StatelessWidget {
             // height: MediaQuery.of(context).size.height *0.25,
             padding: EdgeInsets.only(top: 50.0, left: 50.0, right: 50.0, bottom: 30),
             width: MediaQuery.of(context).size.width,
-            // decoration: BoxDecoration(color: Colors.lightBlue[800]),
-            // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
             decoration: BoxDecoration(color: MainColors.dirMainBlue),
             child: 
               topContentText,
@@ -140,7 +138,9 @@ class FeedDetailView extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 16.0),
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () => {},
+          onPressed: () => {
+             Utility.getInstance().launchURL(data.restrictionFurtherInformation)
+          },
           color: Color.fromRGBO(58, 66, 86, 1.0),
           child:
               Text("Link zur Quelle", style: TextStyle(color: Colors.white)),
@@ -153,7 +153,10 @@ class FeedDetailView extends StatelessWidget {
       padding: EdgeInsets.all(40.0),
       child: Center(
         child: Column(
-          children: <Widget>[bottomContentText, readButton],
+          children: <Widget>[
+            bottomContentText, 
+            readButton
+          ],
         ),
       ),
     );
