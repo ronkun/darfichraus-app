@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as Math;
-
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utility {
 
@@ -12,6 +12,15 @@ class Utility {
       utility = Utility();
     }
     return utility;
+  }
+
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Die folgende URL konnte nicht geöffnet werden: $url';
+    }
   }
 
   showAlertDialog(BuildContext context, String alertTitle, String alertMessage){
