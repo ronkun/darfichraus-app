@@ -24,7 +24,7 @@ class MainDrawer extends StatelessWidget {
                 TextField(
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(15.0),
-                    hintText: 'Bundesland hinzufügen',
+                    hintText: 'Region hinzufügen',
                     prefixIcon: Icon(Icons.add),
                   ),
                 ),
@@ -67,7 +67,11 @@ class MainDrawer extends StatelessWidget {
                           ListTile(
                               leading: Icon(Icons.info),
                               title: Text('Über uns'),
-                              onTap: () => navigateToPage(context, 'anotherPage'),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                                navigateToPage(context, 'aboutus');
+                              },
+                              // onTap: () => navigateToPage(context, 'anotherPage'),
                             ),
                           ListTile(
                               leading: Icon(Icons.help),
