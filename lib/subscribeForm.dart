@@ -1,3 +1,4 @@
+import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 
 class SubscribeForm extends StatefulWidget {
@@ -7,15 +8,29 @@ class SubscribeForm extends StatefulWidget {
 
 class _SubscribeFormState extends State<SubscribeForm> {
   var _regions = [
-    "Food",
-    "Transport",
-    "Personal",
-    "Shopping",
-    "Medical",
-    "Rent",
-    "Movie",
-    "Salary"
+    "Schleswig-Holstein",
   ];
+
+  final emailFormController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailFormController.dispose();
+    super.dispose();
+  }
+
+ @override
+  void initState() {
+    PreferencesHelper.getString("eMail").then((value) {
+        setState(() {
+          emailFormController.text = value;
+        });
+      }
+    );
+    super.initState();
+  }
 
   String _selectedRegion;
 
@@ -28,22 +43,26 @@ class _SubscribeFormState extends State<SubscribeForm> {
     return new AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(7)),
         title: new Text('Abonnieren', style: TextStyle(color: Colors.black, fontSize: 18.0, fontStyle: FontStyle.normal)),
-        content: Column(
+        content: Form(
+          key: _formKey,
+          child: Column(
             children: [
-              // new Expanded(
-              //   child: 
-                new TextField(
+                new TextFormField(
                   autofocus: true,
                   decoration: new InputDecoration(
-                      labelText: 'Name:', hintText: 'Hans Wurst'),
+                      labelText: 'Name:', hintText: 'Name eingeben'),
                 ),
-              // ),
-              // new Expanded(
-              //     child:
-                   new TextField(
+                new TextFormField(
                     autofocus: true,
+                    controller: emailFormController,
                     decoration: new InputDecoration(
-                        labelText: 'E-Mail:', hintText: 'hanswurst@keincorona.virus'),
+                        labelText: 'E-Mail:', hintText: 'E-Mail Adresse eintragen'),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Bitte gib eine E-Mail Adresse ein';
+                      }
+                      return null;
+                    },  
                 ),
                 new DropdownButtonFormField(
                   onChanged: (newValue) {
@@ -68,12 +87,10 @@ class _SubscribeFormState extends State<SubscribeForm> {
                         filled: true,
                         fillColor: Colors.grey[200],
                         hintText: _selectedRegion, 
-                        // errorText:  "Keine Auswahl",
                       ),
                 ),
-            // )
           ]
-        ),
+        )),
         actions: <Widget>[
           FlatButton(
             child: Text("Abbrechen"),
@@ -85,6 +102,7 @@ class _SubscribeFormState extends State<SubscribeForm> {
             child: Text("Abonnieren"),
             onPressed: () {
             // yourFunction();
+              Navigator.of(context).pop();
             }
           )
         ],
