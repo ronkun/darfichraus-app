@@ -1,3 +1,4 @@
+import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 
 class ChangeEmailForm extends StatefulWidget {
@@ -6,10 +7,34 @@ class ChangeEmailForm extends StatefulWidget {
 }
 
 class _ChangeEmailFormState extends State<ChangeEmailForm> {
+  final emailFormController = TextEditingController();
+
+  String emailValue;
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailFormController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return _showDialog();
   }
+
+ @override
+  void initState() {
+    PreferencesHelper.getString("eMail").then((value) {
+        setState(() {
+          // emailValue = value;
+          emailFormController.text = value;
+        });
+      }
+    );
+    super.initState();
+  }
+
 
   _showDialog() {
     return new AlertDialog(
@@ -19,9 +44,10 @@ class _ChangeEmailFormState extends State<ChangeEmailForm> {
             children: [
               new Expanded(
                 child: new TextField(
+                  controller: emailFormController,
                   autofocus: true,
                   decoration: new InputDecoration(
-                      labelText: 'E-Mail:', hintText: 'hanswurst@keincorona.virus'),
+                      labelText: 'E-Mail:', hintText: "E-Mail Adresse eingeben"),
                 ),
               )
             ]),
@@ -34,15 +60,14 @@ class _ChangeEmailFormState extends State<ChangeEmailForm> {
           ),
           FlatButton(
             child: Text("Speichern"),
-            onPressed: () {
-            // yourFunction();
+            onPressed: () async {
+              PreferencesHelper.setString("eMail", emailFormController.text);
+              Navigator.of(context).pop();
             }
-          )
-        ],
+          )],
       );
     }                      
 }
-
 
 // class _SystemPadding extends StatelessWidget {
 //   final Widget child;
