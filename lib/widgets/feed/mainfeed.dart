@@ -3,6 +3,7 @@ import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/feed/mainfeedDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
+import 'package:flutter/scheduler.dart';
 
 class WidgetMainfeed extends StatefulWidget {
   static const String routeId = 'feed';
@@ -14,8 +15,8 @@ class WidgetMainfeed extends StatefulWidget {
 class _WidgetMainfeedState extends State<WidgetMainfeed> {
   Future<List<Restriction>> _restrictions;
   Future<List<Restriction>> filteredRestrictions;
-
   int restrictionsCount = 0;
+
   // WidgetMainfeed();
   // @override
   // void initState() {
@@ -88,9 +89,9 @@ Widget build(BuildContext context) {
             Expanded(
               child: 
                 FutureBuilder<List<Restriction>>(
-                  future: _restrictions,
+                  future: getAllRestrictions(),
                   builder: (context, snapshot) {
-                    // _restrictions = snapshot;
+                    // print();
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:       
                       case ConnectionState.active:
@@ -102,6 +103,9 @@ Widget build(BuildContext context) {
                         } else if(snapshot.hasData) {
                           return ListView.builder(
                             //itemCount: filtered.length
+                          //  SchedulerBinding.instance.addPostFrameCallback((_) => setState(() {
+                          //   restrictionsCount = snapshot.data.length;
+                          //  })));
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
                               return ListTile(
