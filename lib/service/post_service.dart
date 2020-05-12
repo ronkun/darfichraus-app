@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:crimsy/model/reference_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:crimsy/model/situation_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:crimsy/model/post_model.dart';
@@ -40,38 +40,59 @@ Future<List<Restriction>> getAllRestrictions() async {
       
   Future<Restriction> getRestriction(String id) async{
     final response = await http.get(
-        Uri.encodeFull('${URLS.BASE_URL}/restrictions/$id'), 
-        headers: {//"Accept": "application/json",
+      Uri.encodeFull('${URLS.BASE_URL}/restrictions/$id'), 
+      headers: {
         "API-KEY": '${URLS.API_KEY}',
         HttpHeaders.contentTypeHeader: 'application/json',
         "Content-Type": "application/x-www-form-urlencoded",
       }
     );
     if (response.statusCode == 200) {
-        // var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
-        // List jsonResponse = json.decode(encodedResponse);
-        return Restriction.fromJson(json.decode(response.body));
-        // jsonResponse.map((restriction) => new Restriction.fromJson(restriction)).toList(); 
+      // var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
+      // List jsonResponse = json.decode(encodedResponse);
+      return Restriction.fromJson(json.decode(response.body));
+      // jsonResponse.map((restriction) => new Restriction.fromJson(restriction)).toList(); 
       // return compute(parseResponse, response);
-    } else {
+  } else {
       throw Exception('Failed to load restrictions');
     }
-    // return postFromJson(response.body);
   }
 
   /*SITUATIONs*/
 
-  Future<Post> getAllSituations() async{
+  Future<List<Situation>> getAllSituations() async{
     final response = await http.get(
-        Uri.encodeFull('${URLS.BASE_URL}/situation-advisor/situations'), 
-        headers: {
-          //"Accept": "application/json",
-          "API-KEY": '${URLS.API_KEY}'
-        }
-      );
-    return postFromJson(response.body);
+      Uri.encodeFull('${URLS.BASE_URL}/situation-advisor/situations'), 
+      headers: {
+        "API-KEY": '${URLS.API_KEY}',
+        HttpHeaders.contentTypeHeader: 'application/json',
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    );
+    if (response.statusCode == 200) {
+        var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
+        List jsonResponse = json.decode(encodedResponse);
+        return jsonResponse.map((situation) => new Situation.fromJson(situation)).toList(); 
+    } else {
+      throw Exception('Failed to load situations');
+    }
   }
 
+  Future<Situation> getSituation(String id) async{
+    final response = await http.get(
+      Uri.encodeFull('${URLS.BASE_URL}/situations/$id'), 
+      headers: {
+        "API-KEY": '${URLS.API_KEY}',
+        HttpHeaders.contentTypeHeader: 'application/json',
+        "Content-Type": "application/x-www-form-urlencoded",
+      }
+    );
+    if (response.statusCode == 200) {
+        return Situation.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load situation');
+    }
+  }
 
   /*SITUATION REFERENCES*/
   
@@ -115,7 +136,6 @@ Future<List<Restriction>> getAllRestrictions() async {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        // "modified": "2020-05-11T20:30:27.115Z",
         "email": email,
         "areal": zip,
         "arealIdentifier": arealIdentifier,
@@ -123,31 +143,3 @@ Future<List<Restriction>> getAllRestrictions() async {
       }),
     );
   }
-
-      // Future<http.Response> createRestriction(Post post) async{
-      //   final response = await http.post(
-      //       Uri.encodeFull('${URLS.BASE_URL}/restrictions'), 
-      //       headers: {//"Accept": "application/json",
-      //       "API-KEY": '${URLS.API_KEY}',
-      //         HttpHeaders.contentTypeHeader: 'application/json',
-      //         HttpHeaders.authorizationHeader : ''
-      //       },
-      //       body: postToJson(post)
-      //   );
-      //   return response;
-      // }
-      
-      //Future<Post> createPost(Post post) async{
-      //  final response = await http.post('$url',
-      //      headers: {
-      //        HttpHeaders.contentTypeHeader: 'application/json'
-      //      },
-      //      body: postToJson(post)
-      //  );
-      //
-      //  return postFromJson(response.body);
-      //}
-
-      // List<Restriction> parseResponse(dynamic response) {
-        //compute function for response?
-      // }

@@ -18,7 +18,6 @@ class _FeedDetailViewState extends State<FeedDetailView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // super.initState();
     data = ModalRoute.of(context).settings.arguments;
     _restriction = getRestriction(data.restrictionId);
   }
