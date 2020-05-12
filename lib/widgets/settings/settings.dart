@@ -1,3 +1,4 @@
+import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/widgets/settings/changeEmailForm.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -62,14 +63,15 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                   Card(
                     elevation: 8.0,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    color: Colors.lightBlue[800],
+                        borderRadius: BorderRadius.circular(10.0)
+                    ),
+                    color: MainColors.dirMainBlue,
                     child: ListTile(
                       onTap: () {
                         //open edit profile
                       },
                       title: Text(
-                        "Hans Wurst",
+                        "Ron Kunitzky",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
@@ -87,7 +89,7 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                   const SizedBox(height: 10.0),
                   Card(
                     elevation: 4.0,
-                    margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 16.0),
+                    margin: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 16.0),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     child: Column(
@@ -106,12 +108,6 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                                 child: ChangeEmailForm()
                               );
                             }
-                           
-                          //  async {
-                          //    await showDialog(
-                          //     context: context,
-                          //     builder: (ctxt) => new ChangeEmailForm());
-                          // }
                         ),
                         _buildDivider(),
                         ListTile(
