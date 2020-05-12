@@ -1,15 +1,30 @@
+import 'package:crimsy/model/post_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
+import 'package:crimsy/service/post_service.dart';
 import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 
-class FeedDetailView extends StatelessWidget {
+class FeedDetailView extends StatefulWidget {
 
- FeedDetailView();
+  @override
+  _FeedDetailViewState createState() => _FeedDetailViewState();
+}
+
+class _FeedDetailViewState extends State<FeedDetailView> {
+  Restriction data;
+  Future<Restriction> _restriction;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // super.initState();
+    data = ModalRoute.of(context).settings.arguments;
+    _restriction = getRestriction(data.restrictionId);
+  }
 
   @override
   Widget build(BuildContext context) {
-    Restriction data = ModalRoute.of(context).settings.arguments;
 
     // final levelIndicator = Container(
     //   child: Container(
@@ -127,10 +142,25 @@ class FeedDetailView extends StatelessWidget {
                 style: TextStyle(color: Colors.grey, fontSize: 12.0, fontWeight: FontWeight.bold),
               )
             ),
-            Text(
-              data.restrictionDescription,
-              style: TextStyle(fontSize: 15.0),
+
+            FutureBuilder<Restriction>(
+              future: _restriction,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(snapshot.data.restrictionDescription);
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
             )
+
+            // Text(
+            //   _restriction.,
+            //   style: TextStyle(fontSize: 15.0),
+            // )
           ]
       );
 

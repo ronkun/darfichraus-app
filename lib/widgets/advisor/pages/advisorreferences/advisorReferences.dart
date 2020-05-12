@@ -30,7 +30,7 @@ class _WidgetAdvisorArticlesState extends State<WidgetAdvisorArticles> {
 @override
 void initState() {
   super.initState();
-  _references = getAllSituationReferences();
+  // _references = getAllSituationReferences();
 }
 
   //  void _filterRestrictions(value) {

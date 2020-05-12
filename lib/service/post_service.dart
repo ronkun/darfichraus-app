@@ -7,6 +7,9 @@ import 'dart:async';
 import 'package:crimsy/model/post_model.dart';
 import 'dart:convert';
 
+
+/*URL*/
+
 class URLS {
 //  static const String BASE_URL = 'https://api.darfichraus.de';
  static const String BASE_URL = 'https://api.dev.crimsy.tech';
@@ -35,13 +38,40 @@ Future<List<Restriction>> getAllRestrictions() async {
     }
   }
       
-  Future<Post> getRestriction(int id) async{
+  Future<Restriction> getRestriction(String id) async{
     final response = await http.get(
         Uri.encodeFull('${URLS.BASE_URL}/restrictions/$id'), 
         headers: {//"Accept": "application/json",
-        "API-KEY": '${URLS.API_KEY}'});
+        "API-KEY": '${URLS.API_KEY}',
+        HttpHeaders.contentTypeHeader: 'application/json',
+        "Content-Type": "application/x-www-form-urlencoded",
+      }
+    );
+    if (response.statusCode == 200) {
+        // var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
+        // List jsonResponse = json.decode(encodedResponse);
+        return Restriction.fromJson(json.decode(response.body));
+        // jsonResponse.map((restriction) => new Restriction.fromJson(restriction)).toList(); 
+      // return compute(parseResponse, response);
+    } else {
+      throw Exception('Failed to load restrictions');
+    }
+    // return postFromJson(response.body);
+  }
+
+  /*SITUATIONs*/
+
+  Future<Post> getAllSituations() async{
+    final response = await http.get(
+        Uri.encodeFull('${URLS.BASE_URL}/situation-advisor/situations'), 
+        headers: {
+          //"Accept": "application/json",
+          "API-KEY": '${URLS.API_KEY}'
+        }
+      );
     return postFromJson(response.body);
   }
+
 
   /*SITUATION REFERENCES*/
   

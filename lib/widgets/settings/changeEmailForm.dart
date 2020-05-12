@@ -9,8 +9,6 @@ class ChangeEmailForm extends StatefulWidget {
 class _ChangeEmailFormState extends State<ChangeEmailForm> {
   final emailFormController = TextEditingController();
 
-  String emailValue;
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -27,14 +25,12 @@ class _ChangeEmailFormState extends State<ChangeEmailForm> {
   void initState() {
     PreferencesHelper.getString("eMail").then((value) {
         setState(() {
-          // emailValue = value;
           emailFormController.text = value;
         });
       }
     );
     super.initState();
   }
-
 
   _showDialog() {
     return new AlertDialog(
@@ -68,18 +64,3 @@ class _ChangeEmailFormState extends State<ChangeEmailForm> {
       );
     }                      
 }
-
-// class _SystemPadding extends StatelessWidget {
-//   final Widget child;
-
-//   _SystemPadding({Key key, this.child}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     var mediaQuery = MediaQuery.of(context);
-//     return new AnimatedContainer(
-//         padding: mediaQuery.viewInsets,
-//         duration: const Duration(milliseconds: 300),
-//         child: child);
-//   }
-// }
