@@ -46,7 +46,11 @@ class _SubscribeFormState extends State<SubscribeForm> {
         content: Form(
           key: _formKey,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
+                Text("Zum Abonnieren fülle bitte das folgende Formular aus und wir senden Dir bei neuen Meldungen eine E-Mail. ",
+                style: TextStyle(fontSize: 14)),
+                SizedBox(height: 10),
                 new TextFormField(
                   autofocus: true,
                   decoration: new InputDecoration(
