@@ -1,4 +1,5 @@
 import 'package:crimsy/utils/colors.dart';
+import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,6 +21,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   List<String> statesValues = <String>['Pandemie - Corona Sars-CoV-2', 'Pandemie - Katastrophe B', 'Erdbeben - Katastrophe C', 'Katastrophe D'];
   List<String> crisisValues = <String>['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen', 'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'];
 
+  final emailFormController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailFormController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    PreferencesHelper.getString("eMail").then((value) {
+        setState(() {
+          emailFormController.text = value;
+        });
+      }
+    );
+    super.initState();
+  }
+
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
     for (int i = 0; i < _numPages; i++) {
@@ -35,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       height: 8.0,
       width: isActive ? 24.0 : 16.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.white : Colors.lightBlue[200],
+        color: isActive ? MainColors.dirMainBlue : LightColor.background,
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -67,35 +88,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     setState(() {
       if(_selectedStatesList.contains(value)){
         _selectedStatesList.remove(value);
-        }
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.7, 0.8, 0.9],
-              colors: [
-                MainColors.dirMainBlue,
-                Colors.lightBlue[800],
-                Colors.lightBlue[700],
-                Colors.lightBlue[600],
-              ],
+      appBar: AppBar(
+            backgroundColor: MainColors.dirMainBlue,
+            elevation: 0.0,
+            leading: Hero(
+              tag: "widget.advisorCardObject.uuid + ""_backIcon",
+              child: Material(
+                color: Colors.transparent,
+                type: MaterialType.transparency,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                ),
+              ),
             ),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 40.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
+            actions: <Widget>[
+              Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
                       textColor: Colors.white,
@@ -122,6 +140,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                   ),
                 ),
+            ],
+          ),
+      body: 
+      AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Container(
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //     begin: Alignment.topCenter,
+          //     end: Alignment.bottomCenter,
+          //     stops: [0.1, 0.7, 0.8, 0.9],
+          //     colors: [
+          //       MainColors.dirMainBlue,
+          //       Colors.lightBlue[800],
+          //       Colors.lightBlue[700],
+          //       Colors.lightBlue[600],
+          //     ],
+          //   ),
+          // ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 40.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
                 Container(
                   height: 600.0,
                   child: PageView(
@@ -148,10 +190,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: Align(
                           alignment: FractionalOffset.bottomRight,
                             child: FlatButton(
-                              color: Colors.white,
-                              textColor: Colors.lightBlue[800],
-                              disabledColor: Colors.grey,
-                              disabledTextColor: Colors.lightBlue[800],
+                              color: MainColors.dirMainBlue,
+                              textColor: Colors.white,
+                              disabledColor: Colors.white,
+                              disabledTextColor: Colors.white,
                               splashColor: Colors.lightBlue[100],
                               onPressed: () {
                                 _pageController.nextPage(
@@ -159,14 +201,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   curve: Curves.ease,
                                 );
                               },
-                              child: Row(
+                              child: 
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Text(
                                     'Weiter',
                                     style: TextStyle(
-                                      color: Colors.lightBlue[800],
+                                      color: Colors.white,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -175,7 +218,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     padding: EdgeInsets.only(top: 3),
                                     child: Icon(
                                       Icons.arrow_forward,
-                                      color: Colors.lightBlue[800],
+                                      color: Colors.white,
                                       size: 21.0,
                                     )
                                   ),
@@ -194,7 +237,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ? Container(
               height: 50.0,
               width: double.infinity,
-              color: Colors.white,
+              color: MainColors.dirMainBlue,
               child: GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/');
@@ -205,7 +248,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Text(
                       'Fertig',
                       style: TextStyle(
-                        color: Colors.lightBlue[800],
+                        color: Colors.white,
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -234,7 +277,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: 
               Text(
                 "Über welche Krise möchtest Du informiert werden?",
-                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                style: TextStyle(color: MainColors.dirMainBlue, fontSize: 16.0, fontWeight: FontWeight.bold),
               )
             ),
             SizedBox(height: 30.0),
@@ -243,13 +286,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ? Text(
                 'Bitte Krise auswählen',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: MainColors.dirMainBlue,
                 ),
               )
               : Text(
                 _selectedCrisis,
                 style: TextStyle(
-                    color: Colors.white,
+                    color: MainColors.dirMainBlue,
                 ),
               ),
               iconEnabledColor: Colors.white,
@@ -296,7 +339,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     trailing:  IconButton(
                       icon: new Icon(
                           Icons.delete,
-                          color: Colors.white,
+                          color: MainColors.dirMainBlue,
                         ),
                       onPressed: () { 
                         _removeSelectedCrisis(_selectedCrisisList[index]);
@@ -322,7 +365,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: 
               Text(
                 "Bitte wähle die Bundesländer aus, die Dich interessieren.",
-                style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                style: TextStyle(color: MainColors.dirMainBlue, fontSize: 16.0, fontWeight: FontWeight.bold),
               )
             ),
             SizedBox(height: 30.0),
@@ -331,17 +374,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ? Text(
                 'Bitte Bundesland auswählen',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: MainColors.dirMainBlue
                 ),
               )
               : Text(
                 _selectedState,
                 style: TextStyle(
-                    color: Colors.white,
+                    color: MainColors.dirMainBlue,
                 ),
               ),
-              iconEnabledColor: Colors.white,
-              iconDisabledColor: Colors.white,
+              iconEnabledColor: MainColors.dirMainBlue,
+              iconDisabledColor: Colors.grey,
               isExpanded: true,
               items: crisisValues.map((String value) {
                 return new DropdownMenuItem<String>(
@@ -367,37 +410,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
             ),
-            new Expanded(
+            SizedBox(height: 10),
+            Text(
+              _selectedStatesList.length.toString() + " von " +"5 Regionen hinzugefügt", 
+              style: TextStyle(color: Colors.lightBlue[800], fontSize: 11.0, fontWeight: FontWeight.w600),),
+            SizedBox(height: 10),
+
+            Expanded(
               child: ListView.builder(
                 itemCount: _selectedStatesList.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      _selectedStatesList[index],
-                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
-                    ),
-                    leading: Text(
-                      (index+1).toString(), 
-                      style: TextStyle(color: Colors.amberAccent, fontSize: 16.0, fontWeight: FontWeight.bold),
+                  return  Opacity(
+                    opacity: 0.8,
+                    child: Card(
+                      color: Colors.lightBlue[800],
+                      child: ListTile(
+                      title: Text(
+                        _selectedStatesList[index],
+                        style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
                       ),
-                    trailing:  IconButton(
-                      icon: new Icon(
-                          Icons.delete,
-                          color: Colors.white,
+                      leading: Text(
+                        (index+1).toString(), 
+                        style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
                         ),
-                      onPressed: () { 
-                        _removeSelectedStates(_selectedStatesList[index]);
-                      },
-                    ),
-                  );
+                      trailing:  IconButton(
+                        icon: Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        onPressed: () { 
+                          _removeSelectedStates(_selectedStatesList[index]);
+                        },
+                      ),
+                    )));
                 },
               )
-            )
+            ),
           ],
         ),
       );
   }
-
 
   getPageSettingsSelection() {
     return Padding(
@@ -408,45 +460,53 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Center(
             child: Text(
               "Einstellungen",
-              style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+              style: TextStyle(color: MainColors.dirMainBlue, fontSize: 16.0, fontWeight: FontWeight.bold),
             )
           ),
           SizedBox(height: 30.0),
-          // Text(
-          //           "Benachrichtigungseinstellungen",
-          //           style: TextStyle(
-          //             fontSize: 20.0,
-          //             fontWeight: FontWeight.bold,
-          //             color: Colors.grey,
-          //           ),
-          //         ),
+          TextField(
+            controller: emailFormController,
+            autofocus: true,
+            decoration: new InputDecoration(
+                labelText: 'E-Mail:', hintText: "E-Mail Adresse eingeben"),
+                style: TextStyle(color: MainColors.dirMainBlue),
+          ),
+          SizedBox(height: 30.0),
           SwitchListTile(
             activeColor: Colors.lightBlue[300],
             contentPadding: const EdgeInsets.all(0),
             value: true,
-            title: Text("Benachrichtigungen"),
-            onChanged: (val) {},
+            title: Text("Push-Benachrichtigungen"),
+            onChanged: (val) {
+              PreferencesHelper.setBool("push_notifications", val);
+            },
           ),
           SwitchListTile(
             activeColor: Colors.lightBlue[300],
             contentPadding: const EdgeInsets.all(0),
             value: false,
             title: Text("E-Mail Benachrichtigungen"),
-            onChanged: (val) {},
+            onChanged: (val) {
+              PreferencesHelper.setBool("email_notifications", val);
+            },
           ),
           SwitchListTile(
             activeColor: Colors.lightBlue[800],
             contentPadding: const EdgeInsets.all(0),
             value: true,
             title: Text("Newsletter"),
-            onChanged: (val) {},
+            onChanged: (val) {
+              PreferencesHelper.setBool("newsletter", val);
+            },
           ),
           SwitchListTile(
             activeColor: Colors.lightBlue[300],
             contentPadding: const EdgeInsets.all(0),
             value: true,
-            title: Text("App Updates"),
-            onChanged: null,
+            title: Text("Standortbestimmmung"),
+            onChanged: (val) {
+              PreferencesHelper.setBool("gps_location", val);
+            },
           ),
         ],
       ),
