@@ -1,4 +1,5 @@
 import 'package:crimsy/model/restriction_model.dart';
+import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/feed/mainfeedDetails.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ Widget build(BuildContext context) {
                     child: 
                     Text(
                         restrictionsCount.toString() + " Verordnungen verfügbar",
-                        style: TextStyle(color: Colors.lightBlue[800], fontSize: 11.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.lightBlue[800], fontSize: 11.0, fontWeight: FontWeight.w600),
                     ),
                   )
                 ],
@@ -108,24 +109,32 @@ Widget build(BuildContext context) {
                           //  })));
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
+                              return 
+                              // Card( 
+                              //   child: 
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 11),
+                                  child: ListTile(
                                 leading: new CircleAvatar(
                                       backgroundColor: Colors.white,
                                       child: snapshot.data[index].translateRestrictionAreaSymbol(snapshot.data[index].restrictionArealIdentifier)
                                     ),        
-                                title: Text(snapshot.data[index].restrictionShortDescription),
-                                subtitle: Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 8),
-                                      child: Icon(
-                                        Utility.getIconForCategory(snapshot.data[index].restrictionType), 
-                                        color: Colors.grey,
-                                        size: 15.0,
+                                title: Text(snapshot.data[index].restrictionShortDescription, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black87)),
+                                subtitle: Column(children: <Widget> [
+                                  SizedBox(height: 5),
+                                  Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 8),
+                                        child: Icon(
+                                          Utility.getIconForCategory(snapshot.data[index].restrictionType), 
+                                          color: Colors.grey,
+                                          size: 15.0,
+                                        )
+                                      ),
+                                        Text(Utility.formatDateTime(snapshot.data[index].restrictionStart), style: TextStyle(color: Colors.grey)
                                       )
-                                    ),
-                                      Text(Utility.formatDateTime(snapshot.data[index].restrictionStart), style: TextStyle(color: Colors.grey)
-                                    )
+                                    ])
                                   ]),
                                 // Text('ID: ${snapshot.data[index].restrictionId} '),
                                 enabled: snapshot.data[index].restrictionDescription.isNotEmpty,
@@ -138,7 +147,7 @@ Widget build(BuildContext context) {
                                       arguments: snapshot.data[index],
                                     ),
                                   ),
-                              ));
+                              )));
                             });
                           } else {
                             return Utility.getCircularProgressIndicator(50.0, 50.0);

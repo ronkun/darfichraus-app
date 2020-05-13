@@ -3,23 +3,6 @@ import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 
 class AboutUs extends StatelessWidget {
-  // const AboutUs({
-  //   // Key key,
-  //   // @required this.value,
-  //   // @required this.onChanged,
-  //   // this.activeColor,
-  //   // this.title,
-  // });
-
-  // final bool value;
-  // final ValueChanged<bool> onChanged;
-  // final Color activeColor;
-  // final Widget title;
-  // final Widget subtitle;
-  // final Widget secondary;
-  // final bool isThreeLine;
-  // final bool dense;
-  // final bool selected;
 
   @override
   Widget build(BuildContext context) {

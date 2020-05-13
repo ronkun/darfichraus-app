@@ -1,6 +1,9 @@
+import 'package:crimsy/model/region_model.dart';
 import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
+import 'package:crimsy/service/post_service.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class MainDrawer extends StatelessWidget {
 
@@ -21,13 +24,41 @@ class MainDrawer extends StatelessWidget {
                   ), 
                   child: null,
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(15.0),
-                    hintText: 'Region hinzufügen',
-                    prefixIcon: Icon(Icons.add),
+               TypeAheadField(
+                textFieldConfiguration: TextFieldConfiguration(
+                  autofocus: true,
+                  style: DefaultTextStyle.of(context).style.copyWith(
+                    fontStyle: FontStyle.italic
                   ),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder()
+                  )
                 ),
+                suggestionsCallback: (pattern) async {
+                  // var suggestions = getRegionsForZip(pattern);
+                  // print(suggestions.toString());
+                  return await getRegionsForZip(pattern);
+                },
+                itemBuilder: (context, suggestion) {
+                  return ListTile(
+                    leading: Icon(Icons.shopping_cart),
+                    title: Text(suggestion['count']),
+                    // subtitle: Text('\$${suggestion['price']}'),
+                  );
+                },
+                onSuggestionSelected: (suggestion) {
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) => ProductPage(product: suggestion)
+                  // ));
+                },
+              ),
+                // TextField(
+                //   decoration: InputDecoration(
+                //     contentPadding: EdgeInsets.all(15.0),
+                //     hintText: 'Region hinzufügen',
+                //     prefixIcon: Icon(Icons.add),
+                //   ),
+                // ),
                 Expanded(
                   child: ListView(
                     padding: EdgeInsets.zero,

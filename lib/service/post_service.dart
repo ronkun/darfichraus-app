@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:crimsy/model/reference_model.dart';
+import 'package:crimsy/model/region_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:crimsy/model/situation_model.dart';
 import 'package:http/http.dart' as http;
@@ -54,7 +55,7 @@ Future<List<Restriction>> getAllRestrictions() async {
       // jsonResponse.map((restriction) => new Restriction.fromJson(restriction)).toList(); 
       // return compute(parseResponse, response);
   } else {
-      throw Exception('Failed to load restrictions');
+      throw Exception('Failed to load restriction');
     }
   }
 
@@ -125,6 +126,27 @@ Future<List<Restriction>> getAllRestrictions() async {
       } else {
         throw Exception('Failed to load situation references');
       }
+  }
+
+  /* REGIONS */
+  Future<List<Region>> getRegionsForZip(String zip) async{
+    final response = await http.get(
+      Uri.encodeFull('${URLS.BASE_URL}/geodata/by-zip-part/$zip'), 
+      headers: {
+        "API-KEY": '${URLS.API_KEY}',
+        HttpHeaders.contentTypeHeader: 'application/json',
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    );
+    print(response.bodyBytes);
+    if (response.statusCode == 200) {
+        var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
+        List jsonResponse = json.decode(encodedResponse);
+        // print(jsonResponse);
+        return jsonResponse.map((region) => new Region.fromJson(region)).toList(); 
+    } else {
+      throw Exception('Failed to load regions');
+    }
   }
 
   /*SUBSCRIPTION*/

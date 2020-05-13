@@ -149,7 +149,7 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                     activeColor: Colors.lightBlue[800],
                     contentPadding: const EdgeInsets.all(0),
                     value: true,
-                    title: Text("Benachrichtigungen"),
+                    title: Text("Push-Benachrichtigungen"),
                     onChanged: (val) {},
                   ),
                   SwitchListTile(
@@ -170,7 +170,7 @@ class _WidgetSettingsState extends State<WidgetSettings> {
                     activeColor: Colors.lightBlue[800],
                     contentPadding: const EdgeInsets.all(0),
                     value: true,
-                    title: Text("App Updates"),
+                    title: Text("Standortbestimmung"),
                     onChanged: null,
                   ),
                   const SizedBox(height: 60.0),

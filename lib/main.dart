@@ -1,27 +1,24 @@
 import 'package:crimsy/aboutus.dart';
 import 'package:crimsy/initScreen.dart';
+import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/feed/mainfeed.dart';
 import 'package:crimsy/widgets/map/map_mb.dart';
 import 'package:crimsy/widgets/settings/Settings.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/MainCustom.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-// void main() => runApp(MyApp());
 int initScreen;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  initScreen = prefs.getInt("initScreen");
-  await prefs.setInt("initScreen", 1);
+
+  PreferencesHelper.setInt("initScreen", 1);
+            
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
      SystemChrome.setPreferredOrientations([
