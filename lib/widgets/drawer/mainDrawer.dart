@@ -5,7 +5,10 @@ import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:pref_dessert/pref_dessert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
 
 class MainDrawer extends StatefulWidget {
   @override
@@ -13,54 +16,80 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _MainDrawerState extends State<MainDrawer> {
-  List<String> _selectedRegions;
+  List<CityInformation> _selectedRegionsList = [];
   List<String> regions = new List<String>();
   final TextEditingController _typeAheadController = TextEditingController();
-  CityInformation city;
+  var repo = new FuturePreferencesRepository<CityInformation>(new CityInfoDesSer());
+  CityInformation tmpCity;
 
   @override
   void initState() {
     super.initState();
-    regions.add("45133");
-    regions.add("49716");
-    // regions.add("");
-    // regions.add("Berlin");
-    PreferencesHelper.setStringList('regions', regions);
+    // regions.add("45133");
+    // regions.add("49716");
+    // // regions.add("");
+    // // regions.add("Berlin");
+    // PreferencesHelper.setStringList('regions', regions);
+      var prefRegions = repo.findAll();
+      if(prefRegions!=null) {
+          prefRegions.then((val) {
+                CityInformation saveCity = val.asMap()[0];
+                _selectedRegionsList.add(saveCity);
+                //     // setState(() {
+        //       city = val.asMap()[0];
+        //     // }); 
+        //     print(city.cityInformationCity);
+        //     return city;
+              print("selectedRegions: "+_selectedRegionsList.length.toString());
+          });
+        }
+
+        // CityInformation getCityForZip(String data) {
+    //   getCitiesForZip(data).then(
+    // }
   }
 
-//with city objects
-// class JsonPersonDesSer extends DesSer<Person>{
-//   @override
-//   Person deserialize(String s) {
-//     var map = json.decode(s);
-//     return new Person(map['name'] as String, map['age'] as int);
-//   }
-
-//   @override
-//   String serialize(Person t) {
-//     var map = {"name":t.name, "age":t.age};
-//     return json.encode(map);
-//   }
-
-// }
 
 
+  void _insertSelectedRegion(CityInformation city) {
+    setState(() {
+      // if(!_selectedRegionsList.contains(city) && city != null)
+      print("CITY INSERT: "+city.cityInformationCity);
+       if (_selectedRegionsList.contains(city)) {
+          print('Already exists!');
+        } else {
+          _selectedRegionsList.add(city);
+           print('Added!');
+          repo.removeAll();
+          //Iterate through list and save
+          // repo.saveAll(_selectedRegionsList); 
+        }
 
-  // void _insertSelectedRegion(String value) {
-  //   setState(() {
-  //     if(!_selectedStatesList.contains(value) && value.isNotEmpty)
-  //       _selectedStatesList.add(value);
-  //   });
-  // }
+        print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());
 
-  //  void _removeSelectedStates(String value) {
-  //   setState(() {
-  //     if(_selectedStatesList.contains(value)){
-  //       _selectedStatesList.remove(value);
-  //     }
-  //   });
-  // }
+        // repo.save(new CityInformation(
+        //   cityInformationCity: city.cityInformationCity, 
+        //   cityInformationZip: city.cityInformationZip,
+        //   cityInformationCounty: city.cityInformationCounty,
+        //   cityInformationState: city.cityInformationState,
+        //   cityInformationCountry: city.cityInformationCountry));
+    });
+  }
 
+   void _removeSelectedStates(CityInformation city) {
+    setState(() {
+      if(_selectedRegionsList.contains(city)){
+        _selectedRegionsList.remove(city);
+        repo.removeAll();
+        repo.saveAll(_selectedRegionsList);
+      }
+    });
+
+      // var repo = new FuturePreferencesRepository<CityInformation>(new CityInfoDesSer());
+      // repo.save(new CityInformation("Foo", 42));
+      // repo.save(new CityInformation("Bar", 1));
+      // var list = repo.findAll();
+   }
 
     @override
     Widget build(BuildContext context) {
@@ -112,7 +141,8 @@ class _MainDrawerState extends State<MainDrawer> {
                       print(city.cityInformationZip +  ' was selected');
                       // _selectedRegions.add()
                       this._typeAheadController.text = city.cityInformationZip;
-                      PreferencesHelper.setStringList('regions', _selectedRegions);
+                      _insertSelectedRegion(city);
+                      // PreferencesHelper.setStringList('regions', _selectedRegions);
                       
                       // Navigator.of(context).push(MaterialPageRoute(
                       //   builder: (context) => ProductPage(product: suggestion)
@@ -132,8 +162,8 @@ class _MainDrawerState extends State<MainDrawer> {
                   //   ),
                   // ),
                   Expanded(
-                    child:  FutureBuilder<List<String>>(
-                      future: PreferencesHelper.getStringList('regions'),
+                    child:  FutureBuilder<List<CityInformation>>(
+                      future: repo.findAll(),
                       builder: (context, snapshot) {
                         switch (snapshot.connectionState) {
                           case ConnectionState.none:       
@@ -151,16 +181,13 @@ class _MainDrawerState extends State<MainDrawer> {
                                 //  })));
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (context, index) {
-                                getCitiesForZip(snapshot.data[index]).then((val) {
-                                  city = val.asMap()[0];
-                                  print(city.cityInformationCity);
-                                });
                                   // city = getCityForZip(snapshot.data[index]);
+                                  tmpCity = snapshot.data[index];
                                   return Padding(
                                     padding: EdgeInsets.only(bottom: 11),
                                     child: ListTile(
-                                      title: Text(city.cityInformationCity),
-                                      subtitle: Text(city.cityInformationZip + ", " + city.cityInformationState),
+                                      title: Text(tmpCity.cityInformationCity),
+                                      subtitle: Text(tmpCity.cityInformationZip + ", " + tmpCity.cityInformationState),
                                       trailing: Icon(Icons.keyboard_arrow_right),
                                       leading: Icon(Icons.location_city),
                                       dense: true,
@@ -244,15 +271,7 @@ class _MainDrawerState extends State<MainDrawer> {
         );
     }
 
-    // CityInformation getCityForZip(String data) {
-    //   getCitiesForZip(data).then((val) {
-    //     // setState(() {
-    //       city = val.asMap()[0];
-    //     // }); 
-    //     print(city.cityInformationCity);
-    //     return city;
-    //   });
-    // }
+
     
   // getRegionsAsList() async {
   //   Future<List> _futureOfList = PreferencesHelper.getStringList('regions');
@@ -261,3 +280,19 @@ class _MainDrawerState extends State<MainDrawer> {
   //   // print(list);
   // }
 }
+
+  // class JsonPersonDesSer extends DesSer<Person>{
+  //   @override
+  //   Person deserialize(String s) {
+  //     var map = json.decode(s);
+  //     return new Person(map['name'] as String, map['age'] as int);
+  //   }
+
+  //   @override
+  //   String serialize(Person t) {
+  //     var map = {"name":t.name, "age":t.age};
+  //     return json.encode(map);
+  //   }
+
+  // }
+
