@@ -4,7 +4,6 @@ import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/feed/mainfeedDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:crimsy/service/post_service.dart';
-import 'package:flutter/scheduler.dart';
 
 class WidgetMainfeed extends StatefulWidget {
   static const String routeId = 'feed';

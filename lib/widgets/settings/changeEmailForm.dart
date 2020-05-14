@@ -1,4 +1,4 @@
-import 'package:crimsy/utils/utility.dart';
+import 'package:crimsy/utils/sharedPreferencesHelper.dart';
 import 'package:flutter/material.dart';
 
 class ChangeEmailForm extends StatefulWidget {

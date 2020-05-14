@@ -130,7 +130,7 @@ Future<List<Restriction>> getAllRestrictions() async {
   }
 
   /* REGIONS */
-  Future<List> getRegionsForZip(String zip) async{
+  Future<List> getCitiesForZip(String zip) async{
     final response = await http.get(
       Uri.encodeFull('${URLS.BASE_URL}/geodata/by-zip-part/$zip'), 
       headers: {
@@ -139,18 +139,15 @@ Future<List<Restriction>> getAllRestrictions() async {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     );
-    print(response.bodyBytes);
     if (response.statusCode == 200) {
         var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
         final jsonResponse = json.decode(encodedResponse);
         // print(jsonResponse);
         Region region = Region.fromJson(jsonResponse);
-
-      
         return region.regionCities;
 
     } else {
-      throw Exception('Failed to load regions');
+      return throw Exception('Failed to load regions');
     }
   }
 

@@ -1,5 +1,5 @@
 import 'package:crimsy/utils/colors.dart';
-import 'package:crimsy/utils/utility.dart';
+import 'package:crimsy/utils/sharedPreferencesHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-   void _insertSelectedCrisis(String value) {
+  void _insertSelectedCrisis(String value) {
     setState(() {
       if(!_selectedCrisisList.contains(value) && value.isNotEmpty)
         _selectedCrisisList.add(value);
@@ -364,15 +364,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     Center(
               child: 
               Text(
-                "Bitte wähle die Bundesländer aus, die Dich interessieren.",
+                "Bitte füge die Regionen hinzu, die Dich interessieren.",
                 style: TextStyle(color: MainColors.dirMainBlue, fontSize: 16.0, fontWeight: FontWeight.bold),
               )
             ),
             SizedBox(height: 30.0),
             new DropdownButton<String>(
-              hint: _selectedCrisis == null
+              hint: _selectedCrisis.isEmpty
               ? Text(
-                'Bitte Bundesland auswählen',
+                'Postleitzahl eingeben',
                 style: TextStyle(
                     color: MainColors.dirMainBlue
                 ),

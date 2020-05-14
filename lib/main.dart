@@ -1,6 +1,6 @@
 import 'package:crimsy/aboutus.dart';
 import 'package:crimsy/initScreen.dart';
-import 'package:crimsy/utils/utility.dart';
+import 'package:crimsy/utils/sharedPreferencesHelper.dart';
 import 'package:crimsy/widgets/feed/mainfeed.dart';
 import 'package:crimsy/widgets/map/map_mb.dart';
 import 'package:crimsy/widgets/settings/Settings.dart';
