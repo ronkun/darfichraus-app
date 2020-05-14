@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:crimsy/model/city_information_model.dart';
 import 'package:crimsy/model/reference_model.dart';
 import 'package:crimsy/model/region_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
@@ -129,7 +130,7 @@ Future<List<Restriction>> getAllRestrictions() async {
   }
 
   /* REGIONS */
-  Future<List<Region>> getRegionsForZip(String zip) async{
+  Future<List> getRegionsForZip(String zip) async{
     final response = await http.get(
       Uri.encodeFull('${URLS.BASE_URL}/geodata/by-zip-part/$zip'), 
       headers: {
@@ -141,9 +142,13 @@ Future<List<Restriction>> getAllRestrictions() async {
     print(response.bodyBytes);
     if (response.statusCode == 200) {
         var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
-        List jsonResponse = json.decode(encodedResponse);
+        final jsonResponse = json.decode(encodedResponse);
         // print(jsonResponse);
-        return jsonResponse.map((region) => new Region.fromJson(region)).toList(); 
+        Region region = Region.fromJson(jsonResponse);
+
+      
+        return region.regionCities;
+
     } else {
       throw Exception('Failed to load regions');
     }

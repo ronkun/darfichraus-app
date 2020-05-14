@@ -1,3 +1,4 @@
+import 'package:crimsy/model/city_information_model.dart';
 import 'package:crimsy/model/region_model.dart';
 import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/utils/utility.dart';
@@ -42,11 +43,15 @@ class MainDrawer extends StatelessWidget {
                 itemBuilder: (context, suggestion) {
                   return ListTile(
                     leading: Icon(Icons.shopping_cart),
-                    title: Text(suggestion['count']),
+                    title: Text((suggestion as CityInformation).cityInformationCity),
                     // subtitle: Text('\$${suggestion['price']}'),
                   );
                 },
                 onSuggestionSelected: (suggestion) {
+
+                  CityInformation city = suggestion as CityInformation;
+
+                  print(city.cityInformationZip +  ' was selected');
                   // Navigator.of(context).push(MaterialPageRoute(
                   //   builder: (context) => ProductPage(product: suggestion)
                   // ));
