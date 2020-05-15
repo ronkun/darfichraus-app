@@ -30,19 +30,34 @@ class _MainDrawerState extends State<MainDrawer> {
     // // regions.add("");
     // // regions.add("Berlin");
     // PreferencesHelper.setStringList('regions', regions);
+
+      // repo.removeAll();
       var prefRegions = repo.findAll();
       if(prefRegions!=null) {
           prefRegions.then((val) {
-                CityInformation saveCity = val.asMap()[0];
-                _selectedRegionsList.add(saveCity);
-                //     // setState(() {
-        //       city = val.asMap()[0];
-        //     // }); 
-        //     print(city.cityInformationCity);
-        //     return city;
-              print("selectedRegions: "+_selectedRegionsList.length.toString());
-          });
+                  if(val.isEmpty) {
+                    // CityInformation saveCity = val.;
+                    // print("VAL NOT NULL: "+saveCity.cityInformationCity);
+                  } else {
+                    CityInformation saveCity = val.asMap()[0];
+                    _selectedRegionsList.add(saveCity);
+                    print("ADDED INITIAL: "+saveCity.cityInformationCity);
+                    //     // setState(() {
+            //       city = val.asMap()[0];
+                  }
+
+      //           CityInformation saveCity = val.asMap()[0];
+      //           _selectedRegionsList.add(saveCity);
+      //           //     // setState(() {
+      //   //       city = val.asMap()[0];
+      //   //     // }); 
+      //   //     print(city.cityInformationCity);
+      //   //     return city;
+      //         print("selectedRegions: "+_selectedRegionsList.length.toString());
+         });
         }
+
+
 
         // CityInformation getCityForZip(String data) {
     //   getCitiesForZip(data).then(
@@ -62,7 +77,8 @@ class _MainDrawerState extends State<MainDrawer> {
            print('Added!');
           repo.removeAll();
           //Iterate through list and save
-          // repo.saveAll(_selectedRegionsList); 
+          _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
+          repo.saveAll(_selectedRegionsList); 
         }
 
         print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());
