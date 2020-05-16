@@ -30,8 +30,6 @@ class _MainDrawerState extends State<MainDrawer> {
     // // regions.add("");
     // // regions.add("Berlin");
     // PreferencesHelper.setStringList('regions', regions);
-
-      // repo.removeAll();
       var prefRegions = repo.findAll();
       if(prefRegions!=null) {
           prefRegions.then((val) {
@@ -57,42 +55,29 @@ class _MainDrawerState extends State<MainDrawer> {
          });
         }
 
-
-
         // CityInformation getCityForZip(String data) {
     //   getCitiesForZip(data).then(
     // }
   }
 
-
-
   void _insertSelectedRegion(CityInformation city) {
     setState(() {
       // if(!_selectedRegionsList.contains(city) && city != null)
-      print("CITY INSERT: "+city.cityInformationCity);
+      // print("CITY INSERT: "+city.cityInformationCity);
        if (_selectedRegionsList.contains(city)) {
-          print('Already exists!');
+          // print('Already exists!');
         } else {
           _selectedRegionsList.add(city);
-           print('Added!');
+          //  print('Added!');
           repo.removeAll();
-          //Iterate through list and save
-          _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
+          // _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
           repo.saveAll(_selectedRegionsList); 
         }
-
-        print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());
-
-        // repo.save(new CityInformation(
-        //   cityInformationCity: city.cityInformationCity, 
-        //   cityInformationZip: city.cityInformationZip,
-        //   cityInformationCounty: city.cityInformationCounty,
-        //   cityInformationState: city.cityInformationState,
-        //   cityInformationCountry: city.cityInformationCountry));
+        // print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());
     });
   }
 
-   void _removeSelectedStates(CityInformation city) {
+   void _removeSelectedRegion(CityInformation city) {
     setState(() {
       if(_selectedRegionsList.contains(city)){
         _selectedRegionsList.remove(city);
@@ -100,11 +85,6 @@ class _MainDrawerState extends State<MainDrawer> {
         repo.saveAll(_selectedRegionsList);
       }
     });
-
-      // var repo = new FuturePreferencesRepository<CityInformation>(new CityInfoDesSer());
-      // repo.save(new CityInformation("Foo", 42));
-      // repo.save(new CityInformation("Bar", 1));
-      // var list = repo.findAll();
    }
 
     @override
@@ -140,33 +120,33 @@ class _MainDrawerState extends State<MainDrawer> {
                       )
                     ),
                     suggestionsCallback: (pattern) async {
-                      // var suggestions = getRegionsForZip(pattern);
-                      // print(suggestions.toString());
-                      return await getCitiesForZip(pattern);
+                      if(pattern.isEmpty){
+                      }else{
+                        return await getCitiesForZip(pattern);
+                      }
                     },
                     itemBuilder: (context, suggestion) {
                       return ListTile(
-                        leading: Icon(Icons.shopping_cart),
+                        leading: Icon(Icons.location_city, color: Colors.lightBlue[800]),
                         title: Text((suggestion as CityInformation).cityInformationCity),
+                        subtitle: Text(suggestion.cityInformationZip + ", " + suggestion.cityInformationState),
                         dense: true,
                         // subtitle: Text('\$${suggestion['price']}'),
                       );
                     },
                     onSuggestionSelected: (suggestion) {
                       CityInformation city = suggestion as CityInformation;
-                      print(city.cityInformationZip +  ' was selected');
-                      // _selectedRegions.add()
+                      // print(city.cityInformationZip + ', ' + city.cityInformationState + ' was selected');
                       this._typeAheadController.text = city.cityInformationZip;
                       _insertSelectedRegion(city);
                       // PreferencesHelper.setStringList('regions', _selectedRegions);
-                      
                       // Navigator.of(context).push(MaterialPageRoute(
                       //   builder: (context) => ProductPage(product: suggestion)
                       // ));
                     },
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please select a city';
+                        return 'Bitte PLZ eingeben';
                       }
                     },
                   )),
@@ -204,8 +184,34 @@ class _MainDrawerState extends State<MainDrawer> {
                                     child: ListTile(
                                       title: Text(tmpCity.cityInformationCity),
                                       subtitle: Text(tmpCity.cityInformationZip + ", " + tmpCity.cityInformationState),
-                                      trailing: Icon(Icons.keyboard_arrow_right),
-                                      leading: Icon(Icons.location_city),
+                                      // trailing: Icon(Icons.remove_circle, size: 16),
+                                      trailing: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          // IconButton(
+                                          //   icon: Icon(
+                                          //     Icons.favorite_border,
+                                          //     size: 16.0,
+                                          //     color: Colors.brown[900],
+                                          //   ),
+                                          //   onPressed: () {
+                                          //     //   _onDeleteItemPressed(index);
+                                          //   },
+                                          // ),
+                                          IconButton(
+                                            icon: Icon(
+                                              Icons.remove_circle,
+                                              size: 16.0,
+                                              color: MainColors.dirMainBlue,
+                                            ),
+                                            onPressed: () {
+                                              _removeSelectedRegion(tmpCity);
+                                              //   _onDeleteItemPressed(index);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                      leading: Icon(Icons.location_city, color: Colors.lightBlue[800]),
                                       dense: true,
                                       enabled: true,
                                     )
