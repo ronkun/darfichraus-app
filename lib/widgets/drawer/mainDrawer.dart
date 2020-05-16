@@ -145,6 +145,9 @@ class _MainDrawerState extends State<MainDrawer> {
                     child: 
                   TypeAheadFormField(
                     textFieldConfiguration: TextFieldConfiguration(
+                      onTap: () {
+                        this._typeAheadController.text = "";
+                      },
                       // autofocus: true,
                       controller: this._typeAheadController,
                       style: DefaultTextStyle.of(context).style.copyWith(
