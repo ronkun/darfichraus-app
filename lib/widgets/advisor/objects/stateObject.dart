@@ -1,3 +1,4 @@
+import 'package:crimsy/model/city_information_model.dart';
 import 'package:crimsy/widgets/advisor/objects/colorChoice.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';

@@ -1,6 +1,8 @@
 import 'package:pref_dessert/pref_dessert.dart';
+import 'package:uuid/uuid.dart';
 
 class CityInformation {
+  String uuid ;
   String cityInformationCity;
   String cityInformationZip;
   String cityInformationCounty;
@@ -15,6 +17,10 @@ class CityInformation {
     this.cityInformationState, 
     this.cityInformationCountry, 
   });
+
+  CityInformation.initialize() {
+    this.uuid = Uuid().v1();
+  }
 
   factory CityInformation.fromJson(Map<String, dynamic> json){
     return CityInformation(
