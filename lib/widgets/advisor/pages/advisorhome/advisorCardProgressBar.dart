@@ -27,7 +27,6 @@ class AdvisorProgressBar extends StatelessWidget {
         color: Colors.transparent,
         child: Row(
           children: <Widget>[
-            Text("Schweregrad: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
             Expanded(
               child: StepProgressIndicator(
                 totalSteps: totalSteps,
@@ -44,6 +43,7 @@ class AdvisorProgressBar extends StatelessWidget {
               //   valueColor: AlwaysStoppedAnimation<Color>(todoObject.color),
               // ),
             ),
+            Text("Maskenpflicht", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
             Padding(
               padding: EdgeInsets.only(left: 5.0, right: 5.0),
             //   // child: Text((percentComplete * 100).round().toString() + "%"),
