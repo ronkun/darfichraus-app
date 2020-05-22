@@ -1,13 +1,10 @@
 import 'package:crimsy/model/city_information_model.dart';
+import 'package:crimsy/service/regions_service.dart';
 import 'package:crimsy/utils/colors.dart';
-import 'package:crimsy/utils/sharedPreferencesHelper.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
-import 'package:crimsy/service/post_service.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pref_dessert/pref_dessert.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 
 class MainDrawer extends StatefulWidget {
@@ -22,12 +19,12 @@ class _MainDrawerState extends State<MainDrawer> {
   var repo = new FuturePreferencesRepository<CityInformation>(new CityInfoDesSer());
   CityInformation tmpCity;
 
-  Future<List<CityInformation>> prefRegions;
+  // Future<List<CityInformation>> prefRegions;
 
   @override
   void initState() {
     super.initState();
-    prefRegions = repo.findAll();
+    // prefRegions = repo.findAll();
   }
 
   void _insertSelectedRegion(CityInformation city) {
@@ -38,7 +35,7 @@ class _MainDrawerState extends State<MainDrawer> {
           _selectedRegionsList.add(city);
           // print('Added!');
           repo.removeAll();
-          _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
+          // _selectedRegionsList.forEach((element) => print("CITIES: "+element.cityInformationCity));
           repo.saveAll(_selectedRegionsList); 
         }
         // print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());

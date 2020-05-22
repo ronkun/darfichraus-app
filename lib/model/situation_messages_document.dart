@@ -1,3 +1,7 @@
+/*
+Sitution attachments - documents added to the situation message
+*/
+
 class SituationMessageDocuments {
   String situationMessageDocumentsId;
   String situationMessageDocumentsModified;

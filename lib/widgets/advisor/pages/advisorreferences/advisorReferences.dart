@@ -2,7 +2,6 @@ import 'package:crimsy/model/reference_model.dart';
 import 'package:crimsy/model/restriction_model.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorreferences/advisorReferencesTiles.dart';
 import 'package:flutter/material.dart';
-import 'package:crimsy/service/post_service.dart';
 
 class WidgetAdvisorArticles extends StatefulWidget {
   static const String routeId = 'feed';

@@ -1,3 +1,7 @@
+/*
+Sitution e.g. Corona or Influenza
+*/
+
 class Situation {
   String referenceId; 
   String title;
@@ -35,3 +39,14 @@ class Situation {
    );
   }
 }
+
+// {
+//   "id": "string",
+//   "modified": "2020-05-22T10:20:07.839Z",
+//   "name": "Corona/Covid-19",
+//   "situationTypeId": "string",
+//   "startDate": "2020-01-01",
+//   "endDate": "2020-12-31",
+//   "severity": 0,
+//   "active": true
+// }

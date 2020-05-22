@@ -56,7 +56,7 @@ class CityInfoDesSer extends DesSer<CityInformation>{
 
   @override
   String serialize(CityInformation t) {
-    print("CITY TO SAVE"+t.cityInformationCity);
+    // print("CITY TO SAVE"+t.cityInformationCity);
     return "${t.cityInformationCity},${t.cityInformationZip},${t.cityInformationCounty},${t.cityInformationState},${t.cityInformationCountry}";
   }
   

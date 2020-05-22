@@ -1,12 +1,11 @@
 import 'package:crimsy/model/city_information_model.dart';
-import 'package:crimsy/service/post_service.dart';
+import 'package:crimsy/service/regions_service.dart';
 import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/utils/sharedPreferencesHelper.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-// import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pref_dessert/pref_dessert.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -20,10 +19,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final int _numPages = 2;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
-  String _selectedCrisis = '';
-  // String _selectedState = '';
-  // List<String> _selectedCrisisList = [];
-  // List<String> _selectedStatesList = [];
   List<String> statesValues = <String>['Pandemie - Corona Sars-CoV-2', 'Pandemie - Katastrophe B', 'Erdbeben - Katastrophe C', 'Katastrophe D'];
   List<String> crisisValues = <String>['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen', 'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'];
   List<CityInformation> _selectedRegionsList = [];
@@ -51,13 +46,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         });
       }
     );
-    prefRegions = repo.findAll();
+    // prefRegions = repo.findAll();
 
     super.initState();
   }
 
   // put into preferenceshelper!
-
   void _insertSelectedRegion(CityInformation city) {
     setState(() {
        if (_selectedRegionsList.contains(city)) {
@@ -66,9 +60,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           _selectedRegionsList.add(city);
           // print('Added!');
           repo.removeAll();
-          _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
+          // _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
           repo.saveAll(_selectedRegionsList); 
         }
+      
         // print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());
     });
   }
@@ -140,6 +135,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
             backgroundColor: MainColors.dirMainBlue,
             elevation: 0.0,
@@ -519,11 +515,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else if(snapshot.hasData) {
+      
                         return ListView.builder(
                           //itemCount: filtered.length
                           //  SchedulerBinding.instance.addPostFrameCallback((_) => setState(() {
                           //   restrictionsCount = snapshot.data.length;
                           //  })));
+                          
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
                             tmpCity = snapshot.data[index];

@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesHelper {
+  
   static Future<bool> getBool(String key) async {
     final p = await prefs;
     return p.getBool(key) ?? false;

@@ -1,8 +1,6 @@
 import 'package:crimsy/model/city_information_model.dart';
-import 'package:crimsy/utils/colors.dart';
 import 'package:crimsy/utils/customIcons.dart';
 import 'package:crimsy/utils/utility.dart';
-import 'package:crimsy/widgets/advisor/dummyData.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTile.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardProgressBar.dart';
@@ -27,82 +25,14 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
   Color backgroundColor;
   LinearGradient backgroundGradient;
   Tween<Color> colorTween;
-  int currentPage = 0;
   Color constBackColor;
   CityInformation tmpCity;
+  int currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    // regions.addAll(repo.findAll());
-    // colorTween = ColorTween(begin: todos[0].color, end: todos[0].color);
-    // backgroundColor = todos[0].color;
-    // backgroundGradient = todos[0].gradient;
-
-    /*Scroll container obsolete*/
-//     scrollController = ScrollController();
-//     scrollController.addListener(() {
-//       ScrollPosition position = scrollController.position;
-// //      ScrollDirection direction = position.userScrollDirection;
-//       int page = position.pixels ~/ (position.maxScrollExtent / (regions.length.toDouble() - 1));
-//       double pageDo = (position.pixels / (position.maxScrollExtent / (regions.length.toDouble() - 1)));
-//       double percent = pageDo - page;
-//       if (regions.length - 1 < page + 1) {
-//         return;
-//       }
-//       colorTween.begin = regions[page].color;
-//       colorTween.end = regions[page + 1].color;
-//       setState(() {
-//         backgroundColor = colorTween.transform(percent);
-//         backgroundGradient = regions[page].gradient.lerpTo(regions[page + 1].gradient, percent);
-//       });
-//     });
-
-    // var prefRegions = repo.findAll();
-    //   if(prefRegions!=null) {
-    //       prefRegions.then((val) {
-    //         if(val.isEmpty) {
-    //         } else {
-    //           CityInformation saveCity = val.asMap()[0];
-    //           _selectedRegionsList.add(saveCity);
-    //           // print("ADDED INITIAL: "+saveCity.cityInformationCity);
-    //         }
-    //      }
-    //     );
-    //   }
   }
-
-
-  void _insertSelectedRegion(CityInformation city) {
-    setState(() {
-      // if(!_selectedRegionsList.contains(city) && city != null)
-      // print("CITY INSERT: "+city.cityInformationCity);
-       if (_selectedRegionsList.contains(city)) {
-          print('Already exists!');
-        } else {
-          _selectedRegionsList.add(city);
-          print('Added!');
-          repo.removeAll();
-          _selectedRegionsList.forEach((element) => print("CITYS"+element.cityInformationCity));
-          repo.saveAll(_selectedRegionsList); 
-        }
-        print("SIZE REGIONSLIST: "+_selectedRegionsList.length.toString());
-    });
-  }
-
-   void _removeSelectedRegion(CityInformation city) {
-    setState(() {
-      print("delete triggered"+_selectedRegionsList.length.toString());
-      if(_selectedRegionsList.contains(city)){
-        print("delete: "+city.cityInformationCity);
-        print("selected regions size before: "+_selectedRegionsList.length.toString());
-        repo.removeAll();
-        _selectedRegionsList.remove(city);
-        print("selected regions size AFTER: "+_selectedRegionsList.length.toString());
-        repo.saveAll(_selectedRegionsList);
-      }
-    });
-   }
 
   @override
   void dispose() {
@@ -117,6 +47,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
     return Container(
       // decoration: BoxDecoration(gradient: backgroundGradient),
       child: Scaffold(
+        resizeToAvoidBottomPadding: false,
         // backgroundColor: Colors.transparent,
         backgroundColor: Colors.grey[100],
         body: Column(
@@ -266,7 +197,6 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                                     Stack(
                                                       children: <Widget>[
                                                         Hero(
-                                                          // tag: advisorCardObject.uuid + "_icon",
                                                           tag: tmpCity.hashCode.toString() + "_icon",
                                                           child: Container(
                                                             decoration: BoxDecoration(
@@ -277,7 +207,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                                             child: Padding(
                                                               padding: EdgeInsets.all(8.0),
                                                               // child: Icon(advisorCardObject.icon, color: advisorCardObject.color),
-                                                              child: Icon(Icons.accessibility, color: Colors.grey),
+                                                              child: Icon(Icons.location_city, color: Colors.grey),
                                                             ),
                                                           ),
                                                         ),
