@@ -32,14 +32,24 @@ class CityInformation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['city'] = this.cityInformationCity;
+    data['zip'] = this.cityInformationZip;
+    data['county'] = this.cityInformationCounty;
+    data['state'] = this.cityInformationState;
+    data['country'] = this.cityInformationCountry;
+    return data;
+  }
+
   @override
   bool operator ==(other) {
     return this.cityInformationZip == other.cityInformationZip && this.cityInformationCity == other.cityInformationCity;
   }
 
   @override
-    int get hashCode => cityInformationZip.hashCode;
-  }
+  int get hashCode => cityInformationZip.hashCode;
+}
 
 
 class CityInfoDesSer extends DesSer<CityInformation>{

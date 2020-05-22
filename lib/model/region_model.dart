@@ -19,6 +19,16 @@ class Region {
       // list.map((i) => Data.fromJson(i)).toList()
     );
   }
+
+   Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['zip-part'] = this.regionZipPart;
+    data['count'] = this.regionCount;
+    if (this.regionCities != null) {
+      data['cities'] = this.regionCities.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 // {

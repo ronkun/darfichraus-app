@@ -1,4 +1,6 @@
 import 'package:crimsy/model/city_information_model.dart';
+import 'package:crimsy/model/situation_model.dart';
+import 'package:crimsy/service/situation_message_service.dart';
 import 'package:crimsy/utils/customIcons.dart';
 import 'package:crimsy/utils/utility.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
@@ -10,7 +12,6 @@ import 'package:pref_dessert/pref_dessert.dart';
 
 // List<AdvisorCardObject> regions = [];
 List<CityInformation> _selectedRegionsList = [];
-
 
 class AdvisorHome extends StatefulWidget {
   AdvisorHome({Key key}) : super(key: key);
@@ -28,6 +29,8 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
   Color constBackColor;
   CityInformation tmpCity;
   int currentPage = 0;
+
+  Situation tmpSituation;
 
   @override
   void initState() {
@@ -258,19 +261,23 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                                 ),
                                               ),
 
-                                            //AdvisorCardTile
-                                            AdvisorCardCrisisTile(
-                                              crisisTitle: "Corona",
-                                              crisisRestrictionsIcons: [RestrictionIcons.Mask],
-                                              advisorCardObject: new AdvisorCardObject("Corona (SarS CoV-2)", Icons.verified_user),
-                                            ),
 
-                                            AdvisorCardCrisisTile(
-                                              crisisTitle: "Influenza",
-                                              crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
-                                              //change to crisis details object
-                                              advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
-                                            ),
+                                            createSituations(),
+
+
+                                            //AdvisorCardTile
+                                            // AdvisorCardCrisisTile(
+                                            //   crisisTitle: "Corona",
+                                            //   crisisRestrictionsIcons: [RestrictionIcons.Mask],
+                                            //   advisorCardObject: new AdvisorCardObject("Corona (SarS CoV-2)", Icons.verified_user),
+                                            // ),
+
+                                            // AdvisorCardCrisisTile(
+                                            //   crisisTitle: "Influenza",
+                                            //   crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
+                                            //   //change to crisis details object
+                                            //   advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
+                                            // ),
 
                                         
                                               // Spacer(),
@@ -359,7 +366,46 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
       ),
     );
   }
-}
+
+  Widget createSituations() {
+            return Expanded(
+              flex: 3,
+              child: FutureBuilder<List<Situation>>(
+                  future: getAllSituations(),
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.active:
+                      case ConnectionState.waiting:
+                        return Utility.getCircularProgressIndicator(50.0, 50.0);
+                      case ConnectionState.done:
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if(snapshot.hasData) {
+                          // final cleanMap = jsonDecode(jsonEncode(snapshot));
+                          return ListView.builder(
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              tmpSituation = snapshot.data[index];
+                              // double percentComplete = todoObject.percentComplete();
+                              return Padding(
+                                padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
+                                child: AdvisorCardCrisisTile(
+                                          crisisTitle: tmpSituation.situationName,
+                                          crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
+                                          //change to crisis details object
+                                          advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
+                                        ),
+                              );
+                            }
+                          );
+                        }
+                      }
+                    }
+              )
+            );
+          }
+  }
 
 class _CustomScrollPhysics extends ScrollPhysics {
   _CustomScrollPhysics({

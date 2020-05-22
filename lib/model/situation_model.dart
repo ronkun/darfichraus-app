@@ -21,7 +21,7 @@ class Situation {
     this.situationName, 
     this.situationTypeId, 
     this.situationStart, 
-    this.situationEnd, 
+    // this.situationEnd, 
     this.situationSeverity, 
     this.situationActive,
   });
@@ -30,16 +30,28 @@ class Situation {
     return Situation(
       situationId: json['id'],
       situationModified: json['modified'],
-      situationName: json['id'],
+      situationName: json['name'],
       situationTypeId: json['situationTypeId'],
       situationStart: json['startDate'],
-      situationEnd: json['endDate'],
+      // situationEnd: json['endDate'],
       situationSeverity: json['severity'],
       situationActive: json['active'],
    );
   }
-}
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.situationId;
+    data['modified'] = this.situationModified;
+    data['name'] = this.situationName;
+    data['situationTypeId'] = this.situationTypeId;
+    data['startDate'] = this.situationStart;
+    data['endDate'] = this.situationEnd;
+    data['severity'] = this.situationSeverity;
+    data['active'] = this.situationActive;
+    return data;
+  }
+}
 // {
 //   "id": "string",
 //   "modified": "2020-05-22T10:20:07.839Z",

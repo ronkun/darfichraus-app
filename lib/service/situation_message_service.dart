@@ -7,8 +7,9 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-/*SITUATIONs*/
+// @JsonSerializable(anyMap: true)
 
+/*SITUATION*/
   Future<List<Situation>> getAllSituations() async{
     final response = await http.get(
       Uri.encodeFull('${URLS.BASE_URL}/situation-advisor/situations'), 
@@ -21,6 +22,9 @@ import 'dart:convert';
     if (response.statusCode == 200) {
         var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
         List jsonResponse = json.decode(encodedResponse);
+        print("text");
+        print("SITUATIONS: "+jsonResponse.length.toString());
+        print("Situations: " + jsonDecode(response.body).toString());
         return jsonResponse.map((situation) => new Situation.fromJson(situation)).toList(); 
     } else {
       throw Exception('Failed to load situations');

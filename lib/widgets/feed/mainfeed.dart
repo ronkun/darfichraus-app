@@ -31,7 +31,7 @@ class _WidgetMainfeedState extends State<WidgetMainfeed> {
 @override
 void initState() {
   super.initState();
-  _restrictions = getAllRestrictions();
+  // _restrictions = getAllRestrictions();
 }
 
   //  void _filterRestrictions(value) {
