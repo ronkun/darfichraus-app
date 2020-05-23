@@ -1,4 +1,5 @@
 import 'package:crimsy/utils/colors.dart';
+import 'package:crimsy/widgets/advisor/objects/advisorCardObject.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardProgressBar.dart';
 import 'package:flutter/material.dart';

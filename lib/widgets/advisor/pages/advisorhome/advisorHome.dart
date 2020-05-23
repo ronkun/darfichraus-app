@@ -3,8 +3,9 @@ import 'package:crimsy/model/situation_model.dart';
 import 'package:crimsy/service/situation_message_service.dart';
 import 'package:crimsy/utils/customIcons.dart';
 import 'package:crimsy/utils/utility.dart';
+import 'package:crimsy/widgets/advisor/objects/advisorCardObject.dart';
 import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
-import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTile.dart';
+import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTileExpandable.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardProgressBar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -77,7 +78,6 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
             Padding(
               padding: EdgeInsets.only(left: 50.0, top: 10),
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget> [
                   GestureDetector(
                       onTap: () {print('click on edit');},
@@ -150,26 +150,20 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                             itemExtent: _width - 80,
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
-                              // print("INDEX: "+regions.length.toString());
-
-                              // if(index != null){
-                              //   AdvisorCardObject advisorCardObject = regions[index];
-                              
                               tmpCity = snapshot.data[index];
                               if(!_selectedRegionsList.contains(tmpCity))
                                 _selectedRegionsList.add(tmpCity);
-                              // double percentComplete = todoObject.percentComplete();
                               return Padding(
                                 padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
                                 child: InkWell(
-                                  onTap: () {
+                                  // onTap: () {
                                     // Navigator.of(context).push(
                                     //   PageRouteBuilder(
                                     //     pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => DetailPage(advisorCardObject: advisorCardObject),
                                     //     transitionDuration: Duration(milliseconds: 1000),
                                     //   ),
                                     // );
-                                  },
+                                  // },
                                   child: Container(
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), boxShadow: [BoxShadow(color: Colors.black.withAlpha(70), offset: Offset(3.0, 10.0), blurRadius: 15.0)]),
                                     height: 250.0,
@@ -177,7 +171,6 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                       children: <Widget>[
                                         Hero(
                                           tag: tmpCity.hashCode.toString() + "_background",
-                                          // tag: snapshot.hasData,
                                           child: Container(
                                             decoration: BoxDecoration(
                                               color: Colors.white,
@@ -229,15 +222,20 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                                           ),
                                                           itemBuilder: (context) => <PopupMenuEntry<AdvisorCardSettings>>[
                                                             PopupMenuItem(
-                                                              child: Text("Test"),
+                                                              child: 
+                                                              Row(
+                                                                children: <Widget> [
+                                                                  Text("Region entfernen", style: TextStyle(fontSize: 12)),
+                                                                ]
+                                                              ),
                                                               value: AdvisorCardSettings.edit_color,
                                                             ),
+                                                            // PopupMenuItem(
+                                                            //   child: Text("Entfernen", style: TextStyle(fontSize: 12)),
+                                                            //   value: AdvisorCardSettings.delete,
+                                                            // ),
                                                             PopupMenuItem(
-                                                              child: Text("Entfernen"),
-                                                              value: AdvisorCardSettings.delete,
-                                                            ),
-                                                            PopupMenuItem(
-                                                              child: Text("Default"),
+                                                              child: Text("Default", style: TextStyle(fontSize: 12)),
                                                               value: AdvisorCardSettings.delete,
                                                             ),
                                                           ],
@@ -369,7 +367,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
 
   Widget createSituations() {
             return Expanded(
-              flex: 3,
+              flex: 4,
               child: FutureBuilder<List<Situation>>(
                   future: getAllSituations(),
                   builder: (context, snapshot) {
@@ -382,20 +380,21 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                         if (snapshot.hasError) {
                           return Text('Error: ${snapshot.error}');
                         } else if(snapshot.hasData) {
-                          // final cleanMap = jsonDecode(jsonEncode(snapshot));
                           return ListView.builder(
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
                               tmpSituation = snapshot.data[index];
-                              // double percentComplete = todoObject.percentComplete();
                               return Padding(
                                 padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
-                                child: AdvisorCardCrisisTile(
-                                          crisisTitle: tmpSituation.situationName,
-                                          crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
-                                          //change to crisis details object
-                                          advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
-                                        ),
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                                    ExpandCrisisTile(
+                                      crisisTitle: tmpSituation.situationName, 
+                                      crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
+                                      advisorCardObject: new AdvisorCardObject(tmpSituation.situationName, Icons.accessibility), initiallyExpanded: index > 0 ? false:true,),
+                                  ],
+                                )
                               );
                             }
                           );

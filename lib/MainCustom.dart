@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.import_contacts),
-            title: Text('Nachrichten'),
+            title: Text('Feed'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.map),

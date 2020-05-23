@@ -1,4 +1,4 @@
-import 'package:crimsy/widgets/advisor/objects/stateObject.dart';
+import 'package:crimsy/widgets/advisor/objects/advisorCardObject.dart';
 import 'package:crimsy/widgets/advisor/pages/advisorhome/advisorCardCrisisTileDetails.dart';
 import 'package:flutter/material.dart';
 
