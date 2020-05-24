@@ -260,7 +260,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                               ),
 
 
-                                            createSituations(),
+                                            createSituations(tmpCity),
 
 
                                             //AdvisorCardTile
@@ -365,7 +365,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
     );
   }
 
-  Widget createSituations() {
+  Widget createSituations(CityInformation city) {
             return Expanded(
               flex: 4,
               child: FutureBuilder<List<Situation>>(
@@ -392,7 +392,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                     ExpandCrisisTile(
                                       crisisTitle: tmpSituation.situationName, 
                                       crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
-                                      advisorCardObject: new AdvisorCardObject(tmpSituation.situationName, Icons.accessibility), initiallyExpanded: index > 0 ? false:true,),
+                                      advisorCardObject: new AdvisorCardObject(tmpSituation.situationName, Icons.accessibility, city), initiallyExpanded: index > 0 ? false:true,),
                                   ],
                                 )
                               );

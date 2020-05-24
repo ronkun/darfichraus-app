@@ -16,45 +16,31 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
-  double percentComplete;
-  AnimationController animationBar;
-  double barPercent = 0.0;
-  Tween<double> animT;
-  AnimationController scaleAnimation;
+  // double percentComplete;
+  // AnimationController animationBar;
+  // double barPercent = 0.0;
+  // Tween<double> animT;
+  // AnimationController scaleAnimation;
 
   @override
   void initState() {
-    scaleAnimation = AnimationController(vsync: this, duration: Duration(milliseconds: 1000), lowerBound: 0.0, upperBound: 1.0);
-    percentComplete = widget.advisorCardObject.percentComplete();
-    barPercent = percentComplete;
-    animationBar = AnimationController(vsync: this, duration: Duration(milliseconds: 100))
-      ..addListener(() {
-        setState(() {
-          barPercent = animT.transform(animationBar.value);
-        });
-      });
-    animT = Tween<double>(begin: percentComplete, end: percentComplete);
-    scaleAnimation.forward();
+    // scaleAnimation = AnimationController(vsync: this, duration: Duration(milliseconds: 1000), lowerBound: 0.0, upperBound: 1.0);
+    // animationBar = AnimationController(vsync: this, duration: Duration(milliseconds: 100))
+    //   ..addListener(() {
+    //     setState(() {
+    //       barPercent = animT.transform(animationBar.value);
+    //     });
+    //   });
+    // animT = Tween<double>(begin: percentComplete, end: percentComplete);
+    // scaleAnimation.forward();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    animationBar.dispose();
-    scaleAnimation.dispose();
-  }
-
-  void updateBarPercent() async {
-    double newPercentComplete = widget.advisorCardObject.percentComplete();
-    if (animationBar.status == AnimationStatus.forward || animationBar.status == AnimationStatus.completed) {
-      animT.begin = newPercentComplete;
-      await animationBar.reverse();
-    } else {
-      animT.end = newPercentComplete;
-      await animationBar.forward();
-    }
-    percentComplete = newPercentComplete;
+    // animationBar.dispose();
+    // scaleAnimation.dispose();
   }
 
   @override
@@ -173,8 +159,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       child: Material(
                         color: Colors.transparent,
                         child: Text(
-                          "Schleswig-Holstein",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: MainColors.dirMainBlue),
+                          widget.advisorCardObject.region.cityInformationZip + ' ' + widget.advisorCardObject.region.cityInformationCity,
+                          style: TextStyle(fontWeight: FontWeight.w700, color: MainColors.dirMainBlue),
                           softWrap: false,
                         ),
                       ),
@@ -199,7 +185,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   ),
                 ),
                 Row(
-                  // children: <Widget>[
                   children:
                     List.generate(widget.restrictionIcons.length,(index){ 
                       return Container(
@@ -211,7 +196,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: widget.restrictionIcons[index],
-                          // Icon(Icons.accessibility),
                         ),
                       );
                     }
@@ -274,7 +258,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                         children: <Widget>[
                           Padding(padding: EdgeInsets.only(left: 15)),
                           Text("Stand: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 10),),
-                          Text( '' + DateFormat('dd.MM.yyyy').format(DateTime.now()).toString() + ' (JHU) ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 10))
+                          Text( '' + DateFormat('dd.MM.yyyy').format(DateTime.now()).toString() + ' (RKI) ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 10))
                         ]
                       ),
                       SizedBox(height: 10),
