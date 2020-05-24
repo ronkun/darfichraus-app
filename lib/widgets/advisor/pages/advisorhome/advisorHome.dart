@@ -23,7 +23,7 @@ class AdvisorHome extends StatefulWidget {
 
 class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin {
   var repo = new FuturePreferencesRepository<CityInformation>(new CityInfoDesSer());
-  ScrollController scrollController;
+  // ScrollController scrollController = ScrollController(initialScrollOffset: _controller.position.maxScrollExtent);
   Color backgroundColor;
   LinearGradient backgroundGradient;
   Tween<Color> colorTween;
@@ -41,7 +41,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
   @override
   void dispose() {
     super.dispose();
-    scrollController.dispose();
+    // scrollController.dispose();
   }
 
   @override
@@ -147,6 +147,7 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                             // physics: ClampingScrollPhysics(),
                             // controller: scrollController,
                             // shrinkWrap: true,
+                            
                             itemExtent: _width - 80,
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
@@ -261,22 +262,6 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
 
 
                                             createSituations(tmpCity),
-
-
-                                            //AdvisorCardTile
-                                            // AdvisorCardCrisisTile(
-                                            //   crisisTitle: "Corona",
-                                            //   crisisRestrictionsIcons: [RestrictionIcons.Mask],
-                                            //   advisorCardObject: new AdvisorCardObject("Corona (SarS CoV-2)", Icons.verified_user),
-                                            // ),
-
-                                            // AdvisorCardCrisisTile(
-                                            //   crisisTitle: "Influenza",
-                                            //   crisisRestrictionsIcons: [RestrictionIcons.Mask, RestrictionIcons.Distance],
-                                            //   //change to crisis details object
-                                            //   advisorCardObject: new AdvisorCardObject("Influenza (H1N1)", Icons.accessibility),
-                                            // ),
-
                                         
                                               // Spacer(),
                                               // //Verordnungen/Bundesland
@@ -334,10 +319,12 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                           
                                                 AdvisorProgressBar(
                                                   totalSteps: 5,
-                                                  currentStep: 2,
-                                                  padding: 6.0,
+                                                  currentStep: 4,
+                                                  padding: 3.0,
                                                   size: 6,
-                                                  uuid: tmpCity.cityInformationCity,
+                                                  showLabel: true,
+                                                  label: "Kontaktverbot",
+                                                  // uuid: tmpCity.cityInformationZip +"_"+tmpCity.cityInformationCity,
                                                 )
                                                 ]
                                               )

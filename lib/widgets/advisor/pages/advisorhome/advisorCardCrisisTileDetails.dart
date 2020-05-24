@@ -147,7 +147,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   currentStep: 2,
                   padding: 6.0,
                   size: 5,
-                  uuid: widget.advisorCardObject.uuid,
+                  showLabel: true,
+                  // uuid: widget.advisorCardObject.uuid,
                 ),
                 SizedBox(height: 20),
                 Padding(

@@ -23,15 +23,15 @@ class AdvisorCardObject {
     this.uuid = Uuid().v1();
     this.crisisRestrictionsIcons = crisisRestrictionsIcons; 
     this.region = region;
-    
+    // print("UUID AdvObj: "+uuid);
   }
 
-  AdvisorCardObject.import(String uuidS, String title, int sortID, ColorChoice color, IconData icon) {
-    this.sortID = sortID;
-    this.title = title;
-    this.color = color.primary;
-    this.gradient = LinearGradient(colors: color.gradient, begin: Alignment.bottomCenter, end: Alignment.topCenter);
-    this.icon = icon;
-    this.uuid = uuidS;
-  }
+  // AdvisorCardObject.import(String uuidS, String title, int sortID, ColorChoice color, IconData icon) {
+  //   this.sortID = sortID;
+  //   this.title = title;
+  //   this.color = color.primary;
+  //   this.gradient = LinearGradient(colors: color.gradient, begin: Alignment.bottomCenter, end: Alignment.topCenter);
+  //   this.icon = icon;
+  //   this.uuid = uuidS;
+  // }
 }

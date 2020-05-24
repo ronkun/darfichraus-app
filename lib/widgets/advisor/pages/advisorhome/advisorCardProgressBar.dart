@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:uuid/uuid.dart';
 
 class AdvisorProgressBar extends StatelessWidget {
   final int totalSteps;
   final int currentStep;
   final double padding;
   final double size;
-  final String uuid;
+  final String uuid = Uuid().v1();
   final Color selectedColor = Colors.green;
+  final List<Color> indicatorColors = [Colors.green, Colors.green, Colors.green, Colors.orange, Colors.orange, Colors.red];
   final Color unselectedColor = Colors.black12;
+  final bool showLabel;
+  final String label;
 
-  const AdvisorProgressBar({
+  AdvisorProgressBar({
     Key key,
-    this.totalSteps,
-    this.currentStep,
-    this.padding,
-    this.size,
-    this.uuid
+    // this.uuid = ,
+    @required this.totalSteps,
+    @required this.currentStep,
+    @required this.padding,
+    @required this.size,
+    @required this.showLabel,
+    this.label
   }) : super(key: key);
   
   @override
@@ -34,16 +40,16 @@ class AdvisorProgressBar extends StatelessWidget {
                 padding: padding,
                 size: size,
                 // progressDirection: TextDirection.rtl,
-                selectedColor: selectedColor,
+                selectedColor: indicatorColors[currentStep],
                 unselectedColor: unselectedColor,
               )
               // child: LinearProgressIndicator(
               //   value: percentComplete,
               //   backgroundColor: Colors.grey.withAlpha(50),
-              //   valueColor: AlwaysStoppedAnimation<Color>(todoObject.color),
+                // valueColor: AlwaysStoppedAnimation<Color>(todoObject.color),
               // ),
             ),
-            Text("Maskenpflicht", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+            showLabel ? Text(label == null ? "" : label, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)) : Text(""),
             Padding(
               padding: EdgeInsets.only(left: 5.0, right: 5.0),
             //   // child: Text((percentComplete * 100).round().toString() + "%"),
