@@ -111,15 +111,15 @@ Widget build(BuildContext context) {
                               // Card( 
                               //   child: 
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 11),
+                                  padding: EdgeInsets.only(bottom: 3),
                                   child: ListTile(
                                 leading: new CircleAvatar(
                                       backgroundColor: Colors.white,
                                       child: snapshot.data[index].translateRestrictionAreaSymbol(snapshot.data[index].restrictionArealIdentifier)
                                     ),        
-                                title: Text(snapshot.data[index].restrictionShortDescription, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black87)),
+                                title: Text(snapshot.data[index].restrictionShortDescription, style: TextStyle(fontSize: 11.0, fontWeight: FontWeight.w600, color: Colors.black87)),
                                 subtitle: Column(children: <Widget> [
-                                  SizedBox(height: 5),
+                                  // SizedBox(height: 2),
                                   Row(
                                     children: <Widget>[
                                       Padding(
