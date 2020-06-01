@@ -22,9 +22,8 @@ import 'dart:convert';
     if (response.statusCode == 200) {
         var encodedResponse = Utf8Decoder().convert(response.bodyBytes);
         List jsonResponse = json.decode(encodedResponse);
-        print("text");
-        print("SITUATIONS: "+jsonResponse.length.toString());
-        print("Situations: " + jsonDecode(response.body).toString());
+        // print("SITUATIONS: "+jsonResponse.length.toString());
+        // print("Situations: " + jsonDecode(response.body).toString());
         return jsonResponse.map((situation) => new Situation.fromJson(situation)).toList(); 
     } else {
       throw Exception('Failed to load situations');

@@ -1,19 +1,21 @@
-class HealthInformation {
-  String gen;
-  String bez;
-  int ewz;
-  double deathRate;
-  int cases;
-  int deaths;
-  double casesPer100k;
-  double casesPerPopulation;
-  String bl;
-  String county;
-  String lastUpdate;
-  double cases7Per100k;
-  String districtType;
+import 'package:crimsy/model/region_model.dart';
 
-  HealthInformation(
+class HealthInformation {
+  final String gen;
+  final String bez;
+  final int ewz;
+  final double deathRate;
+  final int cases;
+  final int deaths;
+  final double casesPer100k;
+  final double casesPerPopulation;
+  final String bl;
+  final String county;
+  final String lastUpdate;
+  final double cases7Per100k;
+  final String districtType;
+
+  const HealthInformation(
       {this.gen,
       this.bez,
       this.ewz,
@@ -26,22 +28,25 @@ class HealthInformation {
       this.county,
       this.lastUpdate,
       this.cases7Per100k,
-      this.districtType});
+      this.districtType}
+  );
 
-  HealthInformation.fromJson(Map<String, dynamic> json) {
-    gen = json['gen'];
-    bez = json['bez'];
-    ewz = json['ewz'];
-    deathRate = json['deathRate'];
-    cases = json['cases'];
-    deaths = json['deaths'];
-    casesPer100k = json['casesPer100k'];
-    casesPerPopulation = json['casesPerPopulation'];
-    bl = json['bl'];
-    county = json['county'];
-    lastUpdate = json['lastUpdate'];
-    cases7Per100k = json['cases7Per100k'];
-    districtType = json['districtType'];
+  factory HealthInformation.fromJson(Map<String, dynamic> json) {
+    return HealthInformation(
+      gen: json['gen'],
+      bez: json['bez'],
+      ewz: json['ewz'],
+      deathRate: json['deathRate'],
+      cases: json['cases'],
+      deaths: json['deaths'],
+      casesPer100k: json['casesPer100k'],
+      casesPerPopulation: json['casesPerPopulation'],
+      bl: json['bl'],
+      county: json['county'],
+      lastUpdate: json['lastUpdate'],
+      cases7Per100k: json['cases7Per100k'],
+      districtType: json['districtType'],
+    );
   }
 
   Map<String, dynamic> toJson() {

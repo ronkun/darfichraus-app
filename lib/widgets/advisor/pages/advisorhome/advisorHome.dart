@@ -281,51 +281,50 @@ class _AdvisorHomeState extends State<AdvisorHome> with TickerProviderStateMixin
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
-                                              
-                                              Padding(
-                                                padding: EdgeInsets.only(bottom: 10),
-                                                child:
-                                                  Hero(
-                                                    tag: tmpCity.hashCode.toString() + "_title",
-                                                    child: Material(
-                                                      color: Colors.transparent,
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: <Widget> [ 
-                                                          Container(
-                                                            margin: const EdgeInsets.only(right: 15.0),
-                                                            width: 17,
-                                                            child: Utility.translateRestrictionAreaSymbol(tmpCity.cityInformationState),
-                                                          ),
-                                                          
-                                                          Text(
-                                                            tmpCity.cityInformationCity,
-                                                            style: TextStyle(fontSize: 25.0),
-                                                            softWrap: false,
-                                                          ), 
-                                                          Padding(
-                                                            padding: EdgeInsets.only(left: 10, top: 10),
-                                                            child: Text(
-                                                              tmpCity.cityInformationZip,
-                                                              style: TextStyle(fontSize: 12.0, color: Colors.grey, fontWeight: FontWeight.w500),
+                                                Padding(
+                                                  padding: EdgeInsets.only(bottom: 10),
+                                                  child:
+                                                    Hero(
+                                                      tag: tmpCity.hashCode.toString() + "_title",
+                                                      child: Material(
+                                                        color: Colors.transparent,
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          children: <Widget> [ 
+                                                            Container(
+                                                              margin: const EdgeInsets.only(right: 15.0),
+                                                              width: 17,
+                                                              child: Utility.translateRestrictionAreaSymbol(tmpCity.cityInformationState),
+                                                            ),
+                                                            
+                                                            Text(
+                                                              tmpCity.cityInformationCity,
+                                                              style: TextStyle(fontSize: 25.0),
                                                               softWrap: false,
+                                                            ), 
+                                                            Padding(
+                                                              padding: EdgeInsets.only(left: 10, top: 10),
+                                                              child: Text(
+                                                                tmpCity.cityInformationZip,
+                                                                style: TextStyle(fontSize: 12.0, color: Colors.grey, fontWeight: FontWeight.w500),
+                                                                softWrap: false,
+                                                              )
                                                             )
-                                                          )
-                                                        ]),
-                                                    ),
+                                                          ]),
+                                                      ),
+                                                    )
+                                                ),
+                                                // Spacer(),
+                                            
+                                                  AdvisorProgressBar(
+                                                    totalSteps: 5,
+                                                    currentStep: 4,
+                                                    padding: 3.0,
+                                                    size: 6,
+                                                    showLabel: true,
+                                                    label: "Kontaktverbot",
+                                                    // uuid: tmpCity.cityInformationZip +"_"+tmpCity.cityInformationCity,
                                                   )
-                                              ),
-                                              // Spacer(),
-                                          
-                                                AdvisorProgressBar(
-                                                  totalSteps: 5,
-                                                  currentStep: 4,
-                                                  padding: 3.0,
-                                                  size: 6,
-                                                  showLabel: true,
-                                                  label: "Kontaktverbot",
-                                                  // uuid: tmpCity.cityInformationZip +"_"+tmpCity.cityInformationCity,
-                                                )
                                                 ]
                                               )
                                             ],
