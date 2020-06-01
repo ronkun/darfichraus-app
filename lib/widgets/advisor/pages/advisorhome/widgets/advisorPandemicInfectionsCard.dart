@@ -40,7 +40,7 @@ class AdvisorPandemicInfectionsWidget extends StatelessWidget {
                                         dense: true,
                                         // contentPadding: EdgeInsets.only(top: 0.0, bottom: 0.0),
                                         leading: Icon(Icons.public),
-                                        title: Text('Einwohner', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                                        title: Text('Einwohner (' + healthInfos.gen + ')', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
                                         // subtitle: Text(healthInfos.ewz.toString() + " Menschen"),
                                         // trailing: Icon(Icons.arrow_drop_up, color: Colors.green,),
                                         trailing: Text(NumberFormat.decimalPattern().format(healthInfos.ewz).toString(), style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
